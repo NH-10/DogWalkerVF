@@ -49,5 +49,4 @@ public class Race implements Serializable {
 	}
 	
 	//KEVIN
-	
 }
