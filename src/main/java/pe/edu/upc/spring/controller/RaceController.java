@@ -19,7 +19,7 @@ import pe.edu.upc.spring.model.Race;
 import pe.edu.upc.spring.service.IRaceService;
 
 @Controller
-@RequestMapping("/race") // KELLY PRUEBA
+@RequestMapping("/race") // KELLY PRUEBAAAAAA
 public class RaceController {
 	@Autowired
 	private IRaceService rService;
