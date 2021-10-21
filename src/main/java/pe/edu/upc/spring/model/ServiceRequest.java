@@ -42,7 +42,7 @@ public class ServiceRequest implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name="idState", nullable = false)
-	private State state;
+	private Status status;
 	
 	@ManyToOne
 	@JoinColumn(name="idTime", nullable = false)
@@ -62,14 +62,14 @@ public class ServiceRequest implements Serializable {
 	}
 
 	public ServiceRequest(int idServiceRequest, Date date, double totalServiceCost, String startTime, String timeLimit,
-			State state, Time time, Owner owner, Walker walker) {
+			Status status, Time time, Owner owner, Walker walker) {
 		super();
 		this.idServiceRequest = idServiceRequest;
 		this.date = date;
 		this.totalServiceCost = totalServiceCost;
 		this.startTime = startTime;
 		this.timeLimit = timeLimit;
-		this.state = state;
+		this.status = status;
 		this.time = time;
 		this.owner = owner;
 		this.walker = walker;
@@ -115,12 +115,12 @@ public class ServiceRequest implements Serializable {
 		this.timeLimit = timeLimit;
 	}
 
-	public State getState() {
-		return state;
+	public Status getState() {
+		return status;
 	}
 
-	public void setState(State state) {
-		this.state = state;
+	public void setState(Status status) {
+		this.status = status;
 	}
 
 	public Time getTime() {

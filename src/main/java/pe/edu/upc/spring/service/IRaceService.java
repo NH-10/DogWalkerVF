@@ -6,7 +6,7 @@ import java.util.Optional;
 import pe.edu.upc.spring.model.Race;
 
 public interface IRaceService {
-	public boolean grabar(Race race);
+	public boolean grabar(Race race); // cambiar a ingles save, delete listDog
 	public void eliminar(int idRace);
 	public Optional<Race> listarId(int idRace);
 	public List<Race> listar();

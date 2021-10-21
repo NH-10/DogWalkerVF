@@ -10,34 +10,34 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="State")
-public class State implements Serializable {
+@Table(name="Status")
+public class Status implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idState;
+	private int idStatus;
 	
 	@Column(name="name", length=60, nullable=false)
 	private String name;
 
-	public State() {
+	public Status() {
 		super();
 	}
 
-	public State(int idState, String name) {
+	public Status(int idStatus, String name) {
 		super();
-		this.idState = idState;
+		this.idStatus = idStatus;
 		this.name = name;
 	}
 
-	public int getIdState() {
-		return idState;
+	public int getIdStatus() {
+		return idStatus;
 	}
 
-	public void setIdState(int idState) {
-		this.idState = idState;
+	public void setIdStatus(int idStatus) {
+		this.idStatus = idStatus;
 	}
 
 	public String getName() {
