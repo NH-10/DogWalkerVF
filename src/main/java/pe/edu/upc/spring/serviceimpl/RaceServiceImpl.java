@@ -49,8 +49,8 @@ public class RaceServiceImpl implements IRaceService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Race> buscarNombre(String nameRace) {
-		return dRace.buscarNombre(nameRace);
+	public List<Race> buscarNombre(String name) {
+		return dRace.buscarNombre(name);
 	}
 
 }

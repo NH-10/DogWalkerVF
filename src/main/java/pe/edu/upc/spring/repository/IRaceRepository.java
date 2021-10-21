@@ -11,6 +11,6 @@ import pe.edu.upc.spring.model.Race;
 
 @Repository
 public interface IRaceRepository extends JpaRepository<Race, Integer>{
-	@Query("from Race r where r.nameRace like %:nameRace%")
-	List<Race> buscarNombre(@Param("nameRace") String nameRace);
+	@Query("from Race r where r.name like %:name%")
+	List<Race> buscarNombre(@Param("name") String name);
 }

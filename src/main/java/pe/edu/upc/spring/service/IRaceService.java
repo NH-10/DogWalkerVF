@@ -10,5 +10,5 @@ public interface IRaceService {
 	public void eliminar(int idRace);
 	public Optional<Race> listarId(int idRace);
 	public List<Race> listar();
-	public List<Race> buscarNombre(String nameRace);	
+	public List<Race> buscarNombre(String name);	
 }

@@ -10,34 +10,35 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Race")
-public class Race implements Serializable {
+@Table(name="District")
+public class District implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idRace;
+	private int idDistrict;
 	
 	@Column(name="name", length=60, nullable=false)
 	private String name;
 
-	public Race() {
+	public District() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public Race(int idRace, String name) {
+	public District(int idDistrict, String name) {
 		super();
-		this.idRace = idRace;
+		this.idDistrict = idDistrict;
 		this.name = name;
 	}
 
-	public int getIdRace() {
-		return idRace;
+	public int getIdDistrict() {
+		return idDistrict;
 	}
 
-	public void setIdRace(int idRace) {
-		this.idRace = idRace;
+	public void setIdDistrict(int idDistrict) {
+		this.idDistrict = idDistrict;
 	}
 
 	public String getName() {
@@ -48,5 +49,4 @@ public class Race implements Serializable {
 		this.name = name;
 	}
 
-	
 }

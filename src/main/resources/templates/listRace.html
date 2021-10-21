@@ -52,7 +52,7 @@
     						<tbody>
     							<tr th:each="rac: ${listaRazas}">
     								<td th:text="${rac.idRace}"></td>
-    								<td th:text="${rac.nameRace}"></td>
+    								<td th:text="${rac.name}"></td>
     								<td><a th:href="@{/race/eliminar?id=}+${rac.idRace}">Eliminar</a></td>    								
     								<td><a th:href="@{'/race/modificar/'}+${rac.idRace}">Modificar</a></td>
     							</tr>
