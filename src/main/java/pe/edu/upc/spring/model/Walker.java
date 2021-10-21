@@ -17,55 +17,54 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="Walker")
+@Table(name = "Walker")
 public class Walker implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idWalker;
-	
-	@Column(name="firstNames", length=150, nullable=false)
+
+	@Column(name = "firstNames", length = 150, nullable = false)
 	private String firstNames;
-	
-	@Column(name="lastNames", length=150, nullable=false)
+
+	@Column(name = "lastNames", length = 150, nullable = false)
 	private String lastNames;
 
-	@Column(name="email", length=60, nullable=false)
+	@Column(name = "email", length = 60, nullable = false)
 	private String email;
-	
-	@Column(name="password", length=20, nullable=false)
+
+	@Column(name = "password", length = 20, nullable = false)
 	private String password;
-	
+
 	@Temporal(TemporalType.DATE)
-	@Column(name="dateOfBirth")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@Column(name = "dateOfBirth")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
-	
-	@Column(name="biography", length=255, nullable=false)
+
+	@Column(name = "biography", length = 255, nullable = false)
 	private String biography;
-	
-	@Column(name="description", length=255, nullable=false)
+
+	@Column(name = "description", length = 255, nullable = false)
 	private String description;
-	
-	@Column(name="costService", nullable=false)
+
+	@Column(name = "costService", nullable = false)
 	private double costService;
-	
-	@Column(name="address", length=255, nullable=false)
+
+	@Column(name = "address", length = 255, nullable = false)
 	private String address;
-	
+
 	@ManyToOne
-	@JoinColumn(name="idPersonality", nullable = false)
+	@JoinColumn(name = "idPersonality", nullable = false)
 	private Personality personality;
-	
+
 	@ManyToOne
-	@JoinColumn(name="idDistrict", nullable = false)
+	@JoinColumn(name = "idDistrict", nullable = false)
 	private District district;
 
 	public Walker() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Walker(int idWalker, String firstNames, String lastNames, String email, String password, Date dateOfBirth,
@@ -181,5 +180,5 @@ public class Walker implements Serializable {
 	public void setDistrict(District district) {
 		this.district = district;
 	}
-	
+
 }

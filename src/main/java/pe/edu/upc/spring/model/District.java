@@ -10,21 +10,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="District")
+@Table(name = "District")
 public class District implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idDistrict;
-	
-	@Column(name="name", length=60, nullable=false)
+
+	@Column(name = "name", length = 60, nullable = false)
 	private String name;
 
 	public District() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public District(int idDistrict, String name) {

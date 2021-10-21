@@ -16,42 +16,41 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="Owner")
+@Table(name = "Owner")
 public class Owner implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idOwner;
-	
-	@Column(name="firstNames", length=150, nullable=false)
+
+	@Column(name = "firstNames", length = 150, nullable = false)
 	private String firstNames;
-	
-	@Column(name="lastNames", length=150, nullable=false)
+
+	@Column(name = "lastNames", length = 150, nullable = false)
 	private String lastNames;
 
-	@Column(name="email", length=60, nullable=false)
+	@Column(name = "email", length = 60, nullable = false)
 	private String email;
-	
-	@Column(name="password", length=20, nullable=false)
+
+	@Column(name = "password", length = 20, nullable = false)
 	private String password;
-	
+
 	@Temporal(TemporalType.DATE)
-	@Column(name="dateOfBirth")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@Column(name = "dateOfBirth")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
-	
+
 	@ManyToOne
-	@JoinColumn(name="idDistrict", nullable=false)
+	@JoinColumn(name = "idDistrict", nullable = false)
 	private District district;
 
-	@Column(name="address", length=255, nullable=false)
+	@Column(name = "address", length = 255, nullable = false)
 	private String address;
 
 	public Owner() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Owner(int idOwner, String firstNames, String lastNames, String email, String password, Date dateOfBirth,
@@ -130,5 +129,5 @@ public class Owner implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+
 }

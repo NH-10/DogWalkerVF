@@ -17,48 +17,47 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="ServiceRequest")
+@Table(name = "ServiceRequest")
 public class ServiceRequest implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idServiceRequest;
-	
+
 	@Temporal(TemporalType.DATE)
-	@Column(name="date")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@Column(name = "date")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date;
-	
-	@Column(name="totalServiceCost", nullable=false)
+
+	@Column(name = "totalServiceCost", nullable = false)
 	private double totalServiceCost;
-	
-	@Column(name="startTime", length=20, nullable=false)
+
+	@Column(name = "startTime", length = 20, nullable = false)
 	private String startTime;
 
-	@Column(name="timeLimit", length=20, nullable=false)
+	@Column(name = "timeLimit", length = 20, nullable = false)
 	private String timeLimit;
 
 	@ManyToOne
-	@JoinColumn(name="idState", nullable = false)
+	@JoinColumn(name = "idState", nullable = false)
 	private Status status;
-	
+
 	@ManyToOne
-	@JoinColumn(name="idTime", nullable = false)
+	@JoinColumn(name = "idTime", nullable = false)
 	private Time time;
 
 	@ManyToOne
-	@JoinColumn(name="idOwner", nullable = false)
+	@JoinColumn(name = "idOwner", nullable = false)
 	private Owner owner;
-	
+
 	@ManyToOne
-	@JoinColumn(name="idWalker", nullable = false)
+	@JoinColumn(name = "idWalker", nullable = false)
 	private Walker walker;
 
 	public ServiceRequest() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public ServiceRequest(int idServiceRequest, Date date, double totalServiceCost, String startTime, String timeLimit,
@@ -146,5 +145,5 @@ public class ServiceRequest implements Serializable {
 	public void setWalker(Walker walker) {
 		this.walker = walker;
 	}
-	
+
 }

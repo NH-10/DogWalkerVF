@@ -12,32 +12,31 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Feedback")
+@Table(name = "Feedback")
 public class Feedback implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idFeedback;
-	
-	@Column(name="rating", nullable=false)
+
+	@Column(name = "rating", nullable = false)
 	private int rating;
 
-	@Column(name="comment", length=255, nullable=false)
+	@Column(name = "comment", length = 255, nullable = false)
 	private String comment;
-		
+
 	@ManyToOne
-	@JoinColumn(name="idOwner", nullable = false)
+	@JoinColumn(name = "idOwner", nullable = false)
 	private Owner owner;
-	
+
 	@ManyToOne
-	@JoinColumn(name="idWalker", nullable = false)
+	@JoinColumn(name = "idWalker", nullable = false)
 	private Walker walker;
 
 	public Feedback() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Feedback(int idFeedback, int rating, String comment, Owner owner, Walker walker) {
@@ -88,5 +87,5 @@ public class Feedback implements Serializable {
 	public void setWalker(Walker walker) {
 		this.walker = walker;
 	}
-	
+
 }

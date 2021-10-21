@@ -17,41 +17,40 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="Dog")
+@Table(name = "Dog")
 public class Dog implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idDog;
-	
-	@Column(name="name", length=50, nullable=false)
+
+	@Column(name = "name", length = 50, nullable = false)
 	private String name;
 
-	@Column(name="description", length=200, nullable=true)
+	@Column(name = "description", length = 200, nullable = true)
 	private String description;
-	
+
 	@Temporal(TemporalType.DATE)
-	@Column(name="dateOfBirth")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@Column(name = "dateOfBirth")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
-	
+
 	@ManyToOne
-	@JoinColumn(name="idCharacter", nullable = false)
+	@JoinColumn(name = "idCharacter", nullable = false)
 	private Character character;
-	
+
 	@ManyToOne
-	@JoinColumn(name="idRace", nullable = false)
+	@JoinColumn(name = "idRace", nullable = false)
 	private Race race;
-	
+
 	@ManyToOne
-	@JoinColumn(name="idOwner", nullable = false)
+	@JoinColumn(name = "idOwner", nullable = false)
 	private Owner owner;
 
 	public Dog() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Dog(int idDog, String name, String description, Date dateOfBirth, Character character, Race race,
@@ -121,6 +120,5 @@ public class Dog implements Serializable {
 	public void setOwner(Owner owner) {
 		this.owner = owner;
 	}
-	
 
 }

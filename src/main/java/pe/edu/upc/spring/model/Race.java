@@ -10,16 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Race")
+@Table(name = "Race")
 public class Race implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idRace;
-	
-	@Column(name="name", length=60, nullable=false)
+
+	@Column(name = "name", length = 60, nullable = false)
 	private String name;
 
 	public Race() {
@@ -48,5 +48,4 @@ public class Race implements Serializable {
 		this.name = name;
 	}
 
-	
 }

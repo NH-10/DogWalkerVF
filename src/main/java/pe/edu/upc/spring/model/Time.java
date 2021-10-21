@@ -10,21 +10,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Time")
+@Table(name = "Time")
 public class Time implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idTime;
-	
-	@Column(name="time", length=60, nullable=false)
+
+	@Column(name = "time", length = 60, nullable = false)
 	private String time;
 
 	public Time() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Time(int idTime, String time) {
@@ -49,5 +48,4 @@ public class Time implements Serializable {
 		this.time = time;
 	}
 
-	
 }
