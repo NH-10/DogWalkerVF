@@ -48,9 +48,4 @@ public class Race implements Serializable {
 		this.nameRace = nameRace;
 	}
 	
-<<<<<<< HEAD
-	//KEVIN
 }
-=======
-}//hola soy natalie
->>>>>>> refs/heads/branch-Natalie
