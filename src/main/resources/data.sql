@@ -31,7 +31,7 @@ INSERT INTO race(name) VALUES ('Pitbull American Terrier');
 INSERT INTO race(name) VALUES ('Pug');
 INSERT INTO race(name) VALUES ('Rottweiler');
 INSERT INTO race(name) VALUES ('San Bernardo');
-INSERT INTO race(name) VALUES ('Schnauzer')
+INSERT INTO race(name) VALUES ('Schnauzer');
 INSERT INTO race(name) VALUES ('Shih Tzu');
 INSERT INTO race(name) VALUES ('Terranova');
 INSERT INTO race(name) VALUES ('Volpino Italiano');
