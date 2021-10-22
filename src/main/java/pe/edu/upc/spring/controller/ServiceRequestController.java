@@ -20,9 +20,11 @@ import pe.edu.upc.spring.model.ServiceRequest;
 import pe.edu.upc.spring.model.Status;
 import pe.edu.upc.spring.model.Time;
 import pe.edu.upc.spring.model.Walker;
+import pe.edu.upc.spring.service.IOwnerService;
 import pe.edu.upc.spring.service.IServiceRequestService;
 import pe.edu.upc.spring.service.IStatusService;
 import pe.edu.upc.spring.service.ITimeService;
+import pe.edu.upc.spring.service.IWalkerService;
 
 @Controller
 @RequestMapping("/serviceRequest")
@@ -36,11 +38,11 @@ public class ServiceRequestController {
 	@Autowired
 	private ITimeService tService;
 
-	// @Autowired
-	// private IOwnerService owService;
+	@Autowired
+	private IOwnerService owService;
 
-	// @Autowired
-	// private IWalkerService waService;
+	@Autowired
+	private IWalkerService waService;
 
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -58,8 +60,8 @@ public class ServiceRequestController {
 
 		model.addAttribute("listStatus", sService.listStatus());
 		model.addAttribute("listTimes", tService.listTime());
-		// model.addAttribute("listOwners", owService.listOwner());
-		// model.addAttribute("listWalker", waService.listWalker());
+		model.addAttribute("listOwners", owService.list());
+		model.addAttribute("listWalker", waService.list());
 
 		model.addAttribute("serviceRequest", new ServiceRequest());
 		model.addAttribute("status", new Status());
@@ -76,8 +78,8 @@ public class ServiceRequestController {
 		if (binRes.hasErrors()) {
 			model.addAttribute("listStatus", sService.listStatus());
 			model.addAttribute("listTimes", tService.listTime());
-			// model.addAttribute("listOwners", owService.listOwner());
-			// model.addAttribute("listWalker", waService.listWalker());
+			model.addAttribute("listOwners", owService.list());
+			model.addAttribute("listWalker", waService.list());
 			return "serviceRequest";
 		} else {
 			boolean flag = srService.save(objServiceRequest);
@@ -99,8 +101,8 @@ public class ServiceRequestController {
 		} else {
 			model.addAttribute("listStatus", sService.listStatus());
 			model.addAttribute("listTimes", tService.listTime());
-			// model.addAttribute("listOwners", owService.listOwner());
-			// model.addAttribute("listWalker", waService.listWalker());
+			model.addAttribute("listOwners", owService.list());
+			model.addAttribute("listWalker", waService.list());
 			if (objServiceRequest.isPresent())
 				objServiceRequest.ifPresent(o -> model.addAttribute("serviceRequest", o));
 
