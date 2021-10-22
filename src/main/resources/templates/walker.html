@@ -1,0 +1,126 @@
+<!DOCTYPE html >
+
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:h="http://java.sun.com/jsf/html" 
+xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<head>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
+	rel="stylesheet" />
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet"
+	th:href="@{/css/bootstrap-datetimepicker.min.css}" />
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+	<div class="registration-form">
+		<form th:action="@{/walker/registrar}" method="post" th:object="${walker}">
+
+			<div class="form-icon">
+				<span><i class="icon icon-user"></i></span>
+			</div>
+
+			<div class="row">
+				<div class="form-group col-sm-6">
+					<input type="text" class="form-control item" placeholder="Nombre" th:field="*{firstNames}"></input>
+				
+				</div>
+				<div class="form-group col-sm-6">
+					<input type="text" class="form-control item"
+						placeholder="Apellidos"  th:field="*{lastNames}"></input>
+				
+				</div>
+			</div>
+
+			<div class="form-group">
+				<input type="text" class="form-control item" placeholder="email" th:field="*{email}"></input>
+
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control item"
+					placeholder="contrasena"  th:field="*{password}"></input>
+
+			</div>
+
+
+			<div class="row">
+				<div class="form-group col-sm-6">
+					<div class=" form group date" id="id_0">
+					<input type="date" class="form-control" placeholder="Fecha de nacimiento" th:field="*{dateOfBirth}"></input>
+					</div>
+				</div>
+
+				<div class="form-group col-sm-6">
+				
+				<select class="form-control " th:field="*{District.idDistrict}">
+    						<option th:each="d: ${listadistrito}"
+    								th:value="${d.idDistrict}"
+    								th:text="${d.name}"
+    								th:selected="(${d.idDistrict}==*{District.idDistrict})"> 
+    						</option>    					
+    					</select>    	
+				
+				</div>
+			</div>
+
+			<div class="form-group">
+				<input type="text" class="form-control item" placeholder="Direccion" th:field="*{address}"></input>
+
+			</div>
+
+			<div class="form-group">
+				<input type="text" class="form-control item"
+					placeholder="Descripcion" th:field="*{description}"></input>
+
+			</div>
+
+
+
+			<div class="form-group">
+			
+				<select class="form-control " th:field="*{Personality.idPersonality}">
+    						<option th:each="p: ${listpersonalidad}"
+    								th:value="${p.idPersonality}"
+    								th:text="${p.name}"
+    								th:selected="(${p.idPersonality}==*{Personality.idPersonality})"> 
+    						</option>    					
+    					</select>    	
+			
+			</div>
+
+
+
+			<div class="form-group">
+				<input type="text" class="form-control item"
+					placeholder="Costo por hora"  th:field="*{costService}"></input>
+
+			</div>
+
+
+			<button  class="btn btn-block create-account">Crear Cuenta</button>
+			<button type="submit" class="btn btn-block create-account">Aceptar</button>
+		</form>
+
+	</div>
+	<script src="resources/js/script.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/jquery.min.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/popper.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/bootstrap.min.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/moment-with-locales.min.js"
+		type="text/javascript" xml:space="preserve"></script>
+	<script src="resources/js/bootstrap-datetimepicker.min.js"
+		type="text/javascript" xml:space="preserve"></script>
+	<script src="resources/js/main.js" type="text/javascript"
+		xml:space="preserve"></script>
+</body>
+</html>

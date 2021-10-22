@@ -36,12 +36,12 @@ public class WalkerController {
 		return "bienvenido";
 	}
 	
-	@RequestMapping("/irRegistrar")
+	@RequestMapping("/irRegistrar")  // función registrar paseador
 	public String irPaginaRegistrar(Model model) {
 		model.addAttribute("walker", new Walker());
 		model.addAttribute("listadistrito", dService.listDistrict());
 		model.addAttribute("listpersonalidad", pService.listPersonality());
-		return "owner"; 
+		return "walker"; 
 	}
 	
 	@RequestMapping("/registrar")
