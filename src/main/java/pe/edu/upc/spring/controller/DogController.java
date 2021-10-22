@@ -50,7 +50,7 @@ public class DogController {
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
 		model.addAttribute("dog", new Dog());
-		model.addAttribute("listaRaza", rService.listar());
+		model.addAttribute("listaRaza", rService.listRace());
 		model.addAttribute("listaCaracter", cService.listCharacter());
 		//model.addAttribute("listaDueno", oService.list());
 		return "dog"; 
@@ -62,7 +62,7 @@ public class DogController {
 	{
 		if (binRes.hasErrors())
 		{
-			model.addAttribute("listaRaza", rService.listar());
+			model.addAttribute("listaRaza", rService.listRace());
 			model.addAttribute("listaCaracter", cService.listCharacter());
 			return "dog";
 		}
@@ -87,7 +87,7 @@ public class DogController {
 			return "redirect:/dog/listar";
 		}
 		else {
-			model.addAttribute("listaRaza", rService.listar());
+			model.addAttribute("listaRaza", rService.listRace());
 			model.addAttribute("listaCaracter", cService.listCharacter());
 			
 			if(objDog.isPresent())
