@@ -1,8 +1,8 @@
 <!DOCTYPE html >
 
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:h="http://java.sun.com/jsf/html" 
-xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <head>
 <link
@@ -20,7 +20,8 @@ xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <body>
 	<div class="registration-form">
-		<form th:action="@{/walker/registrar}" method="post" th:object="${walker}">
+		<form th:action="@{/walker/registrar}" method="post"
+			th:object="${walker}">
 
 			<div class="form-icon">
 				<span><i class="icon icon-user"></i></span>
@@ -28,23 +29,25 @@ xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 			<div class="row">
 				<div class="form-group col-sm-6">
-					<input type="text" class="form-control item" placeholder="Nombre" th:field="*{firstNames}"></input>
-				
+					<input type="text" class="form-control item" placeholder="Nombre"
+						th:field="*{firstNames}"></input>
+
 				</div>
 				<div class="form-group col-sm-6">
 					<input type="text" class="form-control item"
-						placeholder="Apellidos"  th:field="*{lastNames}"></input>
-				
+						placeholder="Apellidos" th:field="*{lastNames}"></input>
+
 				</div>
 			</div>
 
 			<div class="form-group">
-				<input type="text" class="form-control item" placeholder="email" th:field="*{email}"></input>
+				<input type="text" class="form-control item" placeholder="email"
+					th:field="*{email}"></input>
 
 			</div>
 			<div class="form-group">
 				<input type="text" class="form-control item"
-					placeholder="contrasena"  th:field="*{password}"></input>
+					placeholder="contrasena" th:field="*{password}"></input>
 
 			</div>
 
@@ -52,25 +55,27 @@ xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 			<div class="row">
 				<div class="form-group col-sm-6">
 					<div class=" form group date" id="id_0">
-					<input type="date" class="form-control" placeholder="Fecha de nacimiento" th:field="*{dateOfBirth}"></input>
+						<input type="date" class="form-control itemselect"
+							placeholder="Fecha de nacimiento" th:field="*{dateOfBirth}"></input>
 					</div>
 				</div>
 
 				<div class="form-group col-sm-6">
-				
-				<select class="form-control " th:field="*{District.idDistrict}">
-    						<option th:each="d: ${listadistrito}"
-    								th:value="${d.idDistrict}"
-    								th:text="${d.name}"
-    								th:selected="(${d.idDistrict}==*{District.idDistrict})"> 
-    						</option>    					
-    					</select>    	
-				
+
+					<select class="form-control itemselect"
+						th:field="*{District.idDistrict}">
+						<option th:each="d: ${listadistrito}" th:value="${d.idDistrict}"
+							th:text="${d.name}"
+							th:selected="(${d.idDistrict}==*{District.idDistrict})">
+						</option>
+					</select>
+
 				</div>
 			</div>
 
 			<div class="form-group">
-				<input type="text" class="form-control item" placeholder="Direccion" th:field="*{address}"></input>
+				<input type="text" class="form-control item" placeholder="Direccion"
+					th:field="*{address}"></input>
 
 			</div>
 
@@ -83,28 +88,29 @@ xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 
 			<div class="form-group">
-			
-				<select class="form-control " th:field="*{Personality.idPersonality}">
-    						<option th:each="p: ${listpersonalidad}"
-    								th:value="${p.idPersonality}"
-    								th:text="${p.name}"
-    								th:selected="(${p.idPersonality}==*{Personality.idPersonality})"> 
-    						</option>    					
-    					</select>    	
-			
+
+				<select class="form-control itemselect"
+					th:field="*{Personality.idPersonality}">
+					<option th:each="p: ${listpersonalidad}"
+						th:value="${p.idPersonality}" th:text="${p.name}"
+						th:selected="(${p.idPersonality}==*{Personality.idPersonality})">
+					</option>
+				</select>
+
 			</div>
 
 
 
 			<div class="form-group">
 				<input type="text" class="form-control item"
-					placeholder="Costo por hora"  th:field="*{costService}"></input>
+					placeholder="Costo por hora" th:field="*{costService}"></input>
 
 			</div>
 
 
-			<button  class="btn btn-block create-account">Crear Cuenta</button>
-			<button type="submit" class="btn btn-block create-account">Aceptar</button>
+
+			<button type="submit" class="btn btn-block create-account">Crear
+				Cuenta</button>
 		</form>
 
 	</div>
