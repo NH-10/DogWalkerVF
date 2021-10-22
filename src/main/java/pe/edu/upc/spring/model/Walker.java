@@ -43,9 +43,6 @@ public class Walker implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
 
-	@Column(name = "biography", length = 255, nullable = false)
-	private String biography;
-
 	@Column(name = "description", length = 255, nullable = false)
 	private String description;
 
@@ -77,7 +74,6 @@ public class Walker implements Serializable {
 		this.email = email;
 		this.password = password;
 		this.dateOfBirth = dateOfBirth;
-		this.biography = biography;
 		this.description = description;
 		this.costService = costService;
 		this.address = address;
@@ -131,14 +127,6 @@ public class Walker implements Serializable {
 
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
-	}
-
-	public String getBiography() {
-		return biography;
-	}
-
-	public void setBiography(String biography) {
-		this.biography = biography;
 	}
 
 	public String getDescription() {
