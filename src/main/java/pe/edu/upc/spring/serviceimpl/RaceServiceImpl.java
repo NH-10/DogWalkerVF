@@ -43,7 +43,7 @@ public class RaceServiceImpl implements IRaceService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Race> listar() {
+	public List<Race> listRace() {
 		return dRace.findAll();
 	}
 

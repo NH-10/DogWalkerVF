@@ -31,7 +31,7 @@ public class RaceController {
 	
 	@RequestMapping("/")
 	public String irPaginaListadoRazas(Map<String, Object> model) {
-		model.put("listaRazas", rService.listar());
+		model.put("listaRazas", rService.listRace());
 		return "listRace"; // "listRace" es una pagina del frontEnd para listar
 	}
 
@@ -78,20 +78,20 @@ public class RaceController {
 		try {
 			if (id!=null && id>0) {
 				rService.eliminar(id);
-				model.put("listaRazas", rService.listar());
+				model.put("listaRazas", rService.listRace());
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "Ocurrio un error");
-			model.put("listaRazas", rService.listar());
+			model.put("listaRazas", rService.listRace());
 		}
 		return "listRace";
 	}
 		
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model ) {
-		model.put("listaRazas", rService.listar());
+		model.put("listaRazas", rService.listRace());
 		return "listRace";
 	}
 	

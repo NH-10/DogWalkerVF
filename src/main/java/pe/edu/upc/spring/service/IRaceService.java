@@ -9,6 +9,6 @@ public interface IRaceService {
 	public boolean grabar(Race race); // cambiar a ingles save, delete listDog
 	public void eliminar(int idRace);
 	public Optional<Race> listarId(int idRace);
-	public List<Race> listar();
+	public List<Race> listRace();
 	public List<Race> buscarNombre(String name);	
 }
