@@ -31,9 +31,17 @@ public class WalkerController {
 	@Autowired
 	private IWalkerService wService;
 	
+
+	private Walker sesionWalker;
+	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
-		return "bienvenido";
+		return "bienvenidoWalker";
+	}
+	
+	@RequestMapping("/menu")
+	public String irMenuWalker() {
+		return "menuWalker";
 	}
 	
 	@RequestMapping("/irRegistrar")  // función registrar paseador
@@ -56,8 +64,10 @@ public class WalkerController {
 		}
 		else {
 			boolean flag = wService.save(objWalker);
-			if (flag)
+			if (flag) {
+				sesionWalker= objWalker;
 				return "redirect:/walker/bienvenido";
+			}
 			else {
 				model.addAttribute("mensaje","Ocurrio un error");
 				return "redirect:/walker/irRegistrar";

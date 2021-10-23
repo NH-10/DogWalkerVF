@@ -16,6 +16,8 @@ public class WalkerServiceImpl implements IWalkerService {
 	@Autowired
 	private IWalkerRepository wa;
 	
+
+	
 	@Override
 	@Transactional
 	public boolean save(Walker walker) {
