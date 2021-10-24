@@ -81,3 +81,10 @@ INSERT INTO district(name) VALUES ('Santiago de Surco');
 INSERT INTO district(name) VALUES ('Surquillo');
 INSERT INTO district(name) VALUES ('Villa El Salvador');
 INSERT INTO district(name) VALUES ('Villa María del Triunfo');
+
+INSERT INTO character(name) VALUES ('Sociable');
+INSERT INTO character(name) VALUES ('Calmado');
+INSERT INTO character(name) VALUES ('Agresivo');
+INSERT INTO character(name) VALUES ('Tímido');
+INSERT INTO character(name) VALUES ('Dominante');
+INSERT INTO character(name) VALUES ('Docil');
