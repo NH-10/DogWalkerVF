@@ -88,7 +88,7 @@ public class WalkerController {
 		model.addAttribute("walker", sesionWalker);
 		model.addAttribute("listadistrito", dService.listDistrict());
 		model.addAttribute("listpersonalidad", pService.listPersonality());
-		return "editarWalker";
+		return "walkerEdit";
 		
 	}
 }
