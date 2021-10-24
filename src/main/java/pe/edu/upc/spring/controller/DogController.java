@@ -16,10 +16,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
-import pe.edu.upc.spring.model.Owner;
+
 import pe.edu.upc.spring.model.Dog;
-import pe.edu.upc.spring.model.Race;
-import pe.edu.upc.spring.model.Character;
+
 
 import pe.edu.upc.spring.service.IDogService;
 //import pe.edu.upc.spring.service.IOwnerService;
