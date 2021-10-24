@@ -76,6 +76,37 @@ xmlns:p="http://primefaces.org/ui">
 	
 		</nav>
 	</div>
+	
+	<div th:fragment="header2">
+		<!-- this is header -->
+		<nav class="navbar navbar-dark bg-primary">
+			<div class="container">
+
+				<div class="navbar-header ">
+					<img th:src="@{/imagenes/log.png}" class="navbar-brand" />
+				</div>
+
+				<div id="navbar" class="collapse navbar-collapse">
+
+					<ul class="nav navbar-nav ">
+
+						<li class="text-dark"><a href="#navbarNav">Inicio</a></li>
+						<li class="text-dark"><a href="#about">¿Quienes somos?</a></li>
+						<li class="text-dark"><a href="#contact">Contactanos</a></li>
+						<li class="text-dark"><a th:href="@{/owner/menu}">Owner</a></li>
+
+
+							
+						
+					</ul>
+
+				</div>
+
+			</div>
+	
+		</nav>
+	</div>
+	
 </body>
 
 </html>
