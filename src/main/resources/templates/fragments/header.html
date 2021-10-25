@@ -21,7 +21,7 @@ xmlns:p="http://primefaces.org/ui">
 	<!-- Sintaxis th:fragment="Nombre del fragment" -->
 	<div th:fragment="header">
 		<!-- this is header -->
-		<nav class="navbar navbar-dark bg-primary">
+		<nav class="navbar navbar-light" style="background-color: #ff9d5c;">
 			<div class="container">
 
 				<div class="navbar-header ">
@@ -35,7 +35,8 @@ xmlns:p="http://primefaces.org/ui">
 						<li class="text-dark"><a href="#navbarNav">Inicio</a></li>
 						<li class="text-dark"><a href="#about">¿Quienes somos?</a></li>
 						<li class="text-dark"><a href="#contact">Contactanos</a></li>
-						<li class="text-dark"><a>Iniciar sesion</a></li>
+						<li class="text-dark"><a th:href="@{/pantalla/iniciarSegunUsuario}">
+						Iniciar sesion</a></li>
 						<li class="text-dark"><a
 							th:href="@{/pantalla/regitrarSegunUsuario}">Registrarse</a></li>
 
@@ -49,7 +50,7 @@ xmlns:p="http://primefaces.org/ui">
 
 	<div th:fragment="header1">
 		<!-- this is header -->
-		<nav class="navbar navbar-dark bg-primary">
+		<nav class="navbar navbar-light" style="background-color: #ff9d5c;">
 			<div class="container">
 
 				<div class="navbar-header ">
@@ -79,7 +80,7 @@ xmlns:p="http://primefaces.org/ui">
 	
 	<div th:fragment="header2">
 		<!-- this is header -->
-		<nav class="navbar navbar-dark bg-primary">
+		<nav class="navbar navbar-light" style="background-color: #ff9d5c;">
 			<div class="container">
 
 				<div class="navbar-header ">
