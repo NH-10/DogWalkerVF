@@ -21,9 +21,10 @@ public class LoginController {
 	private IWalkerService waService;
 
 	@RequestMapping("/ingresar")
-	public String irPaginaBienvenida() {
+	public String irPaginaLogin() {
 		return "login";
 	}
+	
 	
 	
 
