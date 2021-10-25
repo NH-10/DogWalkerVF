@@ -22,36 +22,39 @@
 
 <body>
 	<div class="registration-form">
-		
-				<form th:action="@{/owner/registrar}" method="post"
-					th:object="${owner}">
-				<div class="row">
-					<div class="form-group">
-						<h1> Ingresar a Cuenta</h1>
-					</div>
+		<form >
+			<div class="row" align="center">
+				<div class="form-group" align="center">
+					<h1 >       Ingresar a cuenta</h1>
 				</div>
-				
-				<div class="form-icon-c">
-					<img th:src="@{/imagenes/icon-dueno.png}" >
-				</div>
+			</div>
+
+			<div class="form-icon-c">
+				<img th:src="@{/imagenes/icon-dueno.png}">
+			</div>
 
 			<div class="row">
-				<div class="form-group col-sm-6">
-					<input type="text" class="form-control item" placeholder="Email"
-						th:field="*{email}"></input>
+				<div class="form-group col-sm-12">
+					<input type="text" class="form-control item" placeholder="Email"></input>
 
 				</div>
-				<div class="form-group col-sm-6">
+				</div>
+			<div class="row">
+				<div class="form-group col-sm-12">
 					<input type="text" class="form-control item"
-						placeholder="Contraseña" th:field="*{password}"></input>
+						placeholder="Contraseña"></input>
 
 				</div>
 			</div>
-	
+
+
+
 			<button type="submit" class="btn btn-block create-account">Ingresar</button>
-			<a  class="btn btn-block" th:href="@{/owner/inicio}">Volver</a>
+			<a class="btn btn-block">Volver</a>
 		</form>
-		</div>
+
+	</div>
+
 
 	<script src="resources/js/script.js" type="text/javascript"
 		xml:space="preserve"></script>
