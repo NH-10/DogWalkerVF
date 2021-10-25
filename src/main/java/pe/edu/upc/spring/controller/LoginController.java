@@ -9,12 +9,10 @@ import pe.edu.upc.spring.service.IServiceRequestService;
 import pe.edu.upc.spring.service.IWalkerService;
 
 @Controller
-@RequestMapping("/serviceRequest")
+@RequestMapping("/login")
 public class LoginController {
 	@Autowired
 	private IServiceRequestService srService;
-
-	
 
 	@Autowired
 	private IOwnerService owService;
@@ -22,10 +20,12 @@ public class LoginController {
 	@Autowired
 	private IWalkerService waService;
 
-	@RequestMapping("/bienvenido")
+	@RequestMapping("/ingresar")
 	public String irPaginaBienvenida() {
-		return "bienvenido";
+		return "login";
 	}
+	
+	
 
 	
 }
