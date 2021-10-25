@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<head>
+<meta charset="UTF-8"></meta>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
+	rel="stylesheet" />
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet"
+	th:href="@{/css/bootstrap-datetimepicker.min.css}" />
+<link rel="stylesheet" th:href="@{/css/duenoStyles.css}" />
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+	<div class="registration-form">
+		
+				<form th:action="@{/owner/registrar}" method="post"
+					th:object="${owner}">
+				<div class="row">
+					<div class="form-group">
+						<h1> Ingresar a Cuenta</h1>
+					</div>
+				</div>
+				
+				<div class="form-icon-c">
+					<img th:src="@{/imagenes/icon-dueno.png}" >
+				</div>
+
+			<div class="row">
+				<div class="form-group col-sm-6">
+					<input type="text" class="form-control item" placeholder="Email"
+						th:field="*{email}"></input>
+
+				</div>
+				<div class="form-group col-sm-6">
+					<input type="text" class="form-control item"
+						placeholder="Contraseña" th:field="*{password}"></input>
+
+				</div>
+			</div>
+	
+			<button type="submit" class="btn btn-block create-account">Ingresar</button>
+			<a  class="btn btn-block" th:href="@{/owner/inicio}">Volver</a>
+		</form>
+		</div>
+
+	<script src="resources/js/script.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/jquery.min.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/popper.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/bootstrap.min.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/moment-with-locales.min.js"
+		type="text/javascript" xml:space="preserve"></script>
+	<script src="resources/js/bootstrap-datetimepicker.min.js"
+		type="text/javascript" xml:space="preserve"></script>
+	<script src="resources/js/main.js" type="text/javascript"
+		xml:space="preserve"></script>
+</body>
+</html>
