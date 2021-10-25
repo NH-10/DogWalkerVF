@@ -18,10 +18,9 @@ import com.sun.el.parser.ParseException;
 
 
 import pe.edu.upc.spring.model.Dog;
-
-
+import pe.edu.upc.spring.model.Owner;
 import pe.edu.upc.spring.service.IDogService;
-//import pe.edu.upc.spring.service.IOwnerService;
+import pe.edu.upc.spring.service.IOwnerService;
 import pe.edu.upc.spring.service.IRaceService;
 import pe.edu.upc.spring.service.ICharacterService;
 
@@ -31,8 +30,8 @@ public class DogController {
 	@Autowired
 	private IDogService dService;
 	
-	//@Autowired
-	//private IOwnerService oService;
+	@Autowired
+	private IOwnerService oService;
 	
 	@Autowired
 	private IRaceService rService;
@@ -45,13 +44,18 @@ public class DogController {
 		return "bienvenido"; 
 	}
 	
+	@RequestMapping("/menu")
+	public String irMenuOwner() {
+		return "dogMenu";
+	}
+	
 	
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
 		model.addAttribute("dog", new Dog());
 		model.addAttribute("listaRaza", rService.listRace());
 		model.addAttribute("listaCaracter", cService.listCharacter());
-		//model.addAttribute("listaDueno", oService.list());
+		model.addAttribute("listaDueno", oService.list());
 		return "dog"; 
 	}
 	
@@ -63,12 +67,15 @@ public class DogController {
 		{
 			model.addAttribute("listaRaza", rService.listRace());
 			model.addAttribute("listaCaracter", cService.listCharacter());
+			model.addAttribute("listaDueno", oService.list());
+			
+
 			return "dog";
 		}
 		else {
 			boolean flag = dService.save(objDog);
 			if (flag)
-				return "redirect:/dog/listar";
+				return "redirect:/dog/menu";
 			else {
 				model.addAttribute("mensaje","Ocurrio un error");
 				return "redirect:/dog/irRegistrar";
@@ -88,6 +95,7 @@ public class DogController {
 		else {
 			model.addAttribute("listaRaza", rService.listRace());
 			model.addAttribute("listaCaracter", cService.listCharacter());
+			model.addAttribute("listaDueno", oService.list());
 			
 			if(objDog.isPresent())
 				objDog.ifPresent(d -> model.addAttribute("dog",d));
@@ -110,6 +118,13 @@ public class DogController {
 		}
 		return "listDog";
 	}
-		
+	
+	@RequestMapping("/listarCanes")
+	public String listarCanes(Map<String,Object>model, @ModelAttribute Owner owner) 
+	throws ParseException
+	{
+		dService.ListDogByOwner(owner.getIdOwner());
+		return "listCanes";
+	}	
 	
 }

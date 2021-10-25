@@ -92,21 +92,7 @@ public class OwnerController {
 		
 	}
 	
-	@RequestMapping("/eliminar")
-	public String eliminar(Map<String, Object> model,  @RequestParam(value="id") Integer id) {
-		try {
-			if (id!=null && id>0) {
-				oService.delete(id);
-				model.put("listOwners", oService.list());
-			}
-		}
-		catch(Exception ex) {
-			System.out.println(ex.getMessage());
-			model.put("mensaje", "Ocurrio un error");
-			model.put("listOwners", oService.list());
-		}
-		return "listOwner";
-	}
+	
 		
 	@RequestMapping("/irBuscar")
 	public String IrBuscar(Model model) 

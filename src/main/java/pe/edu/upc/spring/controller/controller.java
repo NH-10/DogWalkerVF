@@ -35,6 +35,10 @@ public class controller {
 		return "registrarSegunUsuario"; 
 	}
 	
+	@RequestMapping("/iniciarSegunUsuario")
+	public String irPagina() {
+		return "iniciarSegunUsuario"; 
+	}
 		
 	
 }
