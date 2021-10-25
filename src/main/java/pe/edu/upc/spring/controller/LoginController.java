@@ -34,6 +34,10 @@ public class LoginController {
 		return "loginWalker";
 	}
 	
+	@RequestMapping("/iniciarSegunUsuario")
+	public String irIniciarSegunUsuario() {
+		return "iniciarSegunUsuario";
+	}
 	
 	
 
