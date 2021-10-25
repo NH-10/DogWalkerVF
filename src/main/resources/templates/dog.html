@@ -14,22 +14,21 @@
 <link rel="stylesheet"
 	th:href="@{/css/bootstrap-datetimepicker.min.css}" />
 <link rel="stylesheet" th:href="@{/css/duenoStyles.css}" />
+<link rel="stylesheet" th:href="@{/css/style.css}" />
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 
 <body>
-	<div class="Main-container">
-		<div class="container-register">
-            <div class="wrap-register">
+	<div class="registration-form">
 				<form th:action="@{/dog/registrar}" method="post"
 					th:object="${dog}">
 				<div class="row">
 					<div class="form-group">
-						<h1> Registrar: Mascota</h1>
+						<h1> Registrar a tu mascota</h1>
 					</div>
 				</div>
-				<div class="form-icon">
+				<div class="form-icon-c">
 					<img th:src="@{/imagenes/icoMascota.png}" >
 				</div>
 
@@ -72,13 +71,12 @@
 					<input type="text" class="form-control item" placeholder="Descripcion"
 					th:field="*{description}"></input>
 				</div>
-
+				
+				
 		
 			<button type="submit" class="btn btn-block create-account">Registrar</button>
+			<a  class="btn btn-block" th:href="@{/dog/menu}">Volver</a>
 		</form>
-		
-			</div>
-		</div>
 	</div>
 	<script src="resources/js/script.js" type="text/javascript"
 		xml:space="preserve"></script>
