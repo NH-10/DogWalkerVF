@@ -25,7 +25,22 @@
             <h4 class="display-8">La felicidad no se compra, se saca a pasear</h4>  
               <div class="container h-100">
                 <div class="d-flex justify-content-center h-50">
-                	
+                	<div class="row clearfix">
+    
+    				<form th:action="@{/walker/buscar}" method="post" th:object="${walker}">
+    					<div class="form-group">
+    						<div class="col-sm-7" style="float:none;margin:auto;">
+    							<input type="text" class="form-control"
+    					 placeholder="Ingrese distrito"></input>
+    					 <br>
+    					<div align="center">
+    						<button type="submit" class="btn" style="background-color: #eb9956ed">Buscar</button>
+    						
+    					</div>
+    				</div>	
+    			</div>		
+    		</form>
+    		</div>	
                 </div>
               </div>   
         </div>
@@ -59,7 +74,7 @@
            
 </section>
 		<div>
-        <img th:src="@{/imagenes/4 mejores tipos de paseo (1).png}" class="aboutimd"/>
+        <img th:src="@{/imagenes/4 mejores tipos de paseo (1).png}" class="aboutimd" width="1000" align="middle"/>
         </div>
   <section id="about" class="container">
         <h1 class="display-4">¿Quiénes somos?</h1>
@@ -68,24 +83,9 @@
         </h4>
         
   </section>
-        <div class="row">
-            <div class="card col-lg-4">
-                <img class="card-img-top" th:src="@{/imagenes/correass.jpg}" alt="Card image cap"/>
-                <div class="row">               
-                </div>
-              </div>
-            <div class="card col-lg-4">
-                <img class="card-img-top" th:src="@{/imagenes/paseo.jpg}" alt="Card image cap"/>
-                <div class="row">
-                </div>
-              </div>
-              <div class="card col-lg-4">
-                <img class="card-img-top" th:src="@{/imagenes/perrosP.jpg}" alt="Card image cap"/>
-                <div class="row">
-                </div>
-              </div>
-              
-            </div>
+       <div>
+        <img th:src="@{/imagenes/paseador-de-perros.jpg}" class="aboutimd" width="1000" align="middle"/>
+        </div>
             
                      
         <section class="container" id="contact">
