@@ -1,0 +1,15 @@
+.foo{
+    padding: 50px;
+    background: #eb9956ed;
+    margin-top: 40px;
+}
+
+footer {
+    padding: 80px 0;
+    text-align: center;
+    color:white;
+    text-decoration: none;
+    background-color: rgb(240, 170, 91);
+    display: block;
+
+}
