@@ -25,6 +25,15 @@ public class LoginController {
 		return "login";
 	}
 	
+	@RequestMapping("/loginOwner")
+	public String irPaginaLoginOwner() {
+		return "loginOwner";
+	}
+	@RequestMapping("/loginWalker")
+	public String irPaginaLoginWalker() {
+		return "loginWalker";
+	}
+	
 	
 	
 
