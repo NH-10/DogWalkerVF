@@ -3,26 +3,18 @@ package pe.edu.upc.spring.controller;
 import java.util.List;
 import java.util.Map;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 import com.sun.el.parser.ParseException;
 
 import pe.edu.upc.spring.model.Owner;
-import pe.edu.upc.spring.model.Walker;
-import pe.edu.upc.spring.model.Dog;
-import pe.edu.upc.spring.model.District;
-
-import pe.edu.upc.spring.service.IDogService;
 import pe.edu.upc.spring.service.IDistrictService;
+import pe.edu.upc.spring.service.IDogService;
 import pe.edu.upc.spring.service.IOwnerService;
 
 @Controller
@@ -44,15 +36,25 @@ public class OwnerController {
 		return "bienvenido";
 	}
 	
+	
 	@RequestMapping("/bienvenido")
-	public String irPaginaBienvenida() {
+	public String irPaginaBienvenida(Model model) {
+		model.addAttribute("owner", sesionOwner);
 		return "bienvenidoOwner"; 
 	}
+	
+
 	
 	@RequestMapping("/menu")
 	public String irMenuOwner() {
 		return "OwnerMenu";
 	}
+	
+	@RequestMapping("/loginOwner")
+	public String irPaginaLoginOwner() {
+		return "loginOwner";
+	}
+	
 	
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
@@ -126,4 +128,28 @@ public class OwnerController {
 		cService.ListDogByOwner(owner.getIdOwner());
 		return "listCanes";
 	}
+	
+	
+	@RequestMapping("/validarUsuario")
+	public String ingresarCuenta(@ModelAttribute Owner objOwner) 
+	throws ParseException
+	{
+		List<Owner>listOwners;
+		objOwner.setEmail(objOwner.getEmail());
+		objOwner.setPassword(objOwner.getPassword());
+		listOwners= oService.findByEmailAndPassword(objOwner.getEmail(),objOwner.getPassword());
+				
+		if(!listOwners.isEmpty()) {
+			objOwner = listOwners.get(0);
+			System.out.print(objOwner.getEmail());
+			System.out.print(objOwner.getFirstNames());
+
+			sesionOwner=objOwner;
+			return "redirect:/owner/bienvenido";
+		}
+				
+		return "loginOwner";
+	}
+	
+
 }
