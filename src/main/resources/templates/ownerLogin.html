@@ -22,10 +22,11 @@
 
 <body>
 	<div class="registration-form">
-		<form >
+		<form th:action="@{/owner/validarUsuario}" method="post"
+			th:object="${owner}">
 			<div class="row" align="center">
 				<div class="form-group" align="center">
-					<h1 >       Ingresar a cuenta   </h1>
+					<h1>Ingresar a cuenta</h1>
 				</div>
 			</div>
 
@@ -35,22 +36,19 @@
 
 			<div class="row">
 				<div class="form-group col-sm-12">
-					<input type="text" class="form-control item" placeholder="Email"></input>
-
-				</div>
-				</div>
+					<input type="text" class="form-control item" placeholder="email"
+					th:field="*{email}"></input>
+				</div>				
+			</div>
 			<div class="row">
 				<div class="form-group col-sm-12">
-					<input type="text" class="form-control item"
-						placeholder="Contraseña"></input>
+					<input type="password" class="form-control item"
+						placeholder="Contraseña" th:field="*{password}"></input>
 
 				</div>
 			</div>
-
-
-
 			<button type="submit" class="btn btn-block create-account">Ingresar</button>
-				<a  class="btn btn-block" th:href="@{/login/iniciarSegunUsuario}">Volver</a>
+			<a class="btn btn-block" th:href="@{/login/iniciarSegunUsuario}">Volver</a>
 		</form>
 
 	</div>
