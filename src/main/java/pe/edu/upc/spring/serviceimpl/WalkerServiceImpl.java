@@ -35,4 +35,11 @@ public class WalkerServiceImpl implements IWalkerService {
 		return wa.findAll();
 	}
 
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<Walker> findByEmailAndPassword(String email, String password) {
+		return wa.findByEmailAndPassword(email, password);
+	}
+
 }
