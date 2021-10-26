@@ -1,45 +1,30 @@
 package pe.edu.upc.spring.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pe.edu.upc.spring.service.IOwnerService;
-import pe.edu.upc.spring.service.IServiceRequestService;
-import pe.edu.upc.spring.service.IWalkerService;
+import pe.edu.upc.spring.model.Owner;
 
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-	@Autowired
-	private IServiceRequestService srService;
-
-	@Autowired
-	private IOwnerService owService;
-
-	@Autowired
-	private IWalkerService waService;
-
-	@RequestMapping("/ingresar")
-	public String irPaginaLogin() {
-		return "login";
-	}
+	
 	
 	@RequestMapping("/loginOwner")
-	public String irPaginaLoginOwner() {
-		return "loginOwner";
+	public String irPaginaLoginOwner(Model model) {
+		model.addAttribute("owner", new Owner());
+		return "ownerLogin"; 
 	}
+	
 	@RequestMapping("/loginWalker")
 	public String irPaginaLoginWalker() {
-		return "loginWalker";
+		return "walkerLogin";
 	}
 	
 	@RequestMapping("/iniciarSegunUsuario")
 	public String irIniciarSegunUsuario() {
 		return "iniciarSegunUsuario";
 	}
-	
-	
 
-	
 }
