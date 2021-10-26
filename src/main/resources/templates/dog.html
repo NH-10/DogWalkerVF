@@ -76,7 +76,7 @@
 
 					<select class="form-control itemselect"
 						th:field="*{Owner.idOwner}">
-						<option th:each="d: ${listaDueno}" th:value="${d.idOwner}"
+						<option th:each="d: ${owner}" th:value="${d.idOwner}"
 							th:text="${d.firstNames}"
 							th:selected="(${d.idOwner}==*{Owner.idOwner})">
 						</option>

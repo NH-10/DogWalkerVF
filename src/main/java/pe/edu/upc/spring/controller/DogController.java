@@ -1,5 +1,6 @@
 package pe.edu.upc.spring.controller;
 
+import java.util.List;
 //import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -39,6 +40,10 @@ public class DogController {
 	@Autowired
 	private ICharacterService cService;
 	
+	private Owner sesionOwner;
+	private List<Dog> listDog;
+
+	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
 		return "bienvenido"; 
@@ -53,9 +58,9 @@ public class DogController {
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
 		model.addAttribute("dog", new Dog());
+		model.addAttribute("owner", sesionOwner);
 		model.addAttribute("listaRaza", rService.listRace());
 		model.addAttribute("listaCaracter", cService.listCharacter());
-		model.addAttribute("listaDueno", oService.list());
 		return "dog"; 
 	}
 	
@@ -67,9 +72,7 @@ public class DogController {
 		{
 			model.addAttribute("listaRaza", rService.listRace());
 			model.addAttribute("listaCaracter", cService.listCharacter());
-			model.addAttribute("listaDueno", oService.list());
-			
-
+			model.addAttribute("owner", sesionOwner);
 			return "dog";
 		}
 		else {
@@ -120,11 +123,17 @@ public class DogController {
 	}
 	
 	@RequestMapping("/listarCanes")
-	public String listarCanes(Map<String,Object>model, @ModelAttribute Owner owner) 
-	throws ParseException
+	public String listarCanes(Model model) 
 	{
-		dService.ListDogByOwner(owner.getIdOwner());
-		return "listCanes";
+		listDog = dService.ListDogByOwner(sesionOwner.getIdOwner());
+		model.addAttribute("ListDogByOwner", listDog);
+		return "dogList";
 	}	
+	
+	public void setOwner(Owner o) {
+		sesionOwner = o;
+	}
+	
+	
 	
 }

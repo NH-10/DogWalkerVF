@@ -32,6 +32,9 @@ public class OwnerController {
 	
 	@Autowired
 	private ServiceRequestController sController;
+	
+	@Autowired
+	private DogController dogController;
 
 	private Owner sesionOwner;
 
@@ -78,6 +81,7 @@ public class OwnerController {
 			boolean flag = oService.save(objOwner);
 			if (flag) {
 				sesionOwner = objOwner;
+				dogController.setOwner(sesionOwner);
 				return "redirect:/owner/bienvenido";
 			} else {
 				model.addAttribute("mensaje", "Ocurrio un error");
@@ -116,8 +120,9 @@ public class OwnerController {
 	}
 
 	@RequestMapping("/listarCanes")
-	public String listarCanes(Map<String, Object> model, @ModelAttribute Owner owner) throws ParseException {
-		cService.ListDogByOwner(owner.getIdOwner());
+	public String listarCanes(Model model) throws ParseException {
+		model.addAttribute("owner", sesionOwner);
+		cService.ListDogByOwner(sesionOwner.getIdOwner());
 		return "listCanes";
 	}
 
@@ -132,7 +137,7 @@ public class OwnerController {
 			objOwner = listOwners.get(0);
 			System.out.print(objOwner.getEmail());
 			System.out.print(objOwner.getFirstNames());
-
+			dogController.setOwner(sesionOwner);
 			sesionOwner = objOwner;
 			return "redirect:/owner/bienvenido";
 		}
