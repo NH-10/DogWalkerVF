@@ -72,7 +72,17 @@
 					th:field="*{description}"></input>
 				</div>
 				
-				
+				<div class="form-group">
+
+					<select class="form-control itemselect"
+						th:field="*{Owner.idOwner}">
+						<option th:each="d: ${listaDueno}" th:value="${d.idOwner}"
+							th:text="${d.firstNames}"
+							th:selected="(${d.idOwner}==*{Owner.idOwner})">
+						</option>
+					</select>
+
+				</div>
 		
 			<button type="submit" class="btn btn-block create-account">Registrar</button>
 			<a  class="btn btn-block" th:href="@{/dog/menu}">Volver</a>
