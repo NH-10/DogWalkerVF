@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import pe.edu.upc.spring.model.Owner;
+import pe.edu.upc.spring.model.Walker;
 
 @Controller
 @RequestMapping("/login")
@@ -18,7 +19,8 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/loginWalker")
-	public String irPaginaLoginWalker() {
+	public String irPaginaLoginWalker(Model model) {
+		model.addAttribute("walker", new Walker());
 		return "walkerLogin";
 	}
 	
