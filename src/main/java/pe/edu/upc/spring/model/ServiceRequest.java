@@ -27,9 +27,9 @@ public class ServiceRequest implements Serializable {
 	private int idServiceRequest;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "date")
+	@Column(name = "dateService")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date date;
+	private Date dateService;
 
 	@Column(name = "totalServiceCost", nullable = false)
 	private double totalServiceCost;
@@ -60,11 +60,11 @@ public class ServiceRequest implements Serializable {
 		super();
 	}
 
-	public ServiceRequest(int idServiceRequest, Date date, double totalServiceCost, String startTime, String timeLimit,
+	public ServiceRequest(int idServiceRequest, Date dateService, double totalServiceCost, String startTime, String timeLimit,
 			Status status, Time time, Owner owner, Walker walker) {
 		super();
 		this.idServiceRequest = idServiceRequest;
-		this.date = date;
+		this.dateService = dateService;
 		this.totalServiceCost = totalServiceCost;
 		this.startTime = startTime;
 		this.timeLimit = timeLimit;
@@ -82,12 +82,20 @@ public class ServiceRequest implements Serializable {
 		this.idServiceRequest = idServiceRequest;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getDateService() {
+		return dateService;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDateService(Date dateService) {
+		this.dateService = dateService;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 	public double getTotalServiceCost() {
