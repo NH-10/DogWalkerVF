@@ -3,6 +3,8 @@ package pe.edu.upc.spring.controller;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.sound.midi.SysexMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -72,13 +74,13 @@ public class ServiceRequestController {
 		return "serviceRequest";
 	}
 
+
 	@RequestMapping("/registrar")
-	public String save(@ModelAttribute ServiceRequest objServiceRequest, BindingResult binRes, Model model)
-			throws ParseException {
+	public String registrar(@ModelAttribute ServiceRequest objServiceRequest, BindingResult binRes, Model model) throws ParseException {
 		if (binRes.hasErrors()) {
-			model.addAttribute("listStatus", sService.listStatus());
+			//model.addAttribute("listStatus", sService.listStatus());
 			model.addAttribute("listTimes", tService.listTime());
-			model.addAttribute("listOwners", owService.list());
+			//model.addAttribute("listOwners", owService.list());
 			model.addAttribute("listWalker", waService.list());
 			return "serviceRequest";
 		} else {
@@ -90,6 +92,16 @@ public class ServiceRequestController {
 				return "redirect:/serviceRequest/irRegistrar";
 			}
 		}
+	}
+	
+	
+	@RequestMapping("/irRegistrarSolicitud")
+	public String irPaginaRegistrarSolicitud(Model model, Owner owner) {
+		System.out.println("service  irPaginaRegistrarSolicitud");
+		model.addAttribute("owner", owner);
+		model.addAttribute("listatiempo", tService.listTime());
+		model.addAttribute("listapaseadores", waService.list());
+		return "serviceRequest";
 	}
 
 	@RequestMapping("/modificar/{id}")
