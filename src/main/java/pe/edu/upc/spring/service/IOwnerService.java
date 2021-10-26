@@ -11,6 +11,8 @@ public interface IOwnerService {
 	public void delete(int idOwner);
 	public List<Owner> list();
 	public Optional<Owner> listById(int idOwner);
-	public List<Owner> findByName(String firstNames);	
+	public List<Owner> findByName(String firstNames);
+	public List<Owner> findByEmailAndPassword(String email, String password);
+
 }
 
