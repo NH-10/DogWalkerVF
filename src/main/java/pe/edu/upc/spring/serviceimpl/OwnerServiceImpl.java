@@ -55,4 +55,14 @@ public class OwnerServiceImpl implements IOwnerService {
 		return dOwner.findByName(firstNames);
 	}
 
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<Owner> findByEmailAndPassword(String email, String password) {
+		System.out.print("Email : "+email);
+		System.out.print("password : "+password);
+
+		return dOwner.findByEmailAndPassword(email, password);
+	}
+
 }
