@@ -136,8 +136,8 @@ public class OwnerController {
 			sesionOwner = objOwner;
 			return "redirect:/owner/bienvenido";
 		}
-
-		return "loginOwner";
+		else 
+			return "ownerLogin";
 	}
 
 }

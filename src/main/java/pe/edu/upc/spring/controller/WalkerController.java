@@ -98,7 +98,7 @@ public class WalkerController {
 			sesionWalker = objWalker;
 			return "redirect:/walker/bienvenido";
 		}
-
-		return "loginWalker";
+		else
+		return "walkerLogin";
 	}
 }
