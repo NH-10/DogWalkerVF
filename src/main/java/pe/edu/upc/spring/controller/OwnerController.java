@@ -16,6 +16,7 @@ import pe.edu.upc.spring.model.Owner;
 import pe.edu.upc.spring.service.IDistrictService;
 import pe.edu.upc.spring.service.IDogService;
 import pe.edu.upc.spring.service.IOwnerService;
+import pe.edu.upc.spring.service.IServiceRequestService;
 
 @Controller
 @RequestMapping("/owner")
@@ -28,6 +29,9 @@ public class OwnerController {
 
 	@Autowired
 	private IDogService cService;
+	
+	@Autowired
+	private ServiceRequestController sController;
 
 	private Owner sesionOwner;
 
@@ -58,7 +62,13 @@ public class OwnerController {
 		model.addAttribute("listadistrito", dService.listDistrict());
 		return "owner";
 	}
-
+	
+	@RequestMapping("/irRegistrarSolicitud")
+	public String irPaginaRegistrarSolicitud(Model model) {
+		return sController.irPaginaRegistrarSolicitud(model,sesionOwner);
+	}
+	
+	
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute Owner objOwner, BindingResult binRes, Model model) throws ParseException {
 		if (binRes.hasErrors()) {
