@@ -65,6 +65,10 @@ xmlns:p="http://primefaces.org/ui">
 						<li class="text-dark"><a href="#about">¿Quienes somos?</a></li>
 						<li class="text-dark"><a href="#contact">Contactanos</a></li>
 						<li class="text-dark"><a th:href="@{/walker/menu}">Walker</a></li>
+						<li class="text-dark"><a th:href="@{/pantalla/cerrarSesion}">Cerrar Sesión</a></li>
+						<li class="text-dark"><input type="text" class="form-control item"th:value="*{walker.firstNames}"></input></li>	
+						
+						
 
 
 							
@@ -96,7 +100,6 @@ xmlns:p="http://primefaces.org/ui">
 						<li class="text-dark"><a href="#contact">Contactanos</a></li>
 						<li class="text-dark"><a th:href="@{/owner/menu}">Owner</a></li>						
 						<li class="text-dark"><a th:href="@{/pantalla/cerrarSesion}">Cerrar Sesión</a></li>
-
 						<li class="text-dark"><input type="text" class="form-control item"th:value="*{owner.firstNames}"></input></li>	
 						
 
