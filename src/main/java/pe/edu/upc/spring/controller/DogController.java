@@ -26,7 +26,7 @@ import pe.edu.upc.spring.service.IRaceService;
 import pe.edu.upc.spring.service.ICharacterService;
 
 @Controller
-@RequestMapping("/dog") 
+@RequestMapping("/dog") ///
 public class DogController {
 	@Autowired
 	private IDogService dService;
@@ -40,6 +40,7 @@ public class DogController {
 	@Autowired
 	private ICharacterService cService;
 	
+	private String idOwner;
 	private Owner sesionOwner;
 	private String idOwner;
 	private List<Dog> listDog;

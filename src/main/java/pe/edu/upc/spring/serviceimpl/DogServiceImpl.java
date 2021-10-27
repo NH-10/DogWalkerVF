@@ -13,7 +13,7 @@ import pe.edu.upc.spring.repository.IDogRepository;
 import pe.edu.upc.spring.service.IDogService;
 
 @Service
-public class DogServiceImpl implements IDogService {
+public class DogServiceImpl implements IDogService {////
 
 	@Autowired
 	private IDogRepository dDog;
@@ -27,16 +27,12 @@ public class DogServiceImpl implements IDogService {
 		else
 			return true;
 	}
-
-
 	@Override
 	@Transactional
 	public void delete(int idDog) {
 		dDog.deleteById(idDog);
 		
 	}
-
-
 	@Override
 	@Transactional(readOnly=true)
 	public List<Dog> list() {

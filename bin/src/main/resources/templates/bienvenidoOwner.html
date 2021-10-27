@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8"></meta>
+<title>Dog Walker</title>
+
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.version.2.css}" />
+<link rel="stylesheet" th:href="@{/css/header.css}" />
+
+<link rel="stylesheet" th:href="@{/css/styles2.css}" />
+
+</head>
+
+<body>
+<div th:replace="fragments/header :: header2"></div>
+	<div th:replace="fragments/header :: header_dueno"></div>
+
+
+	<div th:replace="fragments/contenido :: content"></div>
+
+
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+
+</html>
