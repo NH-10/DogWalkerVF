@@ -11,6 +11,6 @@ public interface IDogService {
 	public void delete(int idDog);
 	public List<Dog> list();
 	public Optional<Dog> listById(int idDog);
-	public List<Dog> ListDogByOwner(int idOwner);
+	public List<Dog> ListDogByOwner(String idOwner);
 }
 

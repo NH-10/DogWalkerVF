@@ -52,7 +52,7 @@ public class DogServiceImpl implements IDogService {
 	
 	@Override
 	@Transactional(readOnly=true)
-	public List<Dog> ListDogByOwner(int idOwner) {
+	public List<Dog> ListDogByOwner(String idOwner) {
 		return dDog.ListDogByOwner(idOwner);
 	}
 

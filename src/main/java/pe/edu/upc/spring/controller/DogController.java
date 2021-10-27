@@ -41,6 +41,7 @@ public class DogController {
 	private ICharacterService cService;
 	
 	private Owner sesionOwner;
+	private String idOwner;
 	private List<Dog> listDog;
 
 	
@@ -125,7 +126,8 @@ public class DogController {
 	@RequestMapping("/listarCanes")
 	public String listarCanes(Model model) 
 	{
-		listDog = dService.ListDogByOwner(sesionOwner.getIdOwner());
+		idOwner = String.valueOf(sesionOwner.getIdOwner());
+		listDog = dService.ListDogByOwner(idOwner);
 		model.addAttribute("ListDogByOwner", listDog);
 		return "dogList";
 	}	

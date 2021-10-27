@@ -44,7 +44,7 @@
     							<tr th:each="p: ${ListDogByOwner}">
     								<td th:text="${p.name}"></td>
     								<td th:text="${#dates.format(p.dateOfBirth,'dd/MM/yyyy')}"></td>
-    								<td th:text="${p.race.nameRace}"></td>
+    								<td th:text="${p.race.name}"></td>
     								<td th:text="${p.character.name}"></td>
     								<td th:text="${p.description}"></td>
     								<td th:text="${p.owner.firstNames}"></td>    								
