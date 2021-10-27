@@ -22,19 +22,12 @@
 <body>
 	<div th:replace="fragments/header :: header2"></div>
     	
-    	<div th:replace="fragments/header :: header"></div>
     	<div class="container">
     		<form id="myform">
     			<div class="row clearfix">
     				<div class="col-md-12 column">
     					
-    					<a 	style="border-bottom-color: green" th:href="@{/dog/irRegistrar}"
-    						id="add-row" type="button" class="btn btn-primary btn-md left-block">
-    						<span class="glyphicon glyphicon-plus"></span> Mascota
-    					</a>
-    					
-						
-    					
+    	
     					<table class="table table-bordered table-hover table-striped" id="tab_logic">
     						<thead>
     							<tr>
@@ -55,7 +48,7 @@
     								<td th:text="${p.character.name}"></td>
     								<td th:text="${p.description}"></td>
     								<td th:text="${p.owner.firstNames}"></td>    								
-    								<td><a th:href="@{'/owner/modificar/'}+${p.idDog}">Modificar</a></td>
+    								
     							</tr>
     						</tbody>
     					</table> 
