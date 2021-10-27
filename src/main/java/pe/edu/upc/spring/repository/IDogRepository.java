@@ -14,7 +14,7 @@ import pe.edu.upc.spring.model.Dog;
 @Repository
 public interface IDogRepository extends JpaRepository<Dog, Integer>{
 	
-	@Query("from Dog d where d.owner.idOwner like %:idOwner%")
+	@Query("from Dog d where d.owner.idOwner like %:idOwner%")////
 	List<Dog> ListDogByOwner(@Param("idOwner")int idOwner);
 	
 	
