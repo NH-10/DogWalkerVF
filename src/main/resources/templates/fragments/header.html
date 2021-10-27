@@ -15,7 +15,7 @@
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
 </link>
-<link rel="stylesheet" th:href="@{/css/styles2.css}" />
+
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
 		</script>
@@ -28,7 +28,7 @@
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.version.2.css}" />
 <link rel="stylesheet" th:href="@{/css/header.css}" />
 
-
+<link rel="stylesheet" th:href="@{/css/styles2.css}" />
 
 </head>
 
@@ -169,6 +169,47 @@
 		</div>
 
 
+	</div>
+
+	<div th:fragment="header_dueno">
+
+		<div class="header-area  ">
+			<div id="sticky-header" class="main-header-area">
+
+
+				<div class="main-menu  d-none d-lg-block ">
+					<nav class="navbar navbar-default  " role="navigation">
+
+
+
+						<div class="navbar-collapse collapse color-header">
+							<ul class="nav navbar-nav ">
+
+
+								<li class="pull-left"><a href="#"><img class="b"
+										th:src="@{/imagenes/logo.png}" width="60" alt=""></a></li>
+										
+			<li class="pull-right"><a href="#"><img  class ="b" th:src="@{/imagenes/d97bbb08017ac2309307f0822e63d082.png}"  width="80" alt=""></a></li>
+
+
+								<div class="sin">
+									<li class="pull-left"><a href="#">Inicio</a></li>
+									<li class="pull-left"><a href="#">¿Quienes somos?</a></li>
+									<li class="pull-left"><a href="#">Contactanos</a></li>
+									<li class="pull-right"><a href="#">Iniciar sesion</a></li>
+									<li class="pull-right"><a href="#">Registrarse</a></li>
+								</div>
+
+
+							</ul>
+						</div>
+
+
+					</nav>
+				</div>
+			</div>
+
+		</div>
 	</div>
 </body>
 
