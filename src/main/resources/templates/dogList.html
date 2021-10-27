@@ -6,21 +6,14 @@
 
 <head>
 <meta charset="UTF-8"></meta>
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
-	rel="stylesheet" />
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.version.2.css}" />
+<link rel="stylesheet" th:href="@{/css/header.css}" />
 
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
-<link rel="stylesheet"
-	th:href="@{/css/bootstrap-datetimepicker.min.css}" />
-<link rel="stylesheet" th:href="@{/css/duenoStyles.css}" />
-<link rel="stylesheet" th:href="@{/css/style.css}" />
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" th:href="@{/css/styles2.css}" />
 </head>
 
 <body>
-	<div th:replace="fragments/header :: header2"></div>
+	<div th:replace="fragments/header :: header_dueno"></div>
     	
     	<div class="container">
     		<form id="myform">
@@ -38,17 +31,19 @@
     								<th class="text-center">DESCRIPCION</th>
     								<th class="text-center">DUENO</th>
     								<th class="text-center">OPERACION</th>
+    								<th class="text-center">OPERACION</th>
     							</tr>
     						</thead>
     						<tbody>
     							<tr th:each="p: ${ListDogByOwner}">
     								<td th:text="${p.name}"></td>
     								<td th:text="${#dates.format(p.dateOfBirth,'dd/MM/yyyy')}"></td>
-    								<td th:text="${p.race.nameRace}"></td>
+    								<td th:text="${p.race.name}"></td>
     								<td th:text="${p.character.name}"></td>
     								<td th:text="${p.description}"></td>
     								<td th:text="${p.owner.firstNames}"></td>    								
-    								
+    								<td><a th:href="@{'/dog/modificar/'}+${p.idDog}">Modificar</a></td>
+    								<td><a th:href="@{/dog/eliminar?id=}+${p.idDog}">Eliminar</a></td>
     							</tr>
     						</tbody>
     					</table> 
