@@ -35,9 +35,6 @@
 <body>
 
 	<div th:fragment="header">
-		<!-- this is header -->
-		<nav class="navbar navbar-light" style="background-color: #eb9956ed">
-			<div class="container">
 
 				<div class="navbar-header ">
 					<img th:src="@{/imagenes/log.png}" class="navbar-brand" />
@@ -150,11 +147,11 @@
 										th:src="@{/imagenes/logo.png}" width="60" alt=""></a></li>
 
 								<div class="sin">
-									<li class="pull-left"><a href="#">Inicio</a></li>
-									<li class="pull-left"><a href="#">¿Quienes somos?</a></li>
-									<li class="pull-left"><a href="#">Contactanos</a></li>
-									<li class="pull-right"><a href="#">Iniciar sesion</a></li>
-									<li class="pull-right"><a href="#">Registrarse</a></li>
+									<li class="pull-left"><a href="#navbarNav">Inicio</a></li>
+									<li class="pull-left"><a href="#about">¿Quienes somos?</a></li>
+									<li class="pull-left"><a href="#contact">Contactanos</a></li>
+									<li class="pull-right"><a th:href="@{/pantalla/iniciarSegunUsuario}">Iniciar sesion</a></li>
+									<li class="pull-right"><a th:href="@{/pantalla/regitrarSegunUsuario}">Registrarse</a></li>
 								</div>
 
 
@@ -189,15 +186,56 @@
 								<li class="pull-left"><a href="#"><img class="b"
 										th:src="@{/imagenes/logo.png}" width="60" alt=""></a></li>
 										
-			<li class="pull-right"><a href="#"><img  class ="b" th:src="@{/imagenes/d97bbb08017ac2309307f0822e63d082.png}"  width="80" alt=""></a></li>
+			<li class="pull-right"><a th:href="@{/owner/menu}"><img  class ="b" th:src="@{/imagenes/d97bbb08017ac2309307f0822e63d082.png}"  width="80" alt=""></a></li>
 
 
 								<div class="sin">
-									<li class="pull-left"><a href="#">Inicio</a></li>
-									<li class="pull-left"><a href="#">¿Quienes somos?</a></li>
-									<li class="pull-left"><a href="#">Contactanos</a></li>
-									<li class="pull-right"><a href="#">Iniciar sesion</a></li>
-									<li class="pull-right"><a href="#">Registrarse</a></li>
+									<li class="pull-left"><a href="#navbarNav">Inicio</a></li>
+									<li class="pull-left"><a href="#about">¿Quienes somos?</a></li>
+									<li class="pull-left"><a href="#contact">Contactanos</a></li>
+									
+									
+								</div>
+
+
+							</ul>
+						</div>
+
+
+					</nav>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
+	<div th:fragment="header_paseador">
+
+		<div class="header-area  ">
+			<div id="sticky-header" class="main-header-area">
+
+
+				<div class="main-menu  d-none d-lg-block ">
+					<nav class="navbar navbar-default  " role="navigation">
+
+
+
+						<div class="navbar-collapse collapse color-header">
+							<ul class="nav navbar-nav ">
+
+
+								<li class="pull-left"><a href="#"><img class="b"
+										th:src="@{/imagenes/logo.png}" width="60" alt=""></a></li>
+										
+			<li class="pull-right"><a th:href="@{/walker/menu}"><img  class ="b" th:src="@{/imagenes/d97bbb08017ac2309307f0822e63d082.png}"  width="80" alt=""></a></li>
+
+
+								<div class="sin">
+									<li class="pull-left"><a href="#navbarNav">Inicio</a></li>
+									<li class="pull-left"><a href="#about">¿Quienes somos?</a></li>
+									<li class="pull-left"><a href="#contact">Contactanos</a></li>
+									
+									
 								</div>
 
 
