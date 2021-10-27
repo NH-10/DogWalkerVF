@@ -6,11 +6,11 @@ import java.util.Optional;
 import pe.edu.upc.spring.model.Dog;
 
 
-public interface IDogService {////
+public interface IDogService {
 	public boolean save(Dog dog);
 	public void delete(int idDog);
 	public List<Dog> list();
 	public Optional<Dog> listById(int idDog);
-	public List<Dog> ListDogByOwner(int idOwner);
+	public List<Dog> ListDogByOwner(String idOwner);
 }
 
