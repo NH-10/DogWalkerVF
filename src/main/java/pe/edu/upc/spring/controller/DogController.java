@@ -42,7 +42,6 @@ public class DogController {
 	
 	private String idOwner;
 	private Owner sesionOwner;
-	private String idOwner;
 	private List<Dog> listDog;
 
 	
