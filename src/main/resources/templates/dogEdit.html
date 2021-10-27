@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<head>
+<meta charset="UTF-8"></meta>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
+	rel="stylesheet" />
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet"
+	th:href="@{/css/bootstrap-datetimepicker.min.css}" />
+<link rel="stylesheet" th:href="@{/css/duenoStyles.css}" />
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+	<div class="registration-form">
+				<form th:action="@{/dog/listarCanes}" method="post"
+					th:object="${dog}">
+				<div class="row">
+					<div class="form-group">
+						<h1> Editar a tu mascota</h1>
+					</div>
+				</div>
+				<div class="form-icon-c">
+					<img th:src="@{/imagenes/icoMascota.png}" >
+				</div>
+
+				<div class="form-group">
+					<input type="text" class="form-control item" placeholder="Nombre"
+						th:field="*{name}"></input>
+
+				</div>
+				<div class="form-group">
+					<div class=" form group date" id="id_0">
+						<input type="date" class="form-control itemselect"
+							placeholder="Fecha de nacimiento" th:field="*{dateOfBirth}"></input>
+					</div>
+				</div>
+				
+				<div class="form-group">
+
+					<select class="form-control itemselect"
+						th:field="*{Race.idRace}">
+						<option th:each="d: ${listaRaza}" th:value="${d.idRace}"
+							th:text="${d.name}"
+							th:selected="(${d.idRace}==*{Race.idRace})">
+						</option>
+					</select>
+
+				</div>
+				<div class="form-group">
+
+					<select class="form-control itemselect"
+						th:field="*{Character.idCharacter}">
+						<option th:each="d: ${listaCaracter}" th:value="${d.idCharacter}"
+							th:text="${d.name}"
+							th:selected="(${d.idCharacter}==*{Character.idCharacter})">
+						</option>
+					</select>
+
+				</div>
+			
+					<div class="form-group">
+					<input type="text" class="form-control item" placeholder="Descripcion"
+					th:field="*{description}"></input>
+				</div>
+				
+				<div class="form-group">
+
+					<select class="form-control itemselect"
+						th:field="*{Owner.idOwner}">
+						<option th:each="d: ${listaDueno}" th:value="${d.idOwner}"
+							th:text="${d.firstNames}"
+							th:selected="(${d.idOwner}==*{Owner.idOwner})">
+						</option>
+					</select>
+
+				</div>
+		
+			<button type="submit" class="btn btn-block create-account">Guardar cambios</button>
+			<a  class="btn btn-block" th:href="@{/dog/menu}">Volver</a>
+		</form>
+	</div>
+	<script src="resources/js/script.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/jquery.min.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/popper.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/bootstrap.min.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/moment-with-locales.min.js"
+		type="text/javascript" xml:space="preserve"></script>
+	<script src="resources/js/bootstrap-datetimepicker.min.js"
+		type="text/javascript" xml:space="preserve"></script>
+	<script src="resources/js/main.js" type="text/javascript"
+		xml:space="preserve"></script>
+</body>
+</html>
