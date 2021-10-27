@@ -1,24 +1,39 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui">
 
 <head>
 <meta charset="UTF-8"></meta>
+
+
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
+		</script>
+
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
 </link>
-
-
+<link rel="stylesheet" th:href="@{/css/styles2.css}" />
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
 		</script>
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js">
+		</script>
+
+
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.version.2.css}" />
+<link rel="stylesheet" th:href="@{/css/header.css}" />
+
+
+
 </head>
 
 <body>
-	<!-- th:fragment define un fragment los cuales sirven para evitar la redundancia de codigo -->
-	<!-- Sintaxis th:fragment="Nombre del fragment" -->
+
 	<div th:fragment="header">
 		<!-- this is header -->
 		<nav class="navbar navbar-light" style="background-color: #eb9956ed">
@@ -35,8 +50,8 @@ xmlns:p="http://primefaces.org/ui">
 						<li class="text-dark"><a href="#navbarNav">Inicio</a></li>
 						<li class="text-dark"><a href="#about">¿Quienes somos?</a></li>
 						<li class="text-dark"><a href="#contact">Contactanos</a></li>
-						<li class="text-dark"><a th:href="@{/pantalla/iniciarSegunUsuario}">
-						Iniciar sesion</a></li>
+						<li class="text-dark"><a
+							th:href="@{/pantalla/iniciarSegunUsuario}"> Iniciar sesion</a></li>
 						<li class="text-dark"><a
 							th:href="@{/pantalla/regitrarSegunUsuario}">Registrarse</a></li>
 
@@ -50,7 +65,7 @@ xmlns:p="http://primefaces.org/ui">
 
 	<div th:fragment="header1">
 		<!-- this is header -->
-		<nav class="navbar navbar-light" style="background-color:  #eb9956ed;">
+		<nav class="navbar navbar-light" style="background-color: #eb9956ed;">
 			<div class="container">
 
 				<div class="navbar-header ">
@@ -65,26 +80,28 @@ xmlns:p="http://primefaces.org/ui">
 						<li class="text-dark"><a href="#about">¿Quienes somos?</a></li>
 						<li class="text-dark"><a href="#contact">Contactanos</a></li>
 						<li class="text-dark"><a th:href="@{/walker/menu}">Walker</a></li>
-						<li class="text-dark"><a th:href="@{/pantalla/cerrarSesion}">Cerrar Sesión</a></li>
-						<li class="text-dark"><input type="text" class="form-control item"th:value="*{walker.firstNames}"></input></li>	
-						
-						
+						<li class="text-dark"><a th:href="@{/pantalla/cerrarSesion}">Cerrar
+								Sesión</a></li>
+						<li class="text-dark"><input type="text"
+							class="form-control item" th:value="*{walker.firstNames}"></input></li>
 
 
-							
-						
+
+
+
+
 					</ul>
 
 				</div>
 
 			</div>
-	
+
 		</nav>
 	</div>
-	
+
 	<div th:fragment="header2">
 		<!-- this is header -->
-		<nav class="navbar navbar-light" style="background-color:  #eb9956ed;">
+		<nav class="navbar navbar-light" style="background-color: #eb9956ed;">
 			<div class="container">
 
 				<div class="navbar-header ">
@@ -98,20 +115,61 @@ xmlns:p="http://primefaces.org/ui">
 						<li class="text-dark"><a href="#navbarNav">Inicio</a></li>
 						<li class="text-dark"><a href="#about">¿Quienes somos?</a></li>
 						<li class="text-dark"><a href="#contact">Contactanos</a></li>
-						<li class="text-dark"><a th:href="@{/owner/menu}">Owner</a></li>						
-						<li class="text-dark"><a th:href="@{/pantalla/cerrarSesion}">Cerrar Sesión</a></li>
-						<li class="text-dark"><input type="text" class="form-control item"th:value="*{owner.firstNames}"></input></li>	
-						
+						<li class="text-dark"><a th:href="@{/owner/menu}">Owner</a></li>
+						<li class="text-dark"><a th:href="@{/pantalla/cerrarSesion}">Cerrar
+								Sesión</a></li>
+						<li class="text-dark"><input type="text"
+							class="form-control item" th:value="*{owner.firstNames}"></input></li>
+
 
 					</ul>
 
 				</div>
 
 			</div>
-	
+
 		</nav>
 	</div>
-	
+
+	<div th:fragment="header3">
+
+		<div class="header-area  ">
+			<div id="sticky-header" class="main-header-area">
+
+
+				<div class="main-menu  d-none d-lg-block ">
+					<nav class="navbar navbar-default  " role="navigation">
+
+
+
+						<div class="navbar-collapse collapse color-header">
+							<ul class="nav navbar-nav ">
+
+
+								<li class="pull-left"><a href="#"><img class="b"
+										th:src="@{/imagenes/logo.png}" width="60" alt=""></a></li>
+
+								<div class="sin">
+									<li class="pull-left"><a href="#">Inicio</a></li>
+									<li class="pull-left"><a href="#">¿Quienes somos?</a></li>
+									<li class="pull-left"><a href="#">Contactanos</a></li>
+									<li class="pull-right"><a href="#">Iniciar sesion</a></li>
+									<li class="pull-right"><a href="#">Registrarse</a></li>
+								</div>
+
+
+							</ul>
+						</div>
+
+
+					</nav>
+				</div>
+			</div>
+
+		</div>
+
+
+	</div>
 </body>
 
 </html>

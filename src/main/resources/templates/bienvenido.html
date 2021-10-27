@@ -22,10 +22,15 @@
 		<script src="//code.jquery.com/jquery-1.11.1.min.js">
 		</script>
 		
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.version.2.css}" />
+<link rel="stylesheet" th:href="@{/css/header.css}" />
+
+		
+		
 	</head>
 
 	<body>
-    	<div th:replace="fragments/header :: header"></div>
+    	<div th:replace="fragments/header :: header3"></div>
     	<div th:replace="fragments/contenido :: content"></div>
     	<div th:replace="fragments/footer :: footer"></div>
 	</body>
