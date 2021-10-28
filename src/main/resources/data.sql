@@ -1,4 +1,4 @@
-INSERT INTO status(name) VALUES ('  ');
+INSERT INTO status(name) VALUES ('Pendiente');
 INSERT INTO status(name) VALUES ('Aceptado');
 INSERT INTO status(name) VALUES ('Rechazado');
 

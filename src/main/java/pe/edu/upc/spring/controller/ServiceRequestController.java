@@ -111,6 +111,7 @@ public class ServiceRequestController {
         } else {
 
             objServiceRequest.setWalker(sesionWalker);
+            objServiceRequest.setTotalServiceCost(sesionWalker.getCostService());
             objServiceRequest.setOwner(sesionOwner);
             objServiceRequest.setState(staService.listStatus().get(0));
             boolean flag = srService.save(objServiceRequest);
@@ -136,9 +137,13 @@ public class ServiceRequestController {
             return "serviceRequest";
         } else {
 
-            objServiceRequest.setWalker(sesionWalker);
+            objServiceRequest.setWalker(sesionServiceRequest.getWalker());
+            objServiceRequest.setTime(sesionServiceRequest.getTime());
             objServiceRequest.setOwner(sesionOwner);
-            objServiceRequest.setState(staService.listStatus().get(0));
+            objServiceRequest.setDateService(sesionServiceRequest.getDateService());
+            objServiceRequest.setStartTime(sesionServiceRequest.getStartTime());
+            objServiceRequest.setTimeLimit(sesionServiceRequest.getTimeLimit());
+           
             boolean flag = srService.save(objServiceRequest);
             if (flag) {
 
@@ -160,9 +165,7 @@ public class ServiceRequestController {
             return "redirect:/serviceRequest/listar";
         } else {
             model.addAttribute("listStatus", sService.listStatus());
-            model.addAttribute("listTimes", tService.listTime());
-            model.addAttribute("listOwners", owService.list());
-            model.addAttribute("listWalker", waService.list());
+            sesionServiceRequest = objServiceRequest.get();
             if (objServiceRequest.isPresent())
                 objServiceRequest.ifPresent(o -> model.addAttribute("serviceRequest", o));
  
