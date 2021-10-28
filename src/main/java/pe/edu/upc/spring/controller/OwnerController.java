@@ -119,6 +119,7 @@ public class OwnerController {
 			System.out.print(objOwner.getFirstNames());
 			dogController.setOwner(sesionOwner);
 			sesionOwner = objOwner;
+			sController.setOwner(sesionOwner);
 			return "redirect:/owner/bienvenido";
 		}
 		else 
