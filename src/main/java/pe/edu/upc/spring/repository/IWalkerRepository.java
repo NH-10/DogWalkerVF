@@ -16,5 +16,9 @@ public interface IWalkerRepository extends JpaRepository<Walker, Integer>{
 	
 	@Query("from Walker w where w.email like %:email% and w.password like %:password% ")
 	List<Walker> findByEmailAndPassword(@Param("email")String email, @Param("password")String password);
+	
+	
+	@Query("from Walker w where w.district.name like %:nameDistrict%")
+	List<Walker> listByDistrict(@Param("nameDistrict") String nameDistrict);
 
 }

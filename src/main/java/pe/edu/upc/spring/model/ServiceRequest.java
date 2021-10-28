@@ -41,7 +41,7 @@ public class ServiceRequest implements Serializable {
 	private String timeLimit;
 
 	@ManyToOne
-	@JoinColumn(name = "idState", nullable = false)
+	@JoinColumn(name = "idState", nullable = true)
 	private Status status;
 
 	@ManyToOne

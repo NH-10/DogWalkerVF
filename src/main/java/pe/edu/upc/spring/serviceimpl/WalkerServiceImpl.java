@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import pe.edu.upc.spring.model.ServiceRequest;
 import pe.edu.upc.spring.model.Walker;
 import pe.edu.upc.spring.repository.IWalkerRepository;
 import pe.edu.upc.spring.service.IWalkerService;
@@ -40,6 +41,13 @@ public class WalkerServiceImpl implements IWalkerService {
 	@Transactional(readOnly=true)
 	public List<Walker> findByEmailAndPassword(String email, String password) {
 		return wa.findByEmailAndPassword(email, password);
+	}
+
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Walker> listByDistrict(String nameDistrict) {
+		return wa.listByDistrict(nameDistrict);
 	}
 
 }

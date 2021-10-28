@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<head>
+<meta charset="UTF-8"></meta>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.version.2.css}" />
+<link rel="stylesheet" th:href="@{/css/header.css}" />
+
+<link rel="stylesheet" th:href="@{/css/styles2.css}" />
+</head>
+
+<body>
+	<div th:replace="fragments/header :: header_dueno"></div>
+    	
+    	<div class="container">
+    		<form id="myform">
+    			<div class="row clearfix">
+    				<div class="col-md-12 column">
+    					
+    	
+    					<table class="table table-bordered table-hover table-striped" id="tab_logic">
+    						<thead>
+    							<tr>
+    								<th class="text-center">Nombre</th>
+    								<th class="text-center">Descripcion</th>
+    								<th class="text-center">Personalidad</th>
+    								<th class="text-center">Distrito</th>
+    								<th class="text-center">Solicitud</th>
+    							</tr>
+    						</thead>
+    						<tbody>
+    							<tr th:each="w: ${listWalkersbyDistrict}">
+    								<td th:text="${w.firstNames}"></td>
+    								<td th:text="${w.description}"></td>
+    								<td th:text="${w.personality.name}"></td>
+    								<td th:text="${w.district.name}"></td> 							
+    								<td><a th:href="@{'/serviceRequest/irRegistrar/'}+${w.idWalker}">Solicitar</a></td>
+    							</tr>
+    						</tbody>
+    					</table> 
+    					
+    				</div>
+    			</div>
+    			
+    		</form>
+    	</div>	
+		
+    
+    	
+    <div th:replace="fragments/footer :: footer"></div>
+    
+    
+	<script src="resources/js/script.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/jquery.min.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/popper.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/bootstrap.min.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/moment-with-locales.min.js"
+		type="text/javascript" xml:space="preserve"></script>
+	<script src="resources/js/bootstrap-datetimepicker.min.js"
+		type="text/javascript" xml:space="preserve"></script>
+	<script src="resources/js/main.js" type="text/javascript"
+		xml:space="preserve"></script>
+</body>
+</html>
