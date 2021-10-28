@@ -116,6 +116,12 @@ public class OwnerController {
 		return "buscar";
 	}
 
+	@RequestMapping("/listarCanes")
+	public String listarCanes(Model model) throws ParseException {
+		model.addAttribute("owner", sesionOwner);
+		/*cService.ListDogByOwner(sesionOwner.getIdOwner());*/
+		return "listCanes";
+	}
 
 	@RequestMapping("/validarUsuario")
 	public String ingresarCuenta(@ModelAttribute Owner objOwner) throws ParseException {
