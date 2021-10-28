@@ -24,26 +24,20 @@
     					<table class="table table-bordered table-hover table-striped" id="tab_logic">
     						<thead>
     							<tr>
-    								<th class="text-center">Fecha de Servicio</th>
-    								<th class="text-center">Hora Inicio</th>
-    								<th class="text-center">Hora Fin</th>
-    								<th class="text-center">Tiempo</th>
-    								<th class="text-center">Dueño</th>
-    								<th class="text-center">Monto</th>
-    								<th class="text-center">Estado</th>
-    								<th class="text-center">Operación</th>
+    								<th class="text-center">Nombre</th>
+    								<th class="text-center">Descripcion</th>
+    								<th class="text-center">Personalidad</th>
+    								<th class="text-center">Distrito</th>
+    								<th class="text-center">Solicitud</th>
     							</tr>
     						</thead>
     						<tbody>
-    							<tr th:each="p: ${ListDogByOwner}">
-    								<td th:text="${p.name}"></td>
-    								<td th:text="${#dates.format(p.dateOfBirth,'dd/MM/yyyy')}"></td>
-    								<td th:text="${p.race.name}"></td>
-    								<td th:text="${p.character.name}"></td>
-    								<td th:text="${p.description}"></td>
-    								<td th:text="${p.owner.firstNames}"></td>    								
-    								<td><a th:href="@{'/dog/modificar/'}+${p.idDog}">Modificar</a></td>
-    								<td><a th:href="@{/dog/eliminar?id=}+${p.idDog}">Eliminar</a></td>
+    							<tr th:each="w: ${listWalkersbyDistrict}">
+    								<td th:text="${w.firstNames}"></td>
+    								<td th:text="${w.description}"></td>
+    								<td th:text="${w.personality.name}"></td>
+    								<td th:text="${w.district.name}"></td> 							
+    								<td><a th:href="@{'/serviceRequest/irRegistrar/'}+${w.idWalker}">Solicitar</a></td>
     							</tr>
     						</tbody>
     					</table> 

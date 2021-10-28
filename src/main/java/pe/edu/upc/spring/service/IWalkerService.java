@@ -11,5 +11,6 @@ public interface IWalkerService {
 	public List<Walker> list();
 	public List<Walker> findByEmailAndPassword(String email, String password);
 	public Walker WalkerById(String idWalker);
+	public List<Walker> listByDistrict(String nameDistrict);
 
 }

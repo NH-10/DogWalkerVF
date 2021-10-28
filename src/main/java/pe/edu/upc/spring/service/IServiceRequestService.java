@@ -10,4 +10,7 @@ public interface IServiceRequestService {
 	public void delete(int idServiceRequest);
 	public Optional<ServiceRequest> listId(int idServiceRequest);
 	public List<ServiceRequest> listServiceRequest();
+	public List<ServiceRequest> listServiceRequestByOwner(String idOwner);
+	public List<ServiceRequest> listServiceRequestByWalker(String idWalker);
+	
 }

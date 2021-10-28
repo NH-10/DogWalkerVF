@@ -30,8 +30,9 @@
     				<form th:action="@{/walker/buscar}" method="post" th:object="${walker}">
     					<div class="form-group">
     						<div class="col-sm-7" style="float:none;margin:auto;">
-    							<input type="text" class="form-control"
-    					 placeholder="Ingrese distrito"></input>
+    							<input type="text" class="form-control" 
+							id="name"
+							placeholder="Ingrese Distrito">
     					 <br>
     					<div align="center">
     						<button type="submit" class="btn" style="background-color: #eb9956ed">Buscar</button>

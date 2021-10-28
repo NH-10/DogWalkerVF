@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.spring.model.Dog;
+import pe.edu.upc.spring.model.ServiceRequest;
 import pe.edu.upc.spring.model.Walker;
 import pe.edu.upc.spring.repository.IWalkerRepository;
 import pe.edu.upc.spring.service.IWalkerService;
@@ -49,6 +50,13 @@ public class WalkerServiceImpl implements IWalkerService {
 	@Transactional(readOnly=true)
 	public Walker WalkerById(String idWalker) {
 		return wa.WalkerById(idWalker);
+	}
+
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Walker> listByDistrict(String nameDistrict) {
+		return wa.listByDistrict(nameDistrict);
 	}
 
 }

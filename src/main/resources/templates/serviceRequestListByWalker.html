@@ -35,15 +35,15 @@
     							</tr>
     						</thead>
     						<tbody>
-    							<tr th:each="p: ${ListDogByOwner}">
-    								<td th:text="${p.name}"></td>
-    								<td th:text="${#dates.format(p.dateOfBirth,'dd/MM/yyyy')}"></td>
-    								<td th:text="${p.race.name}"></td>
-    								<td th:text="${p.character.name}"></td>
-    								<td th:text="${p.description}"></td>
-    								<td th:text="${p.owner.firstNames}"></td>    								
-    								<td><a th:href="@{'/dog/modificar/'}+${p.idDog}">Modificar</a></td>
-    								<td><a th:href="@{/dog/eliminar?id=}+${p.idDog}">Eliminar</a></td>
+    							<tr th:each="s: ${listServiceRequestByWalker}">
+    								<td th:text="${#dates.format(s.dateService,'dd/MM/yyyy')}"></td>
+    								<td th:text="${s.startTime}"></td>
+    								<td th:text="${s.timeLimit}"></td>
+    								<td th:text="${s.time.time}"></td>
+    								<td th:text="${s.owner.firstNames}"></td> 
+    								<td th:text="${s.totalServiceCost}"></td>
+    								<td th:text="${s.status.name}"></td>							
+    								<td><a th:href="@{'/serviceRequest/modificar/'}+${s.idServiceRequest}">Modificar</a></td>
     							</tr>
     						</tbody>
     					</table> 

@@ -8,7 +8,7 @@ import pe.edu.upc.spring.model.Feedback;
 
 
 public interface IFeedbackService {
-
+	public boolean save(Feedback feedback);
 
 }
 
