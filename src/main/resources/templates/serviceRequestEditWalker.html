@@ -21,13 +21,16 @@
 
 <body>
 	<div class="registration-form">
-		<form th:action="@{/serviceRequest/registrar}" method="post"
+		<form th:action="@{/serviceRequest/actualizarRequest}" method="post"
 			th:object="${serviceRequest}">
 			<div class="row">
 				<div class="form-group">
 					<h1>Solicitud</h1>
 				</div>
 			</div>
+
+    		<input type="hidden" class="form-control item " placeholder="ID"
+						th:field="*{idServiceRequest}"></input>	
 
 			<div class="row">
 				<div class="form-group col-sm-12">

@@ -92,6 +92,14 @@ public class ServiceRequestController {
 		return "serviceRequest";
 	}
 	
+	@RequestMapping("/irActualizarDenuevo")
+	public String irActualizarDenuevo(Model model) {
+		model.addAttribute("serviceRequest", new ServiceRequest());
+		model.addAttribute("listStatus", sService.listStatus());
+		model.addAttribute("listTimes", tService.listTime());
+		return "serviceRequest";
+	}
+	
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute ServiceRequest objServiceRequest, BindingResult binRes, Model model) throws ParseException {
 		if (binRes.hasErrors()) {
@@ -118,6 +126,31 @@ public class ServiceRequestController {
 		}
 	}
 	
+	@RequestMapping("/actualizarRequest")
+	public String actualizarRequest(@ModelAttribute ServiceRequest objServiceRequest, BindingResult binRes, Model model) throws ParseException {
+		if (binRes.hasErrors()) {
+			model.addAttribute("listStatus", sService.listStatus());
+			model.addAttribute("listTimes", tService.listTime());	
+			model.addAttribute("listWalker", waService.list());
+			model.addAttribute("owner", sesionOwner);
+			return "serviceRequest";
+		} else {
+			
+			objServiceRequest.setWalker(sesionWalker);
+			objServiceRequest.setOwner(sesionOwner);
+			objServiceRequest.setState(staService.listStatus().get(0));
+			boolean flag = srService.save(objServiceRequest);
+			if (flag) {
+				
+				sesionServiceRequest = objServiceRequest;
+				return "redirect:/serviceRequest/listarSolicitudesPaseador";
+			}
+			else {
+				model.addAttribute("mensaje", "Error al guadra solicitud");
+				return "redirect:/serviceRequest/";
+			}
+		}
+	}
 
 	@RequestMapping("/modificar/{id}")
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException {
@@ -133,7 +166,7 @@ public class ServiceRequestController {
 			if (objServiceRequest.isPresent())
 				objServiceRequest.ifPresent(o -> model.addAttribute("serviceRequest", o));
 
-			return "serviceRequest";
+			return "ServiceRequestEditWalker";
 		}
 	}
 
@@ -178,8 +211,8 @@ public class ServiceRequestController {
 	@RequestMapping("/listarSolicitudesPaseador")
 	public String listarSolicitudesPorPaseador(Model model) 
 	{
-		idWalker = String.valueOf(sesionOwner.getIdOwner());
-		listServiceRequestWalker = srService.listServiceRequestByOwner(idWalker);
+		idWalker = String.valueOf(sesionWalker.getIdWalker());
+		listServiceRequestWalker = srService.listServiceRequestByWalker(idWalker);
 		model.addAttribute("listServiceRequestByWalker", listServiceRequestWalker);
 		return "serviceRequestListByWalker";
 	}
