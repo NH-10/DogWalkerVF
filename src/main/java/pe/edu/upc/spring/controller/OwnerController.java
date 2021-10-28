@@ -117,8 +117,8 @@ public class OwnerController {
 			objOwner = listOwners.get(0);
 			System.out.print(objOwner.getEmail());
 			System.out.print(objOwner.getFirstNames());
-			dogController.setOwner(sesionOwner);
 			sesionOwner = objOwner;
+			dogController.setOwner(sesionOwner);
 			sController.setOwner(sesionOwner);
 			return "redirect:/owner/bienvenido";
 		}
