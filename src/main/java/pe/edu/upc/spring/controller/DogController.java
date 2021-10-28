@@ -74,7 +74,7 @@ public class DogController {
 			model.addAttribute("listaRaza", rService.listRace());
 			model.addAttribute("listaCaracter", cService.listCharacter());
 			model.addAttribute("owner", sesionOwner);
-			return "dog";
+			return "dogList";
 		}
 		else {
 			boolean flag = dService.save(objDog);
@@ -94,16 +94,16 @@ public class DogController {
 		Optional<Dog> objDog = dService.listById(id);
 		if (objDog == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
-			return "redirect:/dog/listar";
+			return "redirect:/dog/listarCanes";
 		}
 		else {
 			model.addAttribute("listaRaza", rService.listRace());
 			model.addAttribute("listaCaracter", cService.listCharacter());
-			model.addAttribute("listaDueno", oService.list());
+			model.addAttribute("owner", sesionOwner);
 			
 			if(objDog.isPresent())
 				objDog.ifPresent(d -> model.addAttribute("dog",d));
-			return "dog";
+			return "dogEdit";
 		}
 	}
 		
@@ -112,15 +112,15 @@ public class DogController {
 		try {
 			if (id!=null && id>0) {
 				dService.delete(id);
-				model.put("listDogs", dService.list());
+				model.put("listDogByOwner", dService.ListDogByOwner(idOwner));
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "Ocurrio un error");
-			model.put("listDogs", dService.list());
+			model.put("listDogByOwner",dService.ListDogByOwner(idOwner));
 		}
-		return "listDog";
+		return "redirect:/dog/listarCanes";
 	}
 	
 	@RequestMapping("/listarCanes")
