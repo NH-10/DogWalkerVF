@@ -122,14 +122,19 @@ public class WalkerController {
 		List<Walker> listaDistrict;
 		listaDistrict = wService.listByDistrict(district.getName());
 		
+		if(listaDistrict.isEmpty()) {
+			model.put("listarPaseadores", wService.list());
+		}	
+		else {
 		model.put("listarPaseadores", listaDistrict);
+		}
+		
 		return "walkerListByDistrict";
 	}
 	
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model, @ModelAttribute District district) {
-		
 		model.put("listarPaseadores", wService.list());
 		return "walkerListByDistrict";
 	}

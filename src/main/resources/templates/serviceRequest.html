@@ -65,19 +65,7 @@
 
 			</div>
 
-			<div class="row">
-
-				<div class="form-group col-sm-12">
-
-					<select class="form-control itemselect"
-						th:field="*{Walker.idWalker}">
-						<option th:each="w: ${listWalker}" th:value="${w.idWalker}"
-							th:text="${w.firstNames}"
-							th:selected="(${w.idWalker}==*{Walker.idWalker})"></option>
-					</select>
-
-				</div>
-			</div>
+			
 
 			<button type="submit" class="btn btn-block create-account">Guardar
 				cambios</button>
