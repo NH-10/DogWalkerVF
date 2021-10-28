@@ -25,19 +25,19 @@
     						<thead>
     							<tr>
     								<th class="text-center">Nombre</th>
-    								<th class="text-center">Descripcion</th>
+    								<th class="text-center">Descripción</th>
     								<th class="text-center">Personalidad</th>
     								<th class="text-center">Distrito</th>
     								<th class="text-center">Solicitud</th>
     							</tr>
     						</thead>
     						<tbody>
-    							<tr th:each="w: ${listWalkersbyDistrict}">
+    							<tr th:each="w: ${listarPaseadores}">
     								<td th:text="${w.firstNames}"></td>
     								<td th:text="${w.description}"></td>
     								<td th:text="${w.personality.name}"></td>
-    								<td th:text="${w.district.name}"></td> 							
-    								<td><a th:href="@{'/serviceRequest/irRegistrar/'}+${w.idWalker}">Solicitar</a></td>
+    								<td th:text="${w.district.name}"></td> 						
+    								<td><a th:href="@{'/serviceRequest/registrar'}">Solicitar</a></td>
     							</tr>
     						</tbody>
     					</table> 

@@ -28,22 +28,20 @@
     								<th class="text-center">Hora Inicio</th>
     								<th class="text-center">Hora Fin</th>
     								<th class="text-center">Tiempo</th>
-    								<th class="text-center">Dueño</th>
+    								<th class="text-center">Paseador</th>
     								<th class="text-center">Monto</th>
     								<th class="text-center">Estado</th>
-    								<th class="text-center">Operación</th>
     							</tr>
     						</thead>
     						<tbody>
-    							<tr th:each="p: ${ListDogByOwner}">
-    								<td th:text="${p.name}"></td>
-    								<td th:text="${#dates.format(p.dateOfBirth,'dd/MM/yyyy')}"></td>
-    								<td th:text="${p.race.name}"></td>
-    								<td th:text="${p.character.name}"></td>
-    								<td th:text="${p.description}"></td>
-    								<td th:text="${p.owner.firstNames}"></td>    								
-    								<td><a th:href="@{'/dog/modificar/'}+${p.idDog}">Modificar</a></td>
-    								<td><a th:href="@{/dog/eliminar?id=}+${p.idDog}">Eliminar</a></td>
+    							<tr th:each="o: ${listServiceRequestByOwner}">
+    								<td th:text="${#dates.format(o.dateService,'dd/MM/yyyy')}"></td>
+    								<td th:text="${o.startTime}"></td>
+    								<td th:text="${o.timeLimit}"></td>
+    								<td th:text="${o.time.time}"></td>
+    								<td th:text="${o.walker.firstNames}"></td> 
+    								<td th:text="${o.totalServiceCost}"></td>
+    								<td th:text="${o.status.name}"></td>							
     							</tr>
     						</tbody>
     					</table> 

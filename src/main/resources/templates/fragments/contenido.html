@@ -27,21 +27,19 @@
                 <div class="d-flex justify-content-center h-50">
                 	<div class="row clearfix">
     
-    				<form th:action="@{/walker/buscar}" method="post" th:object="${walker}">
-    					<div class="form-group">
-    						<div class="col-sm-7" style="float:none;margin:auto;">
-    							<input type="text" class="form-control" 
-							id="name"
-							placeholder="Ingrese Distrito">
-    					 <br>
-    					<div align="center">
-    						<button type="submit" class="btn" style="background-color: #eb9956ed">Buscar</button>
-    						
-    					</div>
+   						<form th:action="@{/walker/buscar}" method="post" th:object="${walker}">
+							<div class="form-group">
+								<div class="col-sm-7"  style="float:none;margin:auto;">
+									<input type="text" class="form-control" 
+										id="nombre"
+										placeholder="Ingrese Distrito">
+									<div align="center" style="margin-top:2%;" >
+										<button type="submit"  class="btn" style="background-color: #eb9956ed">Buscar</button>
+									</div>
+								</div>
+							</div>			
+						</form> 		   			
     				</div>	
-    			</div>		
-    		</form>
-    		</div>	
                 </div>
               </div>   
         </div>
