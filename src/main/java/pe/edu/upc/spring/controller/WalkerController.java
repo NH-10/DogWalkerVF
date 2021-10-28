@@ -117,22 +117,19 @@ public class WalkerController {
 	}
 	
 	@RequestMapping("/buscar")
-	public String buscarPorDistrito(Map<String, Object> model, @ModelAttribute Walker walker) throws ParseException 
+	public String buscarPorDistrito(Map<String, Object> model, @ModelAttribute District district) throws ParseException 
 	{ 
-		List<Walker> listWalkersbyDistrict;
-		walker.setDistrict(walker.getDistrict());
-		listWalkersbyDistrict = wService.listByDistrict(walker.getDistrict().getName());
+		List<Walker> listaDistrict;
+		listaDistrict = wService.listByDistrict(district.getName());
 		
-		if(listWalkersbyDistrict.isEmpty()) {
-			model.put("mensaje", "No existen coincidencias");
-		}	
-		model.put("listWalkersbyDistrict", listWalkersbyDistrict);
+		model.put("listarPaseadores", listaDistrict);
 		return "walkerListByDistrict";
 	}
 	
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model, @ModelAttribute District district) {
+		
 		model.put("listarPaseadores", wService.list());
 		return "walkerListByDistrict";
 	}
