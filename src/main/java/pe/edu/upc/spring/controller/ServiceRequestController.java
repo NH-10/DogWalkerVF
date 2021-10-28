@@ -191,12 +191,7 @@ public class ServiceRequestController {
         return "listServiceRequest";
     }
  
-    @RequestMapping("/listarId")
-    public String listarId(Map<String, Object> model, @ModelAttribute ServiceRequest serviceRequest)
-            throws ParseException {
-        srService.listId(serviceRequest.getIdServiceRequest());
-        return "listServiceRequest";
-    }
+  
 
 
     @RequestMapping("/listarSolicitudesDueno")
