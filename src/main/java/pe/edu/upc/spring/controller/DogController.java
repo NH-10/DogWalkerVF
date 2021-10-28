@@ -74,12 +74,12 @@ public class DogController {
 			model.addAttribute("listaRaza", rService.listRace());
 			model.addAttribute("listaCaracter", cService.listCharacter());
 			model.addAttribute("owner", sesionOwner);
-			return "dogList";
+			return "dog";
 		}
 		else {
 			boolean flag = dService.save(objDog);
 			if (flag)
-				return "redirect:/dog/listarCanes";
+				return "redirect:/dog/menu";
 			else {
 				model.addAttribute("mensaje","Ocurrio un error");
 				return "redirect:/dog/irRegistrar";
@@ -89,39 +89,38 @@ public class DogController {
 	
 	@RequestMapping("/modificar/{id}")
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) 
-	throws ParseException
+		throws ParseException
 	{
 		Optional<Dog> objDog = dService.listById(id);
 		if (objDog == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
-			return "redirect:/dog/listarCanes";
+			return "redirect:/dog/listar";
 		}
 		else {
 			model.addAttribute("listaRaza", rService.listRace());
 			model.addAttribute("listaCaracter", cService.listCharacter());
-			model.addAttribute("owner", sesionOwner);
+			model.addAttribute("listaDueno", oService.list());
 			
 			if(objDog.isPresent())
 				objDog.ifPresent(d -> model.addAttribute("dog",d));
 			return "dog";
 		}
 	}
-	
-	
+		
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String, Object> model,  @RequestParam(value="id") Integer id) {
 		try {
 			if (id!=null && id>0) {
 				dService.delete(id);
-				model.put("listDogByOwner", dService.ListDogByOwner(idOwner));
+				model.put("listDogs", dService.list());
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "Ocurrio un error");
-			model.put("listDogByOwner",dService.ListDogByOwner(idOwner));
+			model.put("listDogs", dService.list());
 		}
-		return "redirect:/dog/listarCanes";
+		return "listDog";
 	}
 	
 	@RequestMapping("/listarCanes")
@@ -132,7 +131,6 @@ public class DogController {
 		model.addAttribute("ListDogByOwner", listDog);
 		return "dogList";
 	}	
-	
 	
 	public void setOwner(Owner o) {
 		sesionOwner = o;
