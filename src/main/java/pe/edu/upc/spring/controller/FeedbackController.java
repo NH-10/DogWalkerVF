@@ -17,7 +17,6 @@ import com.sun.el.parser.ParseException;
 
 import pe.edu.upc.spring.model.Dog;
 import pe.edu.upc.spring.model.Owner;
-
 import pe.edu.upc.spring.model.Walker;
 import pe.edu.upc.spring.service.IDistrictService;
 import pe.edu.upc.spring.service.IDogService;
@@ -37,8 +36,24 @@ public class FeedbackController {
 	
 	private Owner sesionOwner;
 	private Walker sesionWalker;
+
+	@RequestMapping("/ListaPaseadores")
+	public String irPaginaRegistrar() {
+		return "dog"; 
+	}
 	
 	
-	
-	
+	@RequestMapping("/modificar/{id}")
+	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException{
+		sesionWalker = wService.WalkerById(String.valueOf(id));
+		if(sesionWalker == null) {
+			model.addAttribute("walker", sesionOwner);
+			return "redirect:/feedback/ListaPaseadores";
+		}
+		else {
+			model.addAttribute("walker", sesionOwner);
+			
+			return "listFeeedbacks";
+		}
+	}
 }
