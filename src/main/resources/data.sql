@@ -88,3 +88,17 @@ INSERT INTO character(name) VALUES ('Agresivo');
 INSERT INTO character(name) VALUES ('Tímido');
 INSERT INTO character(name) VALUES ('Dominante');
 INSERT INTO character(name) VALUES ('Docil');
+
+INSERT INTO time(time) VALUES ('15 minutos');
+INSERT INTO time(time) VALUES ('30 minutos');
+INSERT INTO time(time) VALUES ('45 minutos');
+INSERT INTO time(time) VALUES ('1 hora');
+INSERT INTO time(time) VALUES ('1 hora y 15 minutos');
+INSERT INTO time(time) VALUES ('1 hora y 30 minutos');
+INSERT INTO time(time) VALUES ('1 hora y 45 minutos');
+INSERT INTO time(time) VALUES ('2 horas');
+INSERT INTO time(time) VALUES ('2 horas y 15 minutos');
+INSERT INTO time(time) VALUES ('2 horas y 30 minutos');
+INSERT INTO time(time) VALUES ('2 horas y 45 minutos');
+INSERT INTO time(time) VALUES ('3 horas');
+

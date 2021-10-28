@@ -1,6 +1,7 @@
 package pe.edu.upc.spring.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,9 @@ public class WalkerController {
 
 	@Autowired
 	private IWalkerService wService;
+	
+	@Autowired
+	private ServiceRequestController sController;
 
 	private Walker sesionWalker;
 
@@ -64,7 +68,9 @@ public class WalkerController {
 		} else {
 			boolean flag = wService.save(objWalker);
 			if (flag) {
+				
 				sesionWalker = objWalker;
+				sController.setWalker(sesionWalker);
 				return "redirect:/walker/bienvenido";
 			} else {
 				model.addAttribute("mensaje", "Ocurrio un error");
@@ -101,4 +107,19 @@ public class WalkerController {
 		else
 		return "walkerLogin";
 	}
+	
+	@RequestMapping("/buscar")
+	public String buscarPorDistrito(Map<String, Object> model, @ModelAttribute Walker walker) throws ParseException 
+	{ 
+		List<Walker> listWalkersbyDistrict;
+		walker.setDistrict(walker.getDistrict());
+		listWalkersbyDistrict = wService.listByDistrict(walker.getDistrict().getName());
+		
+		if(listWalkersbyDistrict.isEmpty()) {
+			model.put("mensaje", "No existen coincidencias");
+		}	
+		model.put("listWalkersbyDistrict", listWalkersbyDistrict);
+		return "walkerListByDistrict";
+	}
+	
 }

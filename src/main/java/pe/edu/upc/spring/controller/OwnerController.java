@@ -35,6 +35,7 @@ public class OwnerController {
 	
 	@Autowired
 	private DogController dogController;
+	
 
 	private Owner sesionOwner;
 
@@ -66,12 +67,7 @@ public class OwnerController {
 		return "owner";
 	}
 	
-	@RequestMapping("/irRegistrarSolicitud")
-	public String irPaginaRegistrarSolicitud(Model model) {
-		return sController.irPaginaRegistrarSolicitud(model,sesionOwner);
-	}
-	
-	
+
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute Owner objOwner, BindingResult binRes, Model model) throws ParseException {
 		if (binRes.hasErrors()) {
@@ -82,6 +78,7 @@ public class OwnerController {
 			if (flag) {
 				sesionOwner = objOwner;
 				dogController.setOwner(sesionOwner);
+				sController.setOwner(sesionOwner);
 				return "redirect:/owner/bienvenido";
 			} else {
 				model.addAttribute("mensaje", "Ocurrio un error");
@@ -119,6 +116,12 @@ public class OwnerController {
 		return "buscar";
 	}
 
+	@RequestMapping("/listarCanes")
+	public String listarCanes(Model model) throws ParseException {
+		model.addAttribute("owner", sesionOwner);
+		/*cService.ListDogByOwner(sesionOwner.getIdOwner());*/
+		return "listCanes";
+	}
 
 	@RequestMapping("/validarUsuario")
 	public String ingresarCuenta(@ModelAttribute Owner objOwner) throws ParseException {

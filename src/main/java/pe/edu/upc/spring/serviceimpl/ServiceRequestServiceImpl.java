@@ -45,4 +45,17 @@ public class ServiceRequestServiceImpl implements IServiceRequestService {
 		return dServiceRequest.findAll();
 	}
 
+	@Override
+	@Transactional(readOnly=true)
+	public List<ServiceRequest> listServiceRequestByOwner(String idOwner) {
+		return dServiceRequest.listServiceRequestByOwner(idOwner);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<ServiceRequest> listServiceRequestByWalker(String idWalker) {
+		return dServiceRequest.listServiceRequestByWalker(idWalker);
+	}
+
+
 }
