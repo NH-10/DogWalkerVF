@@ -21,7 +21,7 @@
 
 <body>
 	<div class="registration-form">
-				<form th:action="@{/dog/listarCanes}" method="post"
+				<form th:action="@{/dog/registrar}" method="post"
 					th:object="${dog}">
 				<div class="row">
 					<div class="form-group">
@@ -80,7 +80,7 @@
 
 					<select class="form-control itemselect"
 						th:field="*{Owner.idOwner}">
-						<option th:each="d: ${listaDueno}" th:value="${d.idOwner}"
+						<option th:each="d: ${owner}" th:value="${d.idOwner}"
 							th:text="${d.firstNames}"
 							th:selected="(${d.idOwner}==*{Owner.idOwner})">
 						</option>

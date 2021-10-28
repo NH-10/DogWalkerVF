@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sun.el.parser.ParseException;
 
+import pe.edu.upc.spring.model.District;
 import pe.edu.upc.spring.model.Owner;
 import pe.edu.upc.spring.service.IDistrictService;
 import pe.edu.upc.spring.service.IDogService;
@@ -36,17 +37,18 @@ public class OwnerController {
 	@Autowired
 	private DogController dogController;
 	
-
 	private Owner sesionOwner;
-
+	
 	@RequestMapping("/inicio")
-	public String irPaginaInicio() {
+	public String irPaginaInicio(Model model) {
+		model.addAttribute("district", new District());
 		return "bienvenido";
 	}
 
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida(Model model) {
 		model.addAttribute("owner", sesionOwner);
+		model.addAttribute("district", new District());
 		return "bienvenidoOwner";
 	}
 
@@ -95,26 +97,7 @@ public class OwnerController {
 
 	}
 
-	@RequestMapping("/irBuscar")
-	public String IrBuscar(Model model) throws ParseException {
-		model.addAttribute("owner", new Owner());
-		return "buscar";
-	}
 
-	@RequestMapping("/buscar")
-	public String buscar(Map<String, Object> model, @ModelAttribute Owner owner) throws ParseException {
-		List<Owner> listOwners;
-		owner.setFirstNames(owner.getFirstNames());
-		listOwners = oService.findByName(owner.getFirstNames());
-
-		if (listOwners.isEmpty()) {
-			model.put("mensaje", "No existen coincidencias");
-		}
-
-		model.put("listOwners", listOwners);
-
-		return "buscar";
-	}
 
 	@RequestMapping("/listarCanes")
 	public String listarCanes(Model model) throws ParseException {

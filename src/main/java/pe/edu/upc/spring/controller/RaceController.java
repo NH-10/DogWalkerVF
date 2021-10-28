@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
+import pe.edu.upc.spring.model.District;
 import pe.edu.upc.spring.model.Race;
 import pe.edu.upc.spring.service.IRaceService;
 
@@ -25,7 +26,8 @@ public class RaceController {
 	private IRaceService rService;
 	
 	@RequestMapping("/bienvenido")
-	public String irPaginaBienvenida() {
+	public String irPaginaBienvenida(Model model) {
+		model.addAttribute("district",new District());
 		return "bienvenido"; // "bienvenido" es una pagina del frontEnd, pagina de Inicio
 	}
 	

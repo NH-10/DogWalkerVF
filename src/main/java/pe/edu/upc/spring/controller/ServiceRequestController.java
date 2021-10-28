@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
+import pe.edu.upc.spring.model.District;
 import pe.edu.upc.spring.model.Dog;
 import pe.edu.upc.spring.model.Owner;
 import pe.edu.upc.spring.model.ServiceRequest;
@@ -57,7 +58,8 @@ public class ServiceRequestController {
 
 	
 	@RequestMapping("/bienvenido")
-	public String irPaginaBienvenida() {
+	public String irPaginaBienvenida(Model model) {
+		model.addAttribute("district", new District());
 		return "bienvenido";
 	}
 

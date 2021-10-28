@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sun.el.parser.ParseException;
 
+import pe.edu.upc.spring.model.District;
 import pe.edu.upc.spring.model.Walker;
 import pe.edu.upc.spring.service.IDistrictService;
 import pe.edu.upc.spring.service.IPersonalityService;
@@ -33,16 +34,20 @@ public class WalkerController {
 	@Autowired
 	private ServiceRequestController sController;
 
+	
 	private Walker sesionWalker;
-
+	
+	
 	@RequestMapping("/inicio")
-	public String irPaginaInicio() {
+	public String irPaginaInicio(Model model) {
+		model.addAttribute("district", new District());
 		return "bienvenido";
 	}
 
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida(Model model) {
 		model.addAttribute("walker", sesionWalker);
+		model.addAttribute("district", new District());
 		return "bienvenidoWalker";
 	}
 
@@ -125,11 +130,11 @@ public class WalkerController {
 		return "walkerListByDistrict";
 	}
 	
-	/*
+	
 	@RequestMapping("/listar")
-	public String listar(Map<String, Object> model) {
+	public String listar(Map<String, Object> model, @ModelAttribute District district) {
 		model.put("listarPaseadores", wService.list());
 		return "walkerListByDistrict";
 	}
-	*/
+	
 }
