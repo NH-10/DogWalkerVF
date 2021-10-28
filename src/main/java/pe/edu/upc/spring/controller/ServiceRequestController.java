@@ -71,14 +71,20 @@ public class ServiceRequestController {
 
 
 	@RequestMapping("/irRegistrar")
+	public String irPaginaRegistrar(Model model, @RequestParam(value="id") Integer id) {
+		model.addAttribute("serviceRequest", new ServiceRequest());
+		model.addAttribute("listStatus", sService.listStatus());
+		model.addAttribute("listTimes", tService.listTime());
+		sesionWalker= waService.WalkerById(String.valueOf(id));
+		
+		return "serviceRequest";
+	}
+	
+	@RequestMapping("/irRegistrarDenuevo")
 	public String irPaginaRegistrar(Model model) {
 		model.addAttribute("serviceRequest", new ServiceRequest());
 		model.addAttribute("listStatus", sService.listStatus());
 		model.addAttribute("listTimes", tService.listTime());
-		//model.addAttribute("listOwners", owService.list());
-		model.addAttribute("owner", sesionOwner);
-		model.addAttribute("listWalker", waService.list());
-		
 		return "serviceRequest";
 	}
 	
@@ -87,10 +93,11 @@ public class ServiceRequestController {
 		if (binRes.hasErrors()) {
 			model.addAttribute("listStatus", sService.listStatus());
 			model.addAttribute("listTimes", tService.listTime());	
-			//model.addAttribute("listWalker", waService.list());
+			model.addAttribute("listWalker", waService.list());
 			model.addAttribute("owner", sesionOwner);
 			return "serviceRequest";
 		} else {
+			objServiceRequest.setWalker(sesionWalker);
 			objServiceRequest.setOwner(sesionOwner);
 			boolean flag = srService.save(objServiceRequest);
 			if (flag) {
@@ -100,7 +107,7 @@ public class ServiceRequestController {
 			}
 			else {
 				model.addAttribute("mensaje", "Error al guadra solicitud");
-				return "redirect:/serviceRequest/irRegistrar";
+				return "redirect:/serviceRequest/irRegistrarDenuevo";
 			}
 		}
 	}
