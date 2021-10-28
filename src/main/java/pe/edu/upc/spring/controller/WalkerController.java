@@ -50,6 +50,11 @@ public class WalkerController {
 	public String irMenuWalker() {
 		return "menuWalker";
 	}
+	
+	@RequestMapping("/irBuscar")
+	public String irBuscar() {
+		return "walkerListByDistrict";
+	}
 
 	@RequestMapping("/irRegistrar") // función registrar paseador
 	public String irPaginaRegistrar(Model model) {
@@ -98,8 +103,6 @@ public class WalkerController {
 
 		if (!listWalkers.isEmpty()) {
 			objWalker = listWalkers.get(0);
-			System.out.print(objWalker.getEmail());
-			System.out.print(objWalker.getFirstNames());
 
 			sesionWalker = objWalker;
 			return "redirect:/walker/bienvenido";
@@ -122,4 +125,11 @@ public class WalkerController {
 		return "walkerListByDistrict";
 	}
 	
+	/*
+	@RequestMapping("/listar")
+	public String listar(Map<String, Object> model) {
+		model.put("listarPaseadores", wService.list());
+		return "walkerListByDistrict";
+	}
+	*/
 }
