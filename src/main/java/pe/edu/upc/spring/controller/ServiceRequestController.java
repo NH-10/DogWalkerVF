@@ -44,6 +44,10 @@ public class ServiceRequestController {
 
 	@Autowired
 	private IWalkerService waService;
+	
+	@Autowired
+	private IStatusService staService;
+
 
 	private ServiceRequest sesionServiceRequest;
 	
@@ -97,8 +101,10 @@ public class ServiceRequestController {
 			model.addAttribute("owner", sesionOwner);
 			return "serviceRequest";
 		} else {
+			
 			objServiceRequest.setWalker(sesionWalker);
 			objServiceRequest.setOwner(sesionOwner);
+			objServiceRequest.setState(staService.listStatus().get(0));
 			boolean flag = srService.save(objServiceRequest);
 			if (flag) {
 				
@@ -164,7 +170,8 @@ public class ServiceRequestController {
 	public String listarSolicitudesPorDueno(Model model) 
 	{
 		idOwner = String.valueOf(sesionOwner.getIdOwner());
-		listServiceRequestOwner = srService.listServiceRequestByOwner(idOwner);
+		/*listServiceRequestOwner = srService.listServiceRequestByOwner(idOwner);*/
+		listServiceRequestOwner = srService.listServiceRequest();
 		model.addAttribute("listServiceRequestByOwner", listServiceRequestOwner);
 		return "serviceRequestListByOwner";
 	}	
