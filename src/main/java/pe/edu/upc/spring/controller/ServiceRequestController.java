@@ -109,7 +109,7 @@ public class ServiceRequestController {
 			if (flag) {
 				
 				sesionServiceRequest = objServiceRequest;
-				return "redirect:/owner/menu";
+				return "redirect:/serviceRequest/listarSolicitudesDueno";
 			}
 			else {
 				model.addAttribute("mensaje", "Error al guadra solicitud");
@@ -170,8 +170,7 @@ public class ServiceRequestController {
 	public String listarSolicitudesPorDueno(Model model) 
 	{
 		idOwner = String.valueOf(sesionOwner.getIdOwner());
-		/*listServiceRequestOwner = srService.listServiceRequestByOwner(idOwner);*/
-		listServiceRequestOwner = srService.listServiceRequest();
+		listServiceRequestOwner = srService.listServiceRequestByOwner(idOwner);
 		model.addAttribute("listServiceRequestByOwner", listServiceRequestOwner);
 		return "serviceRequestListByOwner";
 	}	
