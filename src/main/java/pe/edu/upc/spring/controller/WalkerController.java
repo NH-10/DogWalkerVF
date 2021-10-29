@@ -34,6 +34,10 @@ public class WalkerController {
 	@Autowired
 	private ServiceRequestController sController;
 
+	@Autowired
+	private FeedbackController feedbackController;
+
+	
 	
 	private Walker sesionWalker;
 	
@@ -121,7 +125,7 @@ public class WalkerController {
 	{ 
 		List<Walker> listaDistrict;
 		listaDistrict = wService.listByDistrict(district.getName());
-		
+		feedbackController.setDistrict(district);
 		if(listaDistrict.isEmpty()) {
 			model.put("listarPaseadores", wService.list());
 		}	

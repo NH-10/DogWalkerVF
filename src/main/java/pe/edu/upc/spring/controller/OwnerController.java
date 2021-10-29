@@ -39,6 +39,7 @@ public class OwnerController {
 	
 	private Owner sesionOwner;
 	
+	
 	@RequestMapping("/inicio")
 	public String irPaginaInicio(Model model) {
 		model.addAttribute("district", new District());

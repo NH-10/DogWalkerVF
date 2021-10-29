@@ -11,13 +11,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
+import pe.edu.upc.spring.model.District;
 import pe.edu.upc.spring.model.Dog;
 import pe.edu.upc.spring.model.Feedback;
 import pe.edu.upc.spring.model.Owner;
+import pe.edu.upc.spring.model.ServiceRequest;
 import pe.edu.upc.spring.model.Walker;
 import pe.edu.upc.spring.service.IDistrictService;
 import pe.edu.upc.spring.service.IDogService;
@@ -42,11 +45,22 @@ public class FeedbackController {
 	
 	private Owner sesionOwner;
 	private Walker sesionWalker;
+	private District district;
 
 	@RequestMapping("/ListaPaseadores")
-	public String irPaginaRegistrar() {
-		return "dog"; 
+	public String irListaPaseadores(Map<String, Object> model) {
+		List<Walker> listaDistrict;
+		listaDistrict = wService.listByDistrict(district.getName());
+		
+		if(listaDistrict.isEmpty()) {
+			model.put("listarPaseadores", wService.list());
+		}	
+		else {
+		model.put("listarPaseadores", listaDistrict);
+		}
+		return "walkerListByDistrict"; 
 	}
+	
 	
 	
 	@RequestMapping("/Comentarios/{id}")
@@ -79,6 +93,11 @@ public class FeedbackController {
 				return "redirect:/owner/irRegistrar";
 			}
 		}
+	}
+	
+
+	public void setDistrict(District district) {
+		this.district = district;
 	}
 	
 }
