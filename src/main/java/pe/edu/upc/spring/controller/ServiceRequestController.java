@@ -143,7 +143,8 @@ public class ServiceRequestController {
             objServiceRequest.setDateService(sesionServiceRequest.getDateService());
             objServiceRequest.setStartTime(sesionServiceRequest.getStartTime());
             objServiceRequest.setTimeLimit(sesionServiceRequest.getTimeLimit());
-           
+            objServiceRequest.setTotalServiceCost(sesionServiceRequest.getTotalServiceCost());
+            
             boolean flag = srService.save(objServiceRequest);
             if (flag) {
 

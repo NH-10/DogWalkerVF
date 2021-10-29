@@ -30,7 +30,7 @@
 			<div class="row">
 				<div class="form-group col-sm-6">
 					<input type="text" class="form-control item" placeholder="Nombre"
-						th:field="*{firstNames}"></input>
+						th:field="*{firstNames}" required></input>
 					<div class="alert alert-danger"
 						th:if="${#fields.hasErrors('firstNames')}"
 						th:errors="*{firstNames}"></div>
@@ -38,7 +38,7 @@
 				</div>
 				<div class="form-group col-sm-6">
 					<input type="text" class="form-control item"
-						placeholder="Apellidos" th:field="*{lastNames}"></input>
+						placeholder="Apellidos" th:field="*{lastNames}" required></input>
 					<div class="alert alert-danger"
 						th:if="${#fields.hasErrors('lastNames')}" th:errors="*{lastNames}">
 					</div>
@@ -47,13 +47,13 @@
 
 			<div class="form-group">
 				<input type="text" class="form-control item" placeholder="email"
-					th:field="*{email}"></input>
+					th:field="*{email}" required></input>
 				<div class="alert alert-danger"
 					th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 			</div>
 			<div class="form-group">
 				<input type="text" class="form-control item"
-					placeholder="contrasena" th:field="*{password}"></input>
+					placeholder="contrasena" th:field="*{password}" required></input>
 				<div class="alert alert-danger"
 					th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
 				</div>
@@ -89,7 +89,7 @@
 
 			<div class="form-group">
 				<input type="text" class="form-control item" placeholder="Direccion"
-					th:field="*{address}"></input>
+					th:field="*{address}" required></input>
 				<div class="alert alert-danger"
 					th:if="${#fields.hasErrors('address')}" th:errors="*{address}">
 				</div>
@@ -97,7 +97,7 @@
 
 			<div class="form-group">
 				<input type="text" class="form-control item"
-					placeholder="Descripcion" th:field="*{description}"></input>
+					placeholder="Descripcion" th:field="*{description}" required></input>
 				<div class="alert alert-danger"
 					th:if="${#fields.hasErrors('description')}"
 					th:errors="*{description}"></div>
@@ -121,7 +121,7 @@
 
 			<div class="form-group">
 				<input type="text" class="form-control item"
-					placeholder="Costo por hora" th:field="*{costService}"></input>
+					placeholder="Costo por hora" th:field="*{costService}" required></input>
 			<div class="alert alert-danger"
 					th:if="${#fields.hasErrors('costService')}"
 					th:errors="*{costService}"></div>
