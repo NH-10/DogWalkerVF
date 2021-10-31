@@ -78,6 +78,13 @@ public class FeedbackController {
 		}
 	}
 	
+	@RequestMapping("/ActualizarComentarios")
+	public String modificar(Model model) throws ParseException{
+			model.addAttribute("listaFeedbacks",fService.FeedbackByIdWalker(String.valueOf(sesionWalker.getIdWalker())));
+			model.addAttribute("Feedback",new Feedback());
+			return "listFeedbacks";
+	}
+	
 	@RequestMapping("/Crear")
 	public String registrar(@ModelAttribute Feedback objFeedback, BindingResult binRes, Model model) throws ParseException{
 		if (binRes.hasErrors()) {
@@ -85,12 +92,14 @@ public class FeedbackController {
 			model.addAttribute("owner",sesionOwner);
 			return "listFeeedbacks";
 		} else {
+			objFeedback.setOwner(sesionOwner);
+			objFeedback.setWalker(sesionWalker);
 			boolean flag = fService.save(objFeedback);
 			if (flag) {
-				return "redirect:/owner/bienvenido";
+				return "redirect:/feedback/ActualizarComentarios";
 			} else {
 				model.addAttribute("mensaje", "Ocurrio un error");
-				return "redirect:/owner/irRegistrar";
+				return "redirect:/feedback/ActualizarComentarios";
 			}
 		}
 	}
@@ -98,6 +107,9 @@ public class FeedbackController {
 
 	public void setDistrict(District district) {
 		this.district = district;
+	}
+	public void setOwner(Owner o) {
+		this.sesionOwner = o;
 	}
 	
 }

@@ -28,7 +28,6 @@
 								<th class="text-center">comentario</th>
 								<th class="text-center">puntuacion</th>
 								<th class="text-center">dueño</th>
-								<th class="text-center">Paseador</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -36,7 +35,6 @@
 								<td th:text="${f.comment}"></td>
 								<td th:text="${f.rating}"></td>
 								<td th:text="${f.owner.firstNames}"></td>
-								<td th:text="${f.walker.firstNames}"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -50,35 +48,7 @@
 
 		</form>
 
-		<form th:action="@{/feedback/Crear}" method="post"
-			th:object="${Feedback}">
-
-			<div class="form-group col-sm-6">
-				<input type="text" class="form-control item"
-					placeholder="Comentario" th:field="*{comment}" ></input>
-
-			</div>
-
-
-			<div class="form-group col-sm-6">
-
-				<select class="form-control" name="puntuacion" th:field="*{rating}">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-
-				</select>
-			</div>
-
-			<button type="submit" class="btn btn-block create-account">Crear
-				comentario</button>
-			<a class="btn btn-block" th:href="@{/feedback/ListaPaseadores}">Volver</a>
-		</form>
 	</div>
-
-
 
 	<div th:replace="fragments/footer :: footer"></div>
 

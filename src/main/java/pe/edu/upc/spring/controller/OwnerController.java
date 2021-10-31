@@ -37,6 +37,9 @@ public class OwnerController {
 	@Autowired
 	private DogController dogController;
 	
+	@Autowired
+	private FeedbackController fController;
+	
 	private Owner sesionOwner;
 	
 	
@@ -82,6 +85,7 @@ public class OwnerController {
 				sesionOwner = objOwner;
 				dogController.setOwner(sesionOwner);
 				sController.setOwner(sesionOwner);
+				fController.setOwner(sesionOwner);
 				return "redirect:/owner/bienvenido";
 			} else {
 				model.addAttribute("mensaje", "Ocurrio un error");
@@ -121,6 +125,7 @@ public class OwnerController {
 			sesionOwner = objOwner;
 			dogController.setOwner(sesionOwner);
 			sController.setOwner(sesionOwner);
+			fController.setOwner(sesionOwner);
 			return "redirect:/owner/bienvenido";
 		}
 		else 

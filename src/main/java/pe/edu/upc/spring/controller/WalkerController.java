@@ -15,6 +15,7 @@ import com.sun.el.parser.ParseException;
 import pe.edu.upc.spring.model.District;
 import pe.edu.upc.spring.model.Walker;
 import pe.edu.upc.spring.service.IDistrictService;
+import pe.edu.upc.spring.service.IFeedbackService;
 import pe.edu.upc.spring.service.IPersonalityService;
 import pe.edu.upc.spring.service.IWalkerService;
 
@@ -37,7 +38,9 @@ public class WalkerController {
 	@Autowired
 	private FeedbackController feedbackController;
 
-	
+	@Autowired
+	private IFeedbackService fService;
+
 	
 	private Walker sesionWalker;
 	
@@ -141,6 +144,12 @@ public class WalkerController {
 	public String listar(Map<String, Object> model, @ModelAttribute District district) {
 		model.put("listarPaseadores", wService.list());
 		return "walkerListByDistrict";
+	}
+	
+	@RequestMapping("/Comentarios")
+	public String ListFeedbackByWalker(Model model) {
+		model.addAttribute("listaFeedbacks", fService.FeedbackByIdWalker(String.valueOf(sesionWalker.getIdWalker())));
+		return "FeedbackByWalker";
 	}
 	
 }
