@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pe.edu.upc.spring.model.Dog;
 import pe.edu.upc.spring.model.Feedback;
 import pe.edu.upc.spring.model.Owner;
+import pe.edu.upc.spring.model.Walker;
 import pe.edu.upc.spring.repository.IFeedbackRepository;
 import pe.edu.upc.spring.service.IDogService;
 import pe.edu.upc.spring.service.IFeedbackService;
@@ -30,6 +31,18 @@ public class FeedbackServiceImpl implements IFeedbackService {////
 			return false;
 		else
 			return true;
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<Feedback> list() {
+		return dFeedback.findAll();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Feedback> FeedbackByIdWalker(String idWalker) {
+		return dFeedback.FeedbackByIdWalker(idWalker);
 	}
 
 

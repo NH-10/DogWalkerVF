@@ -63,8 +63,8 @@ public class FeedbackController {
 	
 	
 	
-	@RequestMapping("/Comentarios/{id}")
-	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException{
+	@RequestMapping("/Comentarios")
+	public String modificar(Model model, @RequestParam(value="id") Integer id) throws ParseException{
 		sesionWalker = wService.WalkerById(String.valueOf(id));
 		if(sesionWalker == null) {
 			model.addAttribute("walker", sesionWalker);
@@ -72,9 +72,9 @@ public class FeedbackController {
 			return "redirect:/feedback/ListaPaseadores";
 		}
 		else {
-			model.addAttribute("walker", sesionOwner);
-			
-			return "listFeeedbacks";
+			model.addAttribute("listaFeedbacks",fService.FeedbackByIdWalker(String.valueOf(sesionWalker.getIdWalker())));
+			model.addAttribute("Feedback",new Feedback());
+			return "listFeedbacks";
 		}
 	}
 	

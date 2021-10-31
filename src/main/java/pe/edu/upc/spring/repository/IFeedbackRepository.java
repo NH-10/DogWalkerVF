@@ -10,10 +10,13 @@ import org.springframework.stereotype.Repository;
 
 import pe.edu.upc.spring.model.Dog;
 import pe.edu.upc.spring.model.Feedback;
+import pe.edu.upc.spring.model.Walker;
 
 
 @Repository
 public interface IFeedbackRepository extends JpaRepository<Feedback, Integer>{
 	
+	@Query("from Feedback f where CAST(f.walker.idWalker AS string) like %:idWalker%")
+	List<Feedback> FeedbackByIdWalker(@Param("idWalker")String idWalker);
 
 }
