@@ -127,6 +127,7 @@ public class OwnerController {
 			sController.setOwner(sesionOwner);
 			fController.setOwner(sesionOwner);
 			return "redirect:/owner/bienvenido";
+			//Kevin
 		}
 		else 
 			return "ownerLogin";
