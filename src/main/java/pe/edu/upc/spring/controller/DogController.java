@@ -1,7 +1,6 @@
 package pe.edu.upc.spring.controller;
 
 import java.util.List;
-//import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -21,7 +20,6 @@ import pe.edu.upc.spring.model.District;
 import pe.edu.upc.spring.model.Dog;
 import pe.edu.upc.spring.model.Owner;
 import pe.edu.upc.spring.service.IDogService;
-import pe.edu.upc.spring.service.IOwnerService;
 import pe.edu.upc.spring.service.IRaceService;
 import pe.edu.upc.spring.service.ICharacterService;
 
@@ -30,9 +28,6 @@ import pe.edu.upc.spring.service.ICharacterService;
 public class DogController {
 	@Autowired
 	private IDogService dService;
-	
-	@Autowired
-	private IOwnerService oService;
 	
 	@Autowired
 	private IRaceService rService;

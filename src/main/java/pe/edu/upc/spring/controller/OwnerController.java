@@ -1,7 +1,7 @@
 package pe.edu.upc.spring.controller;
 
 import java.util.List;
-import java.util.Map;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,9 +15,8 @@ import com.sun.el.parser.ParseException;
 import pe.edu.upc.spring.model.District;
 import pe.edu.upc.spring.model.Owner;
 import pe.edu.upc.spring.service.IDistrictService;
-import pe.edu.upc.spring.service.IDogService;
 import pe.edu.upc.spring.service.IOwnerService;
-import pe.edu.upc.spring.service.IServiceRequestService;
+
 
 @Controller
 @RequestMapping("/owner")
@@ -28,9 +27,6 @@ public class OwnerController {
 	@Autowired
 	private IDistrictService dService;
 
-	@Autowired
-	private IDogService cService;
-	
 	@Autowired
 	private ServiceRequestController sController;
 	
@@ -101,8 +97,6 @@ public class OwnerController {
 		return "ownerEdit";
 
 	}
-
-
 
 	@RequestMapping("/listarCanes")
 	public String listarCanes(Model model) throws ParseException {
