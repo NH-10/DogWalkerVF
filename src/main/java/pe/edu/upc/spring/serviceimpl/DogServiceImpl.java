@@ -33,12 +33,7 @@ public class DogServiceImpl implements IDogService {////
 		dDog.deleteById(idDog);
 		
 	}
-	@Override
-	@Transactional(readOnly=true)
-	public List<Dog> list() {
-		return dDog.findAll();
-	}
-
+	
 	@Override
 	@Transactional(readOnly=true)
 	public Optional<Dog> listById(int idDog)  {

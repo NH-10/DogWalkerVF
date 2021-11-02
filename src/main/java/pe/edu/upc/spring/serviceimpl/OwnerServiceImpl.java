@@ -1,7 +1,7 @@
 package pe.edu.upc.spring.serviceimpl;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,33 +26,6 @@ public class OwnerServiceImpl implements IOwnerService {
 			return false;
 		else
 			return true;
-	}
-
-
-	@Override
-	@Transactional
-	public void delete(int idOwner) {
-		dOwner.deleteById(idOwner);
-		
-	}
-
-
-	@Override
-	@Transactional(readOnly=true)
-	public List<Owner> list() {
-		return dOwner.findAll();
-	}
-
-	@Override
-	@Transactional(readOnly=true)
-	public Optional<Owner> listById(int idOwner)  {
-		return dOwner.findById(idOwner);
-	}
-
-	@Override
-	@Transactional(readOnly=true)
-	public List<Owner> findByName(String firstNames) {
-		return dOwner.findByName(firstNames);
 	}
 
 
