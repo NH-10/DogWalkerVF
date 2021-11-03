@@ -19,6 +19,11 @@ import pe.edu.upc.spring.service.IFeedbackService;
 import pe.edu.upc.spring.service.IPersonalityService;
 import pe.edu.upc.spring.service.IWalkerService;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Calendar;
+import java.util.Date;
+
 @Controller
 @RequestMapping("/walker")
 public class WalkerController {
@@ -125,20 +130,35 @@ public class WalkerController {
 	
 	@RequestMapping("/buscar")
 	public String buscarPorDistrito(Map<String, Object> model, @ModelAttribute District district) throws ParseException 
-	{ 
+	{ 		
 		List<Walker> listaDistrict;
 		listaDistrict = wService.listByDistrict(district.getName());
 		feedbackController.setDistrict(district);
 		if(listaDistrict.isEmpty()) {
 			model.put("listarPaseadores", wService.list());
 		}	
-		else {
-		model.put("listarPaseadores", listaDistrict);
+		else {			
+			model.put("listarPaseadores", listaDistrict);	
+
 		}
-		
+
 		return "walkerListByDistrict";
 	}
 	
+	
+	public int calcularEdad(Date dateOfBirth) {
+		Calendar fechaNac = Calendar.getInstance();
+		fechaNac.setTime(dateOfBirth);
+		int year = fechaNac.get(Calendar.YEAR);
+		int month = fechaNac.get(Calendar.MONTH);
+		int day = fechaNac.get(Calendar.DAY_OF_MONTH);
+		LocalDate fechaHoy = LocalDate.now();
+		LocalDate fechaNacimiento = LocalDate.of(year, month, day);
+		Period periodo = Period.between(fechaNacimiento, fechaHoy);
+		return periodo.getYears();
+	}
+	
+
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model, @ModelAttribute District district) {
