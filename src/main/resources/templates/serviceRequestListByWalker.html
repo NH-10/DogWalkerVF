@@ -42,7 +42,7 @@
     								<td th:text="${s.timeLimit}"></td>
     								<td th:text="${s.time.time}"></td>
     								<td th:text="${s.owner.firstNames}"></td> 
-    								<td th:text="${s.totalServiceCost}"></td>
+    								<td th:text=" 'S/. ' + ${s.totalServiceCost}"></td>
     								<td th:text="${s.status.name}"></td>							
     								<td><a th:href="@{'/serviceRequest/modificar/'}+${s.idServiceRequest}">Actualizar estado</a></td>
     							</tr>

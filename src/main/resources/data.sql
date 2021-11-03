@@ -40,8 +40,6 @@ INSERT INTO race(name) VALUES ('Whippet ');
 INSERT INTO race(name) VALUES ('Yorkshire Terrier');
 INSERT INTO race(name) VALUES ('Otra Raza');
 
-
-
 INSERT INTO district(name) VALUES ('Breña');
 INSERT INTO district(name) VALUES ('Carabayllo');
 INSERT INTO district(name) VALUES ('Chaclacayo');
@@ -90,18 +88,19 @@ INSERT INTO character(name) VALUES ('Tímido');
 INSERT INTO character(name) VALUES ('Dominante');
 INSERT INTO character(name) VALUES ('Docil');
 
-INSERT INTO time(time) VALUES ('15 minutos');
-INSERT INTO time(time) VALUES ('30 minutos');
-INSERT INTO time(time) VALUES ('45 minutos');
-INSERT INTO time(time) VALUES ('1 hora');
-INSERT INTO time(time) VALUES ('1 hora y 15 minutos');
-INSERT INTO time(time) VALUES ('1 hora y 30 minutos');
-INSERT INTO time(time) VALUES ('1 hora y 45 minutos');
-INSERT INTO time(time) VALUES ('2 horas');
-INSERT INTO time(time) VALUES ('2 horas y 15 minutos');
-INSERT INTO time(time) VALUES ('2 horas y 30 minutos');
-INSERT INTO time(time) VALUES ('2 horas y 45 minutos');
-INSERT INTO time(time) VALUES ('3 horas');
+INSERT INTO time(time,value) VALUES ('15 minutos','0.25');
+INSERT INTO time(time,value) VALUES ('30 minutos', '0.5');
+INSERT INTO time(time,value) VALUES ('45 minutos','0.75');
+INSERT INTO time(time,value) VALUES ('1 hora','1.0');
+INSERT INTO time(time,value) VALUES ('1 hora y 15 minutos','1.25');
+INSERT INTO time(time,value) VALUES ('1 hora y 30 minutos','1.5');
+INSERT INTO time(time,value) VALUES ('1 hora y 45 minutos','1.75');
+INSERT INTO time(time,value) VALUES ('2 horas','2.0');
+INSERT INTO time(time,value) VALUES ('2 horas y 15 minutos','2.25');
+INSERT INTO time(time,value) VALUES ('2 horas y 30 minutos','2.5');
+INSERT INTO time(time,value) VALUES ('2 horas y 45 minutos','2.75');
+INSERT INTO time(time,value) VALUES ('3 horas','3.0');
+
 
 INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Parvina', '123', 'maria@gmail.com', 'Los claveles', '12/08/1990', 'Maria', 1);
 INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Prado', '456', 'juan@gmail.com', 'el tambo', '01/08/1980', 'Juan', 5);

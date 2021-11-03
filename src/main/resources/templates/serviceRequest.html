@@ -55,9 +55,9 @@
 			<div class="row">
 				<div class="form-group col-sm-12">
 
-					<select class="form-control itemselect" th:field="*{Time.idTime}">
+					<select class="form-control itemselect" th:field="*{Time}">
 						<option th:each="t: ${listTimes}" th:value="${t.idTime}"
-							th:text="${t.time}" th:selected="(${t.idTime}==*{Time.idTime})">
+							th:text="${t.time}" th:selected="(${t}==*{Time})">
 						</option>
 					</select>
 
