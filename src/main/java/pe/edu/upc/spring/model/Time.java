@@ -21,16 +21,25 @@ public class Time implements Serializable {
 
 	@Column(name = "time", length = 60, nullable = false)
 	private String time;
+		
+	@Column(name = "value", nullable = false)
+	private double value;
 
 	public Time() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public Time(int idTime, String time) {
+	
+	
+	public Time(int idTime, String time, double value) {
 		super();
 		this.idTime = idTime;
 		this.time = time;
+		this.value = value;
 	}
+
+
 
 	public int getIdTime() {
 		return idTime;
@@ -47,5 +56,14 @@ public class Time implements Serializable {
 	public void setTime(String time) {
 		this.time = time;
 	}
+
+	public double getValue() {
+		return value;
+	}
+
+	public void setValue(double value) {
+		this.value = value;
+	}
+	
 
 }

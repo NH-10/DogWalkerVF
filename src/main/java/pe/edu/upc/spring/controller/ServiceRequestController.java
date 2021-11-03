@@ -111,7 +111,10 @@ public class ServiceRequestController {
         } else {
 
             objServiceRequest.setWalker(sesionWalker);
-            objServiceRequest.setTotalServiceCost(sesionWalker.getCostService());
+            System.out.print("TIEMPO VALUE" + objServiceRequest.getTime().getValue());
+
+            objServiceRequest.setTotalServiceCost(sesionWalker.getCostService()*objServiceRequest.getTime().getValue());
+            System.out.print("COSTOO " + objServiceRequest.getTotalServiceCost());
             objServiceRequest.setOwner(sesionOwner);
             objServiceRequest.setState(staService.listStatus().get(0));
             boolean flag = srService.save(objServiceRequest);
