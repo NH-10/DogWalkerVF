@@ -1,9 +1,8 @@
 package pe.edu.upc.spring.controller;
- 
+
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
- 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,219 +12,193 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
- 
+
 import com.sun.el.parser.ParseException;
- 
-import pe.edu.upc.spring.model.District;
-import pe.edu.upc.spring.model.Dog;
+
 import pe.edu.upc.spring.model.Owner;
 import pe.edu.upc.spring.model.ServiceRequest;
 import pe.edu.upc.spring.model.Walker;
-import pe.edu.upc.spring.service.IOwnerService;
 import pe.edu.upc.spring.service.IServiceRequestService;
 import pe.edu.upc.spring.service.IStatusService;
 import pe.edu.upc.spring.service.ITimeService;
 import pe.edu.upc.spring.service.IWalkerService;
- 
+
 @Controller
 @RequestMapping("/serviceRequest")
 public class ServiceRequestController {
-    @Autowired
-    private IServiceRequestService srService;
- 
-    @Autowired
-    private IStatusService sService;
- 
-    @Autowired
-    private ITimeService tService;
- 
-    @Autowired
-    private IOwnerService owService;
- 
-    @Autowired
-    private IWalkerService waService;
+	@Autowired
+	private IServiceRequestService srService;
 
-    @Autowired
-    private IStatusService staService;
- 
+	@Autowired
+	private IStatusService sService;
 
-    private ServiceRequest sesionServiceRequest;
+	@Autowired
+	private ITimeService tService;
 
-    private Owner sesionOwner;
+	@Autowired
+	private IWalkerService waService;
 
-    private Walker sesionWalker;
+	@Autowired
+	private IStatusService staService;
 
-    private String idOwner;
-    private String idWalker;
-    private List<ServiceRequest> listServiceRequestOwner;
-    private List<ServiceRequest> listServiceRequestWalker;
- 
-    
-    @RequestMapping("/bienvenido")
-    public String irPaginaBienvenida(Model model) {
-        model.addAttribute("district", new District());
-        return "bienvenido";
-    }
- 
-    @RequestMapping("/")
-    public String irPaginaListadoRazas(Map<String, Object> model) {
-        model.put("listServiceRequests", srService.listServiceRequest());
-        return "listServiceRequest";
-    }
- 
+	private ServiceRequest sesionServiceRequest;
 
-    @RequestMapping("/irRegistrar")
-    public String irPaginaRegistrar(Model model, @RequestParam(value="id") Integer id) {
-        model.addAttribute("serviceRequest", new ServiceRequest());
-        model.addAttribute("listStatus", sService.listStatus());
-        model.addAttribute("listTimes", tService.listTime());
-        sesionWalker= waService.WalkerById(String.valueOf(id));
+	private Owner sesionOwner;
 
-        return "serviceRequest";
-    }
+	private Walker sesionWalker;
 
-    @RequestMapping("/irRegistrarDenuevo")
-    public String irPaginaRegistrar(Model model) {
-        model.addAttribute("serviceRequest", new ServiceRequest());
-        model.addAttribute("listStatus", sService.listStatus());
-        model.addAttribute("listTimes", tService.listTime());
-        return "serviceRequest";
-    }
+	private String idOwner;
+	private String idWalker;
 
-    @RequestMapping("/irActualizarDenuevo")
-    public String irActualizarDenuevo(Model model) {
-        model.addAttribute("serviceRequest", new ServiceRequest());
-        model.addAttribute("listStatus", sService.listStatus());
-        model.addAttribute("listTimes", tService.listTime());
-        return "serviceRequest";
-    }
+	private List<ServiceRequest> listServiceRequestOwner;
+	private List<ServiceRequest> listServiceRequestWalker;
 
-    @RequestMapping("/registrar")
-    public String registrar(@ModelAttribute ServiceRequest objServiceRequest, BindingResult binRes, Model model) throws ParseException {
-        if (binRes.hasErrors()) {
-            model.addAttribute("listStatus", sService.listStatus());
-            model.addAttribute("listTimes", tService.listTime());    
-            model.addAttribute("listWalker", waService.list());
-            model.addAttribute("owner", sesionOwner);
-            return "serviceRequest";
-        } else {
+	/*
+	 * @RequestMapping("/bienvenido") public String irPaginaBienvenida(Model model)
+	 * { model.addAttribute("district", new District()); return "bienvenido"; }
+	 */
 
-            objServiceRequest.setWalker(sesionWalker);
-            System.out.print("TIEMPO VALUE" + objServiceRequest.getTime().getValue());
+	/*
+	 * @RequestMapping("/") public String irPaginaListadoRazas(Map<String, Object>
+	 * model) { model.put("listServiceRequests", srService.listServiceRequest());
+	 * return "listServiceRequest"; }
+	 */
 
-            objServiceRequest.setTotalServiceCost(sesionWalker.getCostService()*objServiceRequest.getTime().getValue());
-            System.out.print("COSTOO " + objServiceRequest.getTotalServiceCost());
-            objServiceRequest.setOwner(sesionOwner);
-            objServiceRequest.setState(staService.listStatus().get(0));
-            boolean flag = srService.save(objServiceRequest);
-            if (flag) {
+	@RequestMapping("/irRegistrar")
+	public String irPaginaRegistrar(Model model, @RequestParam(value = "id") Integer id) {
+		model.addAttribute("serviceRequest", new ServiceRequest());
+		model.addAttribute("listStatus", sService.listStatus());
+		model.addAttribute("listTimes", tService.listTime());
+		sesionWalker = waService.WalkerById(String.valueOf(id));
 
-                sesionServiceRequest = objServiceRequest;
-                return "redirect:/serviceRequest/listarSolicitudesDueno";
-            }
-            else {
-                model.addAttribute("mensaje", "Error al guadra solicitud");
-                return "redirect:/serviceRequest/irRegistrarDenuevo";
-            }
-        }
-    }
+		return "serviceRequest";
+	}
 
-    @RequestMapping("/actualizarRequest")
-    public String actualizarRequest(@ModelAttribute ServiceRequest objServiceRequest, BindingResult binRes, Model model) throws ParseException {
-        if (binRes.hasErrors()) {
-            model.addAttribute("listStatus", sService.listStatus());
-            model.addAttribute("listTimes", tService.listTime());    
-            model.addAttribute("listWalker", waService.list());
-            model.addAttribute("owner", sesionOwner);
-            return "serviceRequest";
-        } else {
+	/*
+	 * @RequestMapping("/irRegistrarDenuevo") public String irPaginaRegistrar(Model
+	 * model) { model.addAttribute("serviceRequest", new ServiceRequest());
+	 * model.addAttribute("listStatus", sService.listStatus());
+	 * model.addAttribute("listTimes", tService.listTime()); return
+	 * "serviceRequest"; }
+	 * 
+	 * @RequestMapping("/irActualizarDenuevo") public String
+	 * irActualizarDenuevo(Model model) { model.addAttribute("serviceRequest", new
+	 * ServiceRequest()); model.addAttribute("listStatus", sService.listStatus());
+	 * model.addAttribute("listTimes", tService.listTime()); return
+	 * "serviceRequest"; }
+	 */
+	@RequestMapping("/registrar")
+	public String registrar(@ModelAttribute ServiceRequest objServiceRequest, BindingResult binRes, Model model)
+			throws ParseException {
+		if (binRes.hasErrors()) {
+			model.addAttribute("listStatus", sService.listStatus());
+			model.addAttribute("listTimes", tService.listTime());
+			model.addAttribute("listWalker", waService.list());
+			model.addAttribute("owner", sesionOwner);
+			return "serviceRequest";
+		} else {
 
-            objServiceRequest.setWalker(sesionServiceRequest.getWalker());
-            objServiceRequest.setTime(sesionServiceRequest.getTime());
-            objServiceRequest.setOwner(sesionOwner);
-            objServiceRequest.setDateService(sesionServiceRequest.getDateService());
-            objServiceRequest.setStartTime(sesionServiceRequest.getStartTime());
-            objServiceRequest.setTimeLimit(sesionServiceRequest.getTimeLimit());
-            objServiceRequest.setTotalServiceCost(sesionServiceRequest.getTotalServiceCost());
-            
-            boolean flag = srService.save(objServiceRequest);
-            if (flag) {
+			objServiceRequest.setWalker(sesionWalker);
+			objServiceRequest
+					.setTotalServiceCost(sesionWalker.getCostService() * objServiceRequest.getTime().getValue());
+			objServiceRequest.setOwner(sesionOwner);
+			objServiceRequest.setState(staService.listStatus().get(0));
+			boolean flag = srService.save(objServiceRequest);
+			if (flag) {
+				sesionServiceRequest = objServiceRequest;
+				return "redirect:/serviceRequest/listarSolicitudesDueno";
+			} else {
+				model.addAttribute("mensaje", "Error al guardar solicitud");
+				return "redirect:/serviceRequest/irRegistrarDenuevo";
+			}
+		}
+	}
 
-                sesionServiceRequest = objServiceRequest;
-                return "redirect:/serviceRequest/listarSolicitudesPaseador";
-            }
-            else {
-                model.addAttribute("mensaje", "Error al guadra solicitud");
-                return "redirect:/serviceRequest/";
-            }
-        }
-    }
- 
-    @RequestMapping("/modificar/{id}")
-    public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException {
-        Optional<ServiceRequest> objServiceRequest = srService.listId(id);
-        if (objServiceRequest == null) {
-            objRedir.addFlashAttribute("mensaje", "Error al modificar Solicitud");
-            return "redirect:/serviceRequest/listar";
-        } else {
-            model.addAttribute("listStatus", sService.listStatus());
-            sesionServiceRequest = objServiceRequest.get();
-            if (objServiceRequest.isPresent())
-                objServiceRequest.ifPresent(o -> model.addAttribute("serviceRequest", o));
- 
-            return "ServiceRequestEditWalker";
-        }
-    }
- 
-    @RequestMapping("/eliminar")
-    public String eliminar(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
-        try {
-            if (id != null && id > 0) {
-                srService.delete(id);
-                model.put("listServiceRequests", srService.listServiceRequest());
-            }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            model.put("mensaje", "Ocurrio un error");
-            model.put("listServiceRequests", srService.listServiceRequest());
-        }
-        return "listServiceRequest";
-    }
- 
-    @RequestMapping("/listar")
-    public String listar(Map<String, Object> model) {
-        model.put("listServiceRequests", srService.listServiceRequest());
-        return "listServiceRequest";
-    }
- 
-  
+	@RequestMapping("/actualizarRequest")
+	public String actualizarRequest(@ModelAttribute ServiceRequest objServiceRequest, BindingResult binRes, Model model)
+			throws ParseException {
+		if (binRes.hasErrors()) {
+			model.addAttribute("listStatus", sService.listStatus());
+			model.addAttribute("listTimes", tService.listTime());
+			model.addAttribute("listWalker", waService.list());
+			model.addAttribute("owner", sesionOwner);
+			return "serviceRequest";
+		} else {
 
+			objServiceRequest.setWalker(sesionServiceRequest.getWalker());
+			objServiceRequest.setTime(sesionServiceRequest.getTime());
+			objServiceRequest.setOwner(sesionOwner);
+			objServiceRequest.setDateService(sesionServiceRequest.getDateService());
+			objServiceRequest.setStartTime(sesionServiceRequest.getStartTime());
+			objServiceRequest.setTimeLimit(sesionServiceRequest.getTimeLimit());
+			objServiceRequest.setTotalServiceCost(sesionServiceRequest.getTotalServiceCost());
 
-    @RequestMapping("/listarSolicitudesDueno")
-    public String listarSolicitudesPorDueno(Model model) 
-    {
-        idOwner = String.valueOf(sesionOwner.getIdOwner());
-        listServiceRequestOwner = srService.listServiceRequestByOwner(idOwner);
-        model.addAttribute("listServiceRequestByOwner", listServiceRequestOwner);
-        return "serviceRequestListByOwner";
-    }    
+			boolean flag = srService.save(objServiceRequest);
+			if (flag) {
 
-    @RequestMapping("/listarSolicitudesPaseador")
-    public String listarSolicitudesPorPaseador(Model model) 
-    {
-        idWalker = String.valueOf(sesionWalker.getIdWalker());
-        listServiceRequestWalker = srService.listServiceRequestByWalker(idWalker);
-        model.addAttribute("listServiceRequestByWalker", listServiceRequestWalker);
-        return "serviceRequestListByWalker";
-    }
+				sesionServiceRequest = objServiceRequest;
+				return "redirect:/serviceRequest/listarSolicitudesPaseador";
+			} else {
+				model.addAttribute("mensaje", "Error al guadra solicitud");
+				return "redirect:/serviceRequest/";
+			}
+		}
+	}
 
+	@RequestMapping("/modificar/{id}")
+	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException {
+		Optional<ServiceRequest> objServiceRequest = srService.listId(id);
+		if (objServiceRequest == null) {
+			objRedir.addFlashAttribute("mensaje", "Error al modificar Solicitud");
+			return "redirect:/serviceRequest/listar";
+		} else {
+			model.addAttribute("listStatus", sService.listStatus());
+			sesionServiceRequest = objServiceRequest.get();
+			if (objServiceRequest.isPresent())
+				objServiceRequest.ifPresent(o -> model.addAttribute("serviceRequest", o));
 
-    public void setOwner(Owner o) {
-        sesionOwner = o;
-    }
+			return "ServiceRequestEditWalker";
+		}
+	}
 
-    public void setWalker(Walker w) {
-        sesionWalker = w;
-    }
- 
+	/*
+	 * @RequestMapping("/eliminar") public String eliminar(Map<String, Object>
+	 * model, @RequestParam(value = "id") Integer id) { try { if (id != null && id >
+	 * 0) { srService.delete(id); model.put("listServiceRequests",
+	 * srService.listServiceRequest()); } } catch (Exception ex) {
+	 * System.out.println(ex.getMessage()); model.put("mensaje",
+	 * "Ocurrio un error"); model.put("listServiceRequests",
+	 * srService.listServiceRequest()); } return "listServiceRequest"; }
+	 */
+
+	/*
+	 * @RequestMapping("/listar") public String listar(Map<String, Object> model) {
+	 * model.put("listServiceRequests", srService.listServiceRequest()); return
+	 * "listServiceRequest"; }
+	 */
+
+	@RequestMapping("/listarSolicitudesDueno")
+	public String listarSolicitudesPorDueno(Model model) {
+		idOwner = String.valueOf(sesionOwner.getIdOwner());
+		listServiceRequestOwner = srService.listServiceRequestByOwner(idOwner);
+		model.addAttribute("listServiceRequestByOwner", listServiceRequestOwner);
+		return "serviceRequestListByOwner";
+	}
+
+	@RequestMapping("/listarSolicitudesPaseador")
+	public String listarSolicitudesPorPaseador(Model model) {
+		idWalker = String.valueOf(sesionWalker.getIdWalker());
+		listServiceRequestWalker = srService.listServiceRequestByWalker(idWalker);
+		model.addAttribute("listServiceRequestByWalker", listServiceRequestWalker);
+		return "serviceRequestListByWalker";
+	}
+
+	public void setOwner(Owner o) {
+		sesionOwner = o;
+	}
+
+	public void setWalker(Walker w) {
+		sesionWalker = w;
+	}
+
 }
