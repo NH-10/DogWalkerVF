@@ -142,7 +142,8 @@ public class WalkerController {
 
 		}
 
-		return "walkerListByDistrict";
+		//return "walkerListByDistrict";
+		return "tablaEjemplo";
 	}
 	
 	
