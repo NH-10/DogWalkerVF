@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap:ital@1&display=swap');
+
 body {
 	color: #566787;
 	background: #f5f5f5;
@@ -11,11 +13,11 @@ body {
 
 .table-head{
 	background: #ffcf94;
-	color: #fff;
+	color: #5a352c;
 }
 
 .box-head{	
-	color: #fff;
+	color:  #5a352c;
 }
 .table-wrapper {
 	min-width: 1000px;
@@ -37,6 +39,7 @@ body {
 .table-title h2 {
 	margin: 5px 0 0;
 	font-size: 24px;
+	
 }
 
 .table-title .btn {
@@ -68,10 +71,22 @@ body {
 	margin-top: 2px;
 }
 
-table.table tr th, table.table tr td {
-	border-color: #e9e9e9;
+table.table tr th {                           
+	border-color: #eca766;
+	border: 0 1px;
 	padding: 12px 15px;
 	vertical-align: middle;
+	 font: oblique bold 100% cursive;
+
+}
+
+table.table tr td {                             /*efecto del tipo de letra las filas*/
+		border-color: #eca766;
+	border: 0 1px;
+	padding: 12px 15px;
+	vertical-align: middle;
+	font-family: 'Asap', sans-serif;
+	color:#39290D;
 }
 
 table.table tr th:first-child {
@@ -87,7 +102,7 @@ table.table-striped tbody tr:nth-of-type(odd) {
 }
 
 table.table-striped.table-hover tbody tr:hover {
-	background: #f5f5f5;
+	background: #ffcd78;
 }
 
 table.table th i {
@@ -199,3 +214,5 @@ table.table .avatar {
 	margin-top: 10px;
 	font-size: 13px;
 }
+
+

@@ -67,15 +67,15 @@ $(document).ready(function(){
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="w: ${listarPaseadores}">
-									<td th:text="${w.firstNames}"></td>
-									<td th:text="${w.lastNames}"></td>
+								<tr th:each="w: ${listarPaseadores}" >
+									<td style="text-align: center" th:text="${w.firstNames}"></td>
+									<td style="text-align: center" th:text="${w.lastNames}"></td>
 									<td th:text="${w.description}"></td>
-									<td th:text="${w.personality.name}"></td>
-									<td th:text="'S/. ' + ${w.costService}"></td>
-									<td th:text="${w.district.name}"></td>
-									<td><a th:href="@{/serviceRequest/irRegistrar?id=}+${w.idWalker}"  class="serviceRequest" title="ServiceRequest" data-toggle="tooltip"><i class="material-icons">&#xe14f;</i></a></td>
-									<td><a th:href="@{/feedback/Comentarios?id=}+${w.idWalker}" class="comment" title="Comment"data-toggle="tooltip"><i class="material-icons">&#xe24c;</i></a>
+									<td style="text-align: center" th:text="${w.personality.name}"></td>
+									<td style="text-align: center" th:text="'S/. ' + ${w.costService}"></td>
+									<td style="text-align: center" th:text="${w.district.name}"></td>
+									<td style="text-align: center"><a th:href="@{/serviceRequest/irRegistrar?id=}+${w.idWalker}"  class="serviceRequest" title="ServiceRequest" data-toggle="tooltip"><i class="material-icons">&#xe14f;</i></a></td>
+									<td style="text-align: center"><a th:href="@{/feedback/Comentarios?id=}+${w.idWalker}" class="comment" title="Comment"data-toggle="tooltip"><i class="material-icons">&#xe24c;</i></a>
 									</td>
 								</tr>
 							</tbody>
