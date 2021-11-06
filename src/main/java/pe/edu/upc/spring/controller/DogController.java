@@ -70,7 +70,7 @@ public class DogController {
 			model.addAttribute("listaRaza", rService.listRace());
 			model.addAttribute("listaCaracter", cService.listCharacter());
 			model.addAttribute("owner", sesionOwner);
-			return "dogList";
+			return "dogLists";
 		}
 		else {
 			objDog.setOwner(sesionOwner);
@@ -126,7 +126,7 @@ public class DogController {
 		idOwner = String.valueOf(sesionOwner.getIdOwner());
 		listDog = dService.ListDogByOwner(idOwner);
 		model.addAttribute("ListDogByOwner", listDog);
-		return "dogList";
+		return "dogLists";
 	}	
 	
 	public void setOwner(Owner o) {
