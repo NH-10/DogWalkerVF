@@ -43,10 +43,10 @@ body {
 }
 
 .table-title .btn {
-	color: #566787;
+	color: #5a352c;
 	float: right;
 	font-size: 13px;
-	background: #fff;
+	background: transparent;
 	border: none;
 	min-width: 50px;
 	border-radius: 2px;
@@ -56,8 +56,8 @@ body {
 }
 
 .table-title .btn:hover, .table-title .btn:focus {
-	color: #566787;
-	background: #f2f2f2;
+	color:#d97818;
+	background: transparent;
 }
 
 .table-title .btn i {
