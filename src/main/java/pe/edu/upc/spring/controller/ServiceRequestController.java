@@ -190,7 +190,7 @@ public class ServiceRequestController {
 		idWalker = String.valueOf(sesionWalker.getIdWalker());
 		listServiceRequestWalker = srService.listServiceRequestByWalker(idWalker);
 		model.addAttribute("listServiceRequestByWalker", listServiceRequestWalker);
-		return "serviceRequestListByWalker";
+		return "serviceRequestListByWalkers";
 	}
 
 	public void setOwner(Owner o) {

@@ -122,6 +122,7 @@ public class WalkerController {
 			objWalker = listWalkers.get(0);
 
 			sesionWalker = objWalker;
+			sController.setWalker(sesionWalker);
 			return "redirect:/walker/bienvenido";
 		}
 		else

@@ -35,7 +35,7 @@
     						</thead>
     						<tbody>
     							<tr th:each="o: ${listServiceRequestByOwner}">
-    								<td th:text="${#dates.format(o.dateService,'dd/MM/yyyy')}"></td>
+    								<td th:text="${o.dateService}"></td>
     								<td th:text="${o.startTime}"></td>
     								<td th:text="${o.timeLimit}"></td>
     								<td th:text="${o.time.time}"></td>
