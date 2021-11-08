@@ -13,9 +13,16 @@ public class controller {
 	@RequestMapping("/inicio")
 	public String PaginaBienvenida(Model model) {
 		model.addAttribute("district", new District());
-		return "bienvenido"; 
+		return "bienvenido2"; 
 	}
-	
+	@RequestMapping("/quienessomos")
+	public String PaginaquienesSomos() {
+		return "quienessomos"; 
+	}
+	@RequestMapping("/contactanos")
+	public String Paginacontactanos() {
+		return "contactanos"; 
+	}
 	
 	@RequestMapping("/regitrarSegunUsuario")
 	public String irPaginaBienvenida() {
