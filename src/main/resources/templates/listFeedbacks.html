@@ -19,9 +19,11 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link rel="stylesheet" th:href="@{/css/styleTable.css}" />
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.version.2.css}" />
+<link rel="stylesheet" th:href="@{/css/styleFeedback.css}" />
 <link rel="stylesheet" th:href="@{/css/header.css}" />
 <link rel="stylesheet" th:href="@{/css/styles2.css}" />
 <link rel="stylesheet" th:href="@{/css/styleTable.css}" />
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script
@@ -41,14 +43,14 @@ $(document).ready(function(){
 
 	<div class="container">
 		<form id="myform">
-		<div class="container-lg">
+			<div class="container-lg">
 				<div class="table-responsive">
 					<div class="table-wrapper">
 						<div class="table-title">
-							<div class="row" >
+							<div class="row">
 								<div class="col-sm-5">
 									<h2 class="box-head">
-										<b >Calificaciones</b>
+										<b>Calificaciones</b>
 									</h2>
 								</div>
 
@@ -56,24 +58,24 @@ $(document).ready(function(){
 						</div>
 
 
-					<table class="table table-striped table-hover">
-						<thead class="table-head">
-							<tr>
-								<th class="text-center">Puntuacion</th>
-								<th class="text-center">Comentario</th>
-								<th class="text-center">Dueño</th>
-								<th class="text-center">Paseador</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="f: ${listaFeedbacks}">
-								<td style="text-align:center" th:text="${f.rating}"></td>
-								<td style="text-align:center" th:text="${f.comment}"></td>
-								<td style="text-align:center" th:text="${f.owner.firstNames}"></td>
-								<td style="text-align:center" th:text="${f.walker.firstNames}"></td>
-							</tr>
-						</tbody>
-					</table>
+						<table class="table table-striped table-hover">
+							<thead class="table-head">
+								<tr>
+									<th class="text-center">Puntuacion</th>
+									<th class="text-center">Comentario</th>
+									<th class="text-center">Dueño</th>
+									<th class="text-center">Paseador</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="f: ${listaFeedbacks}">
+									<td style="text-align: center" th:text="${f.rating}"></td>
+									<td style="text-align: center" th:text="${f.comment}"></td>
+									<td style="text-align: center" th:text="${f.owner.firstNames}"></td>
+									<td style="text-align: center" th:text="${f.walker.firstNames}"></td>
+								</tr>
+							</tbody>
+						</table>
 
 
 
@@ -83,32 +85,34 @@ $(document).ready(function(){
 			</div>
 
 		</form>
+	</div>
 
+	<div class="registration-form">
 		<form th:action="@{/feedback/Crear}" method="post"
 			th:object="${Feedback}">
 
-			<div class="form-group col-sm-6">
-				<input type="text" class="form-control item"
-					placeholder="Comentario" th:field="*{comment}" ></input>
+			<div class="row">
+				<div class="form-group col-12 col-md-8">
+					<input type="text" class="form-control item effect "
+						placeholder="Comentario" th:field="*{comment}"></input>
+						
+						<select class="form-control item effectfeedback" name="puntuacion" th:field="*{rating}">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
 
+					</select>
+				</div>
+
+
+				<div class="form-group col-6 col-md-4">
+					<button type="submit" class="btn btn-block create-account">Crear
+						comentario</button>
+					<a class="btn btn-block" th:href="@{/feedback/ListaPaseadores}">Volver</a>
+				</div>
 			</div>
-
-
-			<div class="form-group col-sm-6">
-
-				<select class="form-control" name="puntuacion" th:field="*{rating}">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-
-				</select>
-			</div>
-
-			<button type="submit" class="btn btn-block create-account">Crear
-				comentario</button>
-			<a class="btn btn-block" th:href="@{/feedback/ListaPaseadores}">Volver</a>
 		</form>
 	</div>
 
