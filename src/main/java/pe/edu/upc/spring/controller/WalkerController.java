@@ -46,6 +46,8 @@ public class WalkerController {
 	@Autowired
 	private IFeedbackService fService;
 
+	@Autowired
+	private WalkerController w;
 	
 	private Walker sesionWalker;
 	
@@ -140,7 +142,8 @@ public class WalkerController {
 		}	
 		else {			
 			model.put("listarPaseadores", listaDistrict);	
-
+			model.put("WalkerController", w);	
+	
 		}
 
 		return "walkerListByDistrict";
@@ -160,7 +163,6 @@ public class WalkerController {
 		return periodo.getYears();
 	}
 	
-
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model, @ModelAttribute District district) {
