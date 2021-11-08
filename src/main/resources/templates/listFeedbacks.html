@@ -70,7 +70,7 @@ $(document).ready(function(){
 							<tbody>
 								<tr th:each="f: ${listaFeedbacks}">
 									<td style="text-align: center" th:text="${f.rating}"></td>
-									<td style="text-align: center" th:text="${f.comment}"></td>
+									<td  th:text="${f.comment}"></td>
 									<td style="text-align: center" th:text="${f.owner.firstNames}"></td>
 									<td style="text-align: center" th:text="${f.walker.firstNames}"></td>
 								</tr>
@@ -93,8 +93,8 @@ $(document).ready(function(){
 
 			<div class="row">
 				<div class="form-group col-12 col-md-8">
-					<input type="text" class="form-control item effect "
-						placeholder="Comentario" th:field="*{comment}"></input>
+				 <textarea class="form-control item"  rows="3" placeholder="Comentario" th:field="*{comment}"></textarea>
+					
 						
 						<select class="form-control item effectfeedback" name="puntuacion" th:field="*{rating}">
 						<option value="1">1</option>

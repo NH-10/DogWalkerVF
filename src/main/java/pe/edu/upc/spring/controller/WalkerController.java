@@ -171,7 +171,7 @@ public class WalkerController {
 	@RequestMapping("/Comentarios")
 	public String ListFeedbackByWalker(Model model) {
 		model.addAttribute("listaFeedbacks", fService.FeedbackByIdWalker(String.valueOf(sesionWalker.getIdWalker())));
-		return "FeedbackByWalker";
+		return "FeedbackByWalkers";
 	}
 	
 }
