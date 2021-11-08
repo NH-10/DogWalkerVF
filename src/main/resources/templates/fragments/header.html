@@ -53,9 +53,9 @@
 										th:src="@{/imagenes/logo.png}" width="60" alt=""></a></li>
 
 								<div class="sin">
-									<li class="pull-left"><a href="#navbarNav">Inicio</a></li>
-									<li class="pull-left"><a href="#about">¿Quienes somos?</a></li>
-									<li class="pull-left"><a href="#contact">Contactanos</a></li>
+									<li class="pull-left"><a th:href="@{/pantalla/inicio}">Inicio</a></li>
+									<li class="pull-left"><a th:href="@{/pantalla/quienessomos}">¿Quienes somos?</a></li>
+									<li class="pull-left"><a th:href="@{/pantalla/contactanos}">Contactanos</a></li>
 									<li class="pull-right"><a th:href="@{/pantalla/iniciarSegunUsuario}">Iniciar sesion</a></li>
 									<li class="pull-right"><a th:href="@{/pantalla/regitrarSegunUsuario}">Registrarse</a></li>
 								</div>
@@ -91,16 +91,16 @@
 
 								<li class="pull-left"><a href="#"><img class="b"
 										th:src="@{/imagenes/logo.png}" width="60" alt=""></a></li>
+			
 										
 			<li class="pull-right"><a th:href="@{/owner/menu}"><img  class ="b" th:src="@{/imagenes/d97bbb08017ac2309307f0822e63d082.png}"  width="80" alt=""></a></li>
 
 
 								<div class="sin">
-									<li class="pull-left"><a href="#navbarNav">Inicio</a></li>
-									<li class="pull-left"><a href="#about">¿Quienes somos?</a></li>
-									<li class="pull-left"><a href="#contact">Contactanos</a></li>
-									
-									
+									<li class="pull-left"><a th:href="@{/owner/bienvenido}">Inicio</a></li>
+									<li class="pull-left"><a th:href="@{/owner/tips}">Tips</a></li>
+									<li class="pull-left"><a >Contactanos</a></li>
+							
 								</div>
 
 
@@ -137,7 +137,7 @@
 
 
 								<div class="sin">
-									<li class="pull-left"><a href="#navbarNav">Inicio</a></li>
+									<li class="pull-left"><a th:href="@{/walker/bienvenido}">Inicio</a></li>
 									<li class="pull-left"><a href="#about">¿Quienes somos?</a></li>
 									<li class="pull-left"><a href="#contact">Contactanos</a></li>
 									
