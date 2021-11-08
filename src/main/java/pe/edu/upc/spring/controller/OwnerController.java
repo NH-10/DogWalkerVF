@@ -42,7 +42,7 @@ public class OwnerController {
 	@RequestMapping("/inicio")
 	public String irPaginaInicio(Model model) {
 		model.addAttribute("district", new District());
-		return "bienvenido";
+		return "bienvenido2";
 	}
 
 	@RequestMapping("/bienvenido")
@@ -51,7 +51,12 @@ public class OwnerController {
 		model.addAttribute("district", new District());
 		return "bienvenidoOwner";
 	}
-
+	
+	@RequestMapping("/tips")
+	public String irTips() {
+		return "Tips";
+	}
+	
 	@RequestMapping("/menu")
 	public String irMenuOwner() {
 		return "OwnerMenu";

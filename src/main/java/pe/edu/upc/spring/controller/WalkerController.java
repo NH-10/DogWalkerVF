@@ -53,7 +53,7 @@ public class WalkerController {
 	@RequestMapping("/inicio")
 	public String irPaginaInicio(Model model) {
 		model.addAttribute("district", new District());
-		return "bienvenido";
+		return "bienvenido2";
 	}
 
 	@RequestMapping("/bienvenido")
