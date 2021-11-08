@@ -13,16 +13,23 @@
 <link rel="stylesheet"
 	th:href="@{/css/bootstrap-datetimepicker.min.css}" />
 <link rel="stylesheet" th:href="@{/css/style.css}" />
-
+<link rel="stylesheet" th:href="@{/css/duenoStyles.css}" />
+<link rel="stylesheet" th:href="@{/css/aos.css}" />	
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 
 <body>
-	<div class="registration-form">
+	<div class="registration-form" data-aos="fade-right" >
 		<form th:action="@{/walker/registrar}" method="post"
 			th:object="${walker}">
-
+			
+			<div class="row">
+				<div class="form-group">
+					<h1>Registrarse como:Paseador</h1>
+				</div>
+			</div>
+			
 			<div class="form-icon">
 				<span><i class="icon icon-user"></i></span>
 			</div>
@@ -150,5 +157,13 @@
 		type="text/javascript" xml:space="preserve"></script>
 	<script src="resources/js/main.js" type="text/javascript"
 		xml:space="preserve"></script>
+	<script th:src="@{/js/aos.js}"></script>
+	<script th:src="@{/js/bootstrap.bundle.js}"></script>
+	<script th:src="@{/js/glightbox.js}"></script>
+	<script th:src="@{/js/isotope.pkgd.js}"></script>
+	<script th:src="@{/js/validate.js}"></script>
+	<script th:src="@{/js/swiper-bundle.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	
 </body>
 </html>

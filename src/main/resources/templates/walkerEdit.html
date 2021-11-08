@@ -9,8 +9,9 @@
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 <link rel="stylesheet" 	th:href="@{/css/bootstrap-datetimepicker.min.css}" />
 <link rel="stylesheet" th:href="@{/css/style.css}" />
+<link rel="stylesheet" th:href="@{/css/duenoStyles.css}" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-<link rel="stylesheet" th:href="@{/css/styles2.css}" />
+<link rel="stylesheet" th:href="@{/css/aos.css}" />	
 
 </head>
 
@@ -18,7 +19,12 @@
 	<div class="registration-form" data-aos="fade-right">
 		<form th:action="@{/walker/registrar}" method="post"
 			th:object="${walker}">
-
+			<div class="row">
+					<div class="form-group">
+						<h1> Editar datos de la cuenta</h1>
+					</div>
+				</div>
+			
 			<div class="form-icon">
 				<span><i class="icon icon-user"></i></span>
 			</div>
