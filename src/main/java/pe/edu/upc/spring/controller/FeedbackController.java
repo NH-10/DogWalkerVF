@@ -41,7 +41,8 @@ public class FeedbackController {
 	@Autowired
 	private IFeedbackService fService;
 
-	
+	@Autowired
+	private WalkerController w;
 	
 	private Owner sesionOwner;
 	private Walker sesionWalker;
@@ -51,6 +52,8 @@ public class FeedbackController {
 	public String irListaPaseadores(Map<String, Object> model) {
 		List<Walker> listaDistrict;
 		listaDistrict = wService.listByDistrict(district.getName());
+		
+		model.put("WalkerController", w);	
 		
 		if(listaDistrict.isEmpty()) {
 			model.put("listarPaseadores", wService.list());

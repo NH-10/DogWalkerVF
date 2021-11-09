@@ -14,7 +14,7 @@ import pe.edu.upc.spring.model.Owner;
 @Repository
 public interface IOwnerRepository extends JpaRepository<Owner, Integer>{
 	
-	@Query("from Owner o where o.email like %:email% and o.password like %:password% ")
+	@Query("from Owner o where o.email = :email and o.password = :password ")
 	List<Owner> findByEmailAndPassword(@Param("email")String email, @Param("password")String password);
 	
 }
