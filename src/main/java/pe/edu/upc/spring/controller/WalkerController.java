@@ -64,6 +64,11 @@ public class WalkerController {
 		model.addAttribute("district", new District());
 		return "bienvenidoWalker";
 	}
+	
+	@RequestMapping("/consejos")
+	public String irConsejos() {
+		return "Consejos";
+	}
 
 	@RequestMapping("/menu")
 	public String irMenuWalker() {

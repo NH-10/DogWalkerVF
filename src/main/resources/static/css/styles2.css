@@ -123,6 +123,12 @@
     background: url(https://www.purina-latam.com/sites/g/files/auxxlc391/files/purina-brand-hasta-que-edad-son-cachorros-los-perros.jpg);
     background-size: cover;
 }
+
+.bg-portada5{
+    background: url(https://cdn.wamiz.fr/cdn-cgi/image/quality=80,width=1200,height=675,fit=cover/https://cdn.wamiz.fr/article/main-picture/5f3ba4e6cdd75898705821.jpg);
+    background-size: cover;
+}
+
 .card.col-lg-2{
     margin: 10px; 
     
@@ -135,19 +141,17 @@
     font-size: 12px;
 }
 
-.foo{
-    padding: 50px;
-    background: #eb9956ed;
-    margin-top: 40px;
-}
 
 footer {
     padding: 80px 0;
     text-align: center;
     color:white;
     text-decoration: none;
-    background-color: rgb(240, 170, 91);
+    background-color:#eb9956ed;
     display: block;
+    position:absolute;
+    height:100px;
+    width:100%;
 
 }
 
