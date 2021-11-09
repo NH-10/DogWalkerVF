@@ -216,3 +216,12 @@ p{
 .df{
 	align-items:center;
 }
+
+
+.buscador_distrito {
+	float:none;
+	margin:auto;
+	 width:40%;
+	 
+}
+
