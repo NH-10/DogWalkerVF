@@ -15,7 +15,7 @@ import pe.edu.upc.spring.model.Walker;
 @Repository
 public interface IWalkerRepository extends JpaRepository<Walker, Integer>{
 	
-	@Query("from Walker w where w.email like %:email% and w.password like %:password% ")
+	@Query("from Walker w where w.email = :email and w.password = :password ")
 	List<Walker> findByEmailAndPassword(@Param("email")String email, @Param("password")String password);
 	
 	

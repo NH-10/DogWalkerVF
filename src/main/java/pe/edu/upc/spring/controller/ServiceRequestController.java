@@ -53,16 +53,6 @@ public class ServiceRequestController {
 	private List<ServiceRequest> listServiceRequestOwner;
 	private List<ServiceRequest> listServiceRequestWalker;
 
-	/*
-	 * @RequestMapping("/bienvenido") public String irPaginaBienvenida(Model model)
-	 * { model.addAttribute("district", new District()); return "bienvenido"; }
-	 */
-
-	/*
-	 * @RequestMapping("/") public String irPaginaListadoRazas(Map<String, Object>
-	 * model) { model.put("listServiceRequests", srService.listServiceRequest());
-	 * return "listServiceRequest"; }
-	 */
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model, @RequestParam(value = "id") Integer id) {
@@ -74,19 +64,7 @@ public class ServiceRequestController {
 		return "serviceRequest";
 	}
 
-	/*
-	 * @RequestMapping("/irRegistrarDenuevo") public String irPaginaRegistrar(Model
-	 * model) { model.addAttribute("serviceRequest", new ServiceRequest());
-	 * model.addAttribute("listStatus", sService.listStatus());
-	 * model.addAttribute("listTimes", tService.listTime()); return
-	 * "serviceRequest"; }
-	 * 
-	 * @RequestMapping("/irActualizarDenuevo") public String
-	 * irActualizarDenuevo(Model model) { model.addAttribute("serviceRequest", new
-	 * ServiceRequest()); model.addAttribute("listStatus", sService.listStatus());
-	 * model.addAttribute("listTimes", tService.listTime()); return
-	 * "serviceRequest"; }
-	 */
+
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute ServiceRequest objServiceRequest, BindingResult binRes, Model model)
 			throws ParseException {
@@ -161,21 +139,6 @@ public class ServiceRequestController {
 		}
 	}
 
-	/*
-	 * @RequestMapping("/eliminar") public String eliminar(Map<String, Object>
-	 * model, @RequestParam(value = "id") Integer id) { try { if (id != null && id >
-	 * 0) { srService.delete(id); model.put("listServiceRequests",
-	 * srService.listServiceRequest()); } } catch (Exception ex) {
-	 * System.out.println(ex.getMessage()); model.put("mensaje",
-	 * "Ocurrio un error"); model.put("listServiceRequests",
-	 * srService.listServiceRequest()); } return "listServiceRequest"; }
-	 */
-
-	/*
-	 * @RequestMapping("/listar") public String listar(Map<String, Object> model) {
-	 * model.put("listServiceRequests", srService.listServiceRequest()); return
-	 * "listServiceRequest"; }
-	 */
 
 	@RequestMapping("/listarSolicitudesDueno")
 	public String listarSolicitudesPorDueno(Model model) {
@@ -190,7 +153,7 @@ public class ServiceRequestController {
 		idWalker = String.valueOf(sesionWalker.getIdWalker());
 		listServiceRequestWalker = srService.listServiceRequestByWalker(idWalker);
 		model.addAttribute("listServiceRequestByWalker", listServiceRequestWalker);
-		return "serviceRequestListByWalkers";
+		return "serviceRequestListByWalker";
 	}
 
 	public void setOwner(Owner o) {
