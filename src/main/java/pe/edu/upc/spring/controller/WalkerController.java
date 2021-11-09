@@ -64,6 +64,11 @@ public class WalkerController {
 		model.addAttribute("district", new District());
 		return "bienvenidoWalker";
 	}
+	
+	@RequestMapping("/consejos")
+	public String irConsejos() {
+		return "Consejos";
+	}
 
 	@RequestMapping("/menu")
 	public String irMenuWalker() {
@@ -137,12 +142,14 @@ public class WalkerController {
 		List<Walker> listaDistrict;
 		listaDistrict = wService.listByDistrict(district.getName());
 		feedbackController.setDistrict(district);
+		
+		model.put("WalkerController", w);	
 		if(listaDistrict.isEmpty()) {
 			model.put("listarPaseadores", wService.list());
 		}	
 		else {			
 			model.put("listarPaseadores", listaDistrict);	
-			model.put("WalkerController", w);	
+			
 	
 		}
 
