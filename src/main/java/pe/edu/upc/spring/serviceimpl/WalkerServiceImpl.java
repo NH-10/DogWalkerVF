@@ -1,14 +1,11 @@
 package pe.edu.upc.spring.serviceimpl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pe.edu.upc.spring.model.Dog;
-import pe.edu.upc.spring.model.ServiceRequest;
 import pe.edu.upc.spring.model.Walker;
 import pe.edu.upc.spring.repository.IWalkerRepository;
 import pe.edu.upc.spring.service.IWalkerService;
@@ -18,9 +15,7 @@ public class WalkerServiceImpl implements IWalkerService {
 
 	@Autowired
 	private IWalkerRepository wa;
-	
 
-	
 	@Override
 	@Transactional
 	public boolean save(Walker walker) {
@@ -31,28 +26,24 @@ public class WalkerServiceImpl implements IWalkerService {
 			return true;
 	}
 
-
 	@Override
 	@Transactional(readOnly = true)
 	public List<Walker> list() {
 		return wa.findAll();
 	}
 
-
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public List<Walker> findByEmailAndPassword(String email, String password) {
 		return wa.findByEmailAndPassword(email, password);
 	}
 
-	
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public Walker WalkerById(String idWalker) {
 		return wa.WalkerById(idWalker);
 	}
 
-	
 	@Override
 	@Transactional(readOnly = true)
 	public List<Walker> listByDistrict(String nameDistrict) {
