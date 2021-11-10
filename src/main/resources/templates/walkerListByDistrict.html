@@ -23,6 +23,7 @@
 <link rel="stylesheet" th:href="@{/css/header.css}" />
 <link rel="stylesheet" th:href="@{/css/styles2.css}" />
 <link rel="stylesheet" th:href="@{/css/styleTable.css}" />
+<link rel="stylesheet" th:href="@{/css/stylePagination.css}" />
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script
@@ -53,6 +54,17 @@ $(document).ready(function(){
 
 							</div>
 						</div>
+						
+						<div class="form-group">
+			 		<select class  ="form-control" name="state" id="maxRows" style="display: none">
+						 <option value="5000">Show ALL Rows</option>
+						 <option value="5">5</option>
+						
+						</select>
+			 		
+			  	</div>
+						
+						
 						<table class="table table-striped table-hover">
 							<thead class="table-head">
 								<tr>
@@ -82,27 +94,27 @@ $(document).ready(function(){
 								</tr>
 							</tbody>
 						</table>
-						<div class="clearfix">
-							<div class="hint-text">
-								Showing <b>5</b> out of <b>25</b> entries
-							</div>
-							<ul class="pagination">
-								<li class="page-item disabled"><a href="#">Previous</a></li>
-								<li class="page-item"><a href="#" class="page-link">1</a></li>
-								<li class="page-item"><a href="#" class="page-link">2</a></li>
-								<li class="page-item active"><a href="#" class="page-link">3</a></li>
-								<li class="page-item"><a href="#" class="page-link">4</a></li>
-								<li class="page-item"><a href="#" class="page-link">5</a></li>
-								<li class="page-item"><a href="#" class="page-link">Next</a></li>
-							</ul>
+				
+				
+						<div class='pagination-container'>
+							<nav>
+								<ul class="pagination">
+
+									<li data-page="prev"><span> < <span class="sr-only">(current)</span></span></li>
+
+									<li data-page="next" id="prev"><span> > <span
+											class="sr-only">(current)</span></span></li>
+								</ul>
+							</nav>
 						</div>
+				
 					</div>
 				</div>
 			</div>
 		</form>
 	</div>
 	<div th:replace="fragments/footer :: footer"></div>
-
+	<script th:src="@{/js/pagination.js}"> </script>
 
 </body>
 </html>
