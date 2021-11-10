@@ -6,22 +6,17 @@
 
 <head>
 <meta charset="UTF-8"></meta>
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
-	rel="stylesheet" />
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"	rel="stylesheet" />
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
-<link rel="stylesheet"
-	th:href="@{/css/bootstrap-datetimepicker.min.css}" />
+<link rel="stylesheet"	th:href="@{/css/bootstrap-datetimepicker.min.css}" />
 <link rel="stylesheet" th:href="@{/css/duenoStyles.css}" />
 <link rel="stylesheet" th:href="@{/css/style.css}" />
-
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet"	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" th:href="@{/css/aos.css}" />	
 </head>
 
 <body>
-	<div class="registration-form">
+	<div class="registration-form" data-aos="fade-right">
 		<form th:action="@{/walker/validarUsuario}" method="post"
 			th:object="${walker}">
 			<div class="row" align="center">
@@ -37,13 +32,19 @@
 			<div class="row">
 				<div class="form-group col-sm-12">
 					<input type="text" class="form-control item" placeholder="email"
-					th:field="*{email}"></input>
+					th:field="*{email}" th:errorclass="'form-control alert-danger'" />
+				<small class="form-text text-danger"
+					th:if="${#fields.hasErrors('email')}"
+					th:errors="*{email}"></small>
 				</div>				
 			</div>
 			<div class="row">
 				<div class="form-group col-sm-12">
 					<input type="password" class="form-control item"
-						placeholder="Contraseña" th:field="*{password}"></input>
+						placeholder="Contraseña" th:field="*{password}" th:errorclass="'form-control alert-danger'" />
+				<small class="form-text text-danger"
+					th:if="${#fields.hasErrors('password')}"
+					th:errors="*{password}"></small>
 
 				</div>
 			</div>
@@ -52,21 +53,13 @@
 		</form>
 
 	</div>
-
-
-	<script src="resources/js/script.js" type="text/javascript"
-		xml:space="preserve"></script>
-	<script src="resources/js/jquery.min.js" type="text/javascript"
-		xml:space="preserve"></script>
-	<script src="resources/js/popper.js" type="text/javascript"
-		xml:space="preserve"></script>
-	<script src="resources/js/bootstrap.min.js" type="text/javascript"
-		xml:space="preserve"></script>
-	<script src="resources/js/moment-with-locales.min.js"
-		type="text/javascript" xml:space="preserve"></script>
-	<script src="resources/js/bootstrap-datetimepicker.min.js"
-		type="text/javascript" xml:space="preserve"></script>
-	<script src="resources/js/main.js" type="text/javascript"
-		xml:space="preserve"></script>
+	<script th:src="@{/js/aos.js}"></script>
+	<script th:src="@{/js/bootstrap.bundle.js}"></script>
+	<script th:src="@{/js/glightbox.js}"></script>
+	<script th:src="@{/js/isotope.pkgd.js}"></script>
+	<script th:src="@{/js/validate.js}"></script>
+	<script th:src="@{/js/swiper-bundle.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	
 </body>
 </html>

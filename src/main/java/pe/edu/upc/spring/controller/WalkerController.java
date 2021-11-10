@@ -3,6 +3,8 @@ package pe.edu.upc.spring.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -97,7 +99,7 @@ public class WalkerController {
 	}
 
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Walker objWalker, BindingResult binRes, Model model) throws ParseException {
+	public String registrar(@Valid Walker objWalker, BindingResult binRes, Model model) throws ParseException {
 		if (binRes.hasErrors()) {
 			model.addAttribute("listadistrito", dService.listDistrict());
 			model.addAttribute("listpersonalidad", pService.listPersonality());
@@ -126,7 +128,7 @@ public class WalkerController {
 	}
 
 	@RequestMapping("/validarUsuario")
-	public String ingresarCuenta(@ModelAttribute Walker objWalker) throws ParseException {
+	public String ingresarCuenta(@Valid Walker objWalker, BindingResult binRes) throws ParseException {
 		List<Walker> listWalkers;
 		objWalker.setEmail(objWalker.getEmail());
 		objWalker.setPassword(objWalker.getPassword());
@@ -134,12 +136,13 @@ public class WalkerController {
 
 		if (!listWalkers.isEmpty()) {
 			objWalker = listWalkers.get(0);
-
 			sesionWalker = objWalker;
 			sController.setWalker(sesionWalker);
 			return "redirect:/walker/bienvenido";
-		} else
+		} else {
 			return "walkerLogin";
+		}
+
 	}
 
 	@RequestMapping("/buscar")
