@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,18 +28,24 @@ public class Owner implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idOwner;
 
+	@NotEmpty(message = "Ingrese su nombre")
 	@Column(name = "firstNames", length = 150, nullable = false)
 	private String firstNames;
 
+	@NotEmpty(message = "Ingrese su apellido")
 	@Column(name = "lastNames", length = 150, nullable = false)
 	private String lastNames;
-
+	
+	@NotEmpty(message = "Ingrese su correo")
 	@Column(name = "email", length = 60, nullable = false)
 	private String email;
 
+	@NotEmpty(message = "Ingrese su contraseña")
 	@Column(name = "password", length = 20, nullable = false)
 	private String password;
 
+	@NotNull(message = "Ingrese su fecha de nacimiento")
+	@Past(message = "Fecha de naciemiento incorrecta")
 	@Temporal(TemporalType.DATE)
 	@Column(name = "dateOfBirth")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -46,6 +55,7 @@ public class Owner implements Serializable {
 	@JoinColumn(name = "idDistrict", nullable = false)
 	private District district;
 
+	@NotEmpty(message = "Ingrese su dirección")
 	@Column(name = "address", length = 255, nullable = false)
 	private String address;
 

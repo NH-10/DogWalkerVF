@@ -2,6 +2,7 @@ package pe.edu.upc.spring.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -87,7 +88,7 @@ public class OwnerController {
 	
 
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Owner objOwner, BindingResult binRes, Model model) throws ParseException {
+	public String registrar(@Valid Owner objOwner, BindingResult binRes, Model model) throws ParseException {
 		if (binRes.hasErrors()) {
 			model.addAttribute("listadistrito", dService.listDistrict());
 			return "owner";
