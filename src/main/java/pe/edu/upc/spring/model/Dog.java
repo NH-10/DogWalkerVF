@@ -37,7 +37,7 @@ public class Dog implements Serializable {
 	private String description;
 
 	@NotNull(message = "Ingrese fecha de nacimiento")
-	@Past(message = "Fecha de naciemiento incorrecta")
+	@Past(message = "Fecha de nacimiento incorrecta")
 	@Temporal(TemporalType.DATE)
 	@Column(name = "dateOfBirth")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
