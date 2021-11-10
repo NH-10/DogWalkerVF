@@ -69,6 +69,11 @@ public class WalkerController {
 	public String irConsejos() {
 		return "Consejos";
 	}
+	
+	@RequestMapping("/noticias")
+	public String irNoticias() {
+		return "Noticias2";
+	}
 
 	@RequestMapping("/menu")
 	public String irMenuWalker() {

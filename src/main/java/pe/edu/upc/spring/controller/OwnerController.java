@@ -57,6 +57,12 @@ public class OwnerController {
 		return "Tips";
 	}
 	
+	@RequestMapping("/noticias")
+	public String irNoticias() {
+		return "Noticias";
+	}
+	
+	
 	@RequestMapping("/menu")
 	public String irMenuOwner() {
 		return "OwnerMenu";
