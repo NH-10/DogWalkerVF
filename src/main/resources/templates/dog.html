@@ -17,75 +17,71 @@
 <link rel="stylesheet" th:href="@{/css/style.css}" />
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-	
-<link rel="stylesheet"
-	th:href="@{/css/aos.css}" />	
-	
+
+<link rel="stylesheet" th:href="@{/css/aos.css}" />
+
 </head>
 
 <body>
 	<div class="registration-form" data-aos="fade-right">
-				<form th:action="@{/dog/registrar}" method="post"
-					th:object="${dog}">
-				<div class="row">
-					<div class="form-group">
-						<h1> Registrar a tu mascota</h1>
-					</div>
-				</div>
-				<div class="form-icon-c">
-					<img th:src="@{/imagenes/icoMascota.png}" >
-				</div>
-
+		<form th:action="@{/dog/registrar}" method="post" th:object="${dog}">
+			<div class="row">
 				<div class="form-group">
-					<input type="text" class="form-control item" placeholder="Nombre"
-						th:field="*{name}" 	th:errorclass="'form-control alert-danger'" /> <small
-						class="form-text text-danger"
-						th:if="${#fields.hasErrors('name')}"
-						th:errors="*{name}"></small>
-
+					<h1>Registrar a tu mascota</h1>
 				</div>
-				<div class="form-group">
-					<div class=" form group date" id="id_0">
-						<input type="date" class="form-control itemselect"
-							placeholder="Fecha de nacimiento" th:field="*{dateOfBirth}" th:errorclass="'form-control alert-danger'" /> <small
+			</div>
+			<div class="form-icon-c">
+				<img th:src="@{/imagenes/icoMascota.png}">
+			</div>
+
+			<div class="form-group">
+				<input type="text" class="form-control item" placeholder="Nombre"
+					th:field="*{name}" th:errorclass="'form-control alert-danger'" />
+				<small class="form-text text-danger"
+					th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+
+			</div>
+			<div class="form-group">
+				<div class=" form group date" id="id_0">
+					<input type="date" class="form-control itemselect"
+						placeholder="Fecha de nacimiento" th:field="*{dateOfBirth}"
+						th:errorclass="'form-control alert-danger'" /> <small
 						class="form-text text-danger"
 						th:if="${#fields.hasErrors('dateOfBirth')}"
 						th:errors="*{dateOfBirth}"></small>
-					</div>
 				</div>
-				
-				<div class="form-group">
+			</div>
 
-					<select class="form-control itemselect"
-						th:field="*{Race.idRace}">
-						<option th:each="d: ${listaRaza}" th:value="${d.idRace}"
-							th:text="${d.name}"
-							th:selected="(${d.idRace}==*{Race.idRace})">
-						</option>
-					</select>
+			<div class="form-group">
 
-				</div>
-				<div class="form-group">
+				<select class="form-control itemselect" th:field="*{Race.idRace}">
+					<option th:each="d: ${listaRaza}" th:value="${d.idRace}"
+						th:text="${d.name}" th:selected="(${d.idRace}==*{Race.idRace})">
+					</option>
+				</select>
 
-					<select class="form-control itemselect"
-						th:field="*{Character.idCharacter}">
-						<option th:each="d: ${listaCaracter}" th:value="${d.idCharacter}"
-							th:text="${d.name}"
-							th:selected="(${d.idCharacter}==*{Character.idCharacter})">
-						</option>
-					</select>
+			</div>
+			<div class="form-group">
 
-				</div>
-			
-					<div class="form-group">
-					<input type="text" class="form-control item" placeholder="Descripcion"
-					th:field="*{description}" ></input>
-				</div>
-				
-		
-		
+				<select class="form-control itemselect"
+					th:field="*{Character.idCharacter}">
+					<option th:each="d: ${listaCaracter}" th:value="${d.idCharacter}"
+						th:text="${d.name}"
+						th:selected="(${d.idCharacter}==*{Character.idCharacter})">
+					</option>
+				</select>
+
+			</div>
+
+			<div class="form-group">
+				<input type="text" class="form-control item"
+					placeholder="Descripcion" th:field="*{description}"></input>
+			</div>
+
+
+
 			<button type="submit" class="btn btn-block create-account">Registrar</button>
-			<a  class="btn btn-block" th:href="@{/dog/listarCanes}">Volver</a>
+			<a class="btn btn-block" th:href="@{/dog/listarCanes}">Volver</a>
 		</form>
 	</div>
 	<script th:src="@{/js/aos.js}"></script>
