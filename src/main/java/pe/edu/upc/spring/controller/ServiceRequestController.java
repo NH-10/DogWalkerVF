@@ -1,6 +1,7 @@
 package pe.edu.upc.spring.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
+import pe.edu.upc.spring.model.District;
 import pe.edu.upc.spring.model.Owner;
 import pe.edu.upc.spring.model.ServiceRequest;
 import pe.edu.upc.spring.model.Walker;
@@ -41,14 +43,19 @@ public class ServiceRequestController {
 	@Autowired
 	private IStatusService staService;
 
-	private ServiceRequest sesionServiceRequest;
 
+
+	@Autowired
+	private WalkerController w;
+	
+	
 	private Owner sesionOwner;
-
+	private ServiceRequest sesionServiceRequest;
 	private Walker sesionWalker;
 
 	private String idOwner;
 	private String idWalker;
+	private District district;
 
 	private List<ServiceRequest> listServiceRequestOwner;
 	private List<ServiceRequest> listServiceRequestWalker;
@@ -156,6 +163,23 @@ public class ServiceRequestController {
 		return "serviceRequestListByWalker";
 	}
 
+	@RequestMapping("/ListaPaseadores")
+	public String irListaPaseadores(Map<String, Object> model) {
+		List<Walker> listaDistrict;
+		listaDistrict = waService.listByDistrict(district.getName());
+		
+		model.put("WalkerController", w);	
+		
+		if(listaDistrict.isEmpty()) {
+			model.put("listarPaseadores", waService.list());
+		}	
+		else {
+		model.put("listarPaseadores", listaDistrict);
+		}
+		return "walkerListByDistrict"; 
+	}
+	
+	
 	public void setOwner(Owner o) {
 		sesionOwner = o;
 	}
@@ -164,4 +188,15 @@ public class ServiceRequestController {
 		sesionWalker = w;
 	}
 
+
+	public District getDistrict() {
+		return district;
+	}
+
+
+	public void setDistrict(District district) {
+		this.district = district;
+	}
+
+	
 }

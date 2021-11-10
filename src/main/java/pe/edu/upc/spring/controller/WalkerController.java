@@ -147,6 +147,7 @@ public class WalkerController {
 		List<Walker> listaDistrict;
 		listaDistrict = wService.listByDistrict(district.getName());
 		feedbackController.setDistrict(district);
+		sController.setDistrict(district);
 		
 		model.put("WalkerController", w);	
 		if(listaDistrict.isEmpty()) {
