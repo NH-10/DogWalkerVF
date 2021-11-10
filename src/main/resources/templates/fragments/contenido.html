@@ -21,94 +21,75 @@
 
 	<body>
 	<div th:fragment="content">
-		<div class="jumbotron bg-portada" id="start">
+		<div class="jumbotron bg-portada6" id="start">
         <div class="black-filter">
             
-            <h1 class="display-4">Pasear perros es lo que hacemos</h1> 
+            <h1 class="display-4">Noticias</h1> 
              <br></br>
-            <h4 class="display-8">La felicidad no se compra, se saca a pasear</h4>  
-              <div class="container h-100">
-                <div class="d-flex justify-content-center h-50">
-                	<div class="row clearfix">
-    
-   						<form th:action="@{/walker/buscar}" method="post" th:object="${district}">
-							<div class="form-group">
-								<div class="col-sm-7"  style="float:none;margin:auto;">
-								
-								
-									<input type="text" class="form-control"  th:field="*{name}"	placeholder="Ingrese Distrito">
-								
-										
-									<div align="center" style="margin-top:2%;" >
-										<button type="submit"  class="btn" style="background-color: #eb9956ed">Buscar</button>
-									</div>
-								</div>
-							</div>			
-						</form> 		   			
-    				</div>	
-                </div>
-              </div>   
+             <br></br>
+            
         </div>
       </div>
-    	<section id="a" class="container">
-        <h1 class="display-7">Dale a tu mascota lo que necesita</h1>
-        <h4 class="display-4">
-           El paseo es una de las actividades más importantes para tu mascota.
-        </h4>
+      
+    <section id="services" class="services section-bg">
+      <div class="container">
         <div class="row">
-            <div class="card col-lg-4">
-                <img th:src="@{/imagenes/huellas.png}" class="card-img-top border-0" alt="Card image cap"/>
-                <h4 class="display-7">Ejercicio</h4>
-                <div class="row">               
-                </div>
+          <div class="col-md-6 d-flex align-items-stretch aos-init aos-animate" data-aos="fade-right">
+            <div class="card">
+              <div class="card-img">
+                <img th:src="@{/imagenes/inclinado.jpg}" alt="...">
               </div>
-            <div class="card col-lg-4">
-                <img th:src="@{/imagenes/dialago.png}" class="card-img-top border-0" alt="Card image cap"/>
-                <h4 class="display-7">Socialización</h4>
-                <div class="row">
-                </div>
+              <div class="card-body">
+                <h1 class="card-title"><a href="">¿Tu perro inclina la cabeza cuando le hablas?</a></h1>
+                <p class="card-text">Cuando un perro inclina la cabeza cuando hablas es porque está haciendo todo lo posible por entender.</p>
+                <div class="read-more"><a href="https://www.elconfidencial.com/alma-corazon-vida/2021-11-08/perros-inclinacion-cabeza-comportamiento_3318415/"><i class="bi bi-arrow-right"></i> Saber más</a></div>
               </div>
-              <div class="card col-lg-4">
-                <img th:src="@{/imagenes/calendario.png}" class="card-img-top border-0" alt="Card image cap"/>
-                <h4 class="display-7">Rutina</h4>
-                <div class="row">
-                </div>
-              </div>
-              
             </div>
-           
-</section>
-		<div>
-        <img th:src="@{/imagenes/4 mejores tipos de paseo (1).png}" class="aboutimd" width="1000" align="middle"/>
-        </div>
-  <section id="about" class="container">
-        <h1 class="display-4">¿Quiénes somos?</h1>
-        <h4 class="display-7">
-            Somos un grupo de estudiantes, amantes de los caninos que buscan ofrecer una solución para los dueños de las mascotas que no cuentan con el tiempo suficiente para sacarlos a pasear. Con nuestro servicio podrán buscar un paseador de acuerdo a sus necesidades para que pueda sacar a su perro/s y que se sientan seguro de que su mascota está en buenas manos.
-        </h4>
-        
-  </section>
-       <div>
-        <img th:src="@{/imagenes/paseador-de-perros.jpg}" class="aboutimd" width="1000" align="middle"/>
-        </div>
-            
-                     
-        <section class="container" id="contact">
-            <h1 class="display-4">Contáctanos</h1> 
-            <h4 class="display-7">
-                Para más información contactenos por los siguientes medios:
-            </h4>
-            <h4 class="display-7">
-                Email: DogWalker.info@hotmail.com
-            </h4>
-            <h4 class="display-7">
-                Número de contactos: 981723956
-            </h4>
-        </section>
-        
-    	</div>
-    	
-    	
+          </div>
+          
+            <div class="col-md-6 d-flex align-items-stretch aos-init aos-animate" data-aos="fade-right">
+            <div class="card">
+              <div class="card-img">
+                <img th:src="@{/imagenes/cachorro.jpg}" alt="...">
+              </div>
+              <div class="card-body">
+                <h1 class="card-title"><a href="">¿Hasta que edad crecen los perros?</a></h1>
+                <p class="card-text">Te contamos a qué edad dejan de crecer los perros y los trucos para saber si un perro es de raza grande o pequeña.</p>
+                <div class="read-more"><a href="https://www.informacion.es/vida-y-estilo/mascotas/2021/11/09/perros-hasta-que-edad-crecen-59200838.html"><i class="bi bi-arrow-right"></i> Saber más</a></div>
+              </div>
+            </div>
+          </div>
+          
+            <div class="col-md-6 d-flex align-items-stretch aos-init aos-animate" data-aos="fade-right">
+            <div class="card">
+              <div class="card-img">
+                <img th:src="@{/imagenes/mo.jpg}" alt="...">
+              </div>
+              <div class="card-body">
+                <h1 class="card-title"><a href="">Los tres ruidos que más molestan a los perros</a></h1>
+                <p class="card-text">Conoce los sonidos que más detesta tu mascota e intenta evitarlos para que el animal esté más tranquilo.</p>
+                <div class="read-more"><a href="https://www.informacion.es/vida-y-estilo/mascotas/2021/11/08/tres-ruidos-molestan-perros-59051660.html"><i class="bi bi-arrow-right"></i> Saber más</a></div>
+              </div>
+            </div>
+          </div>
+          
+            <div class="col-md-6 d-flex align-items-stretch aos-init aos-animate" data-aos="fade-right">
+            <div class="card">
+              <div class="card-img">
+                <img th:src="@{/imagenes/perro-schafer.jpg}" alt="...">
+              </div>
+              <div class="card-body">
+                <h1 class="card-title"><a href="">¿Tu perro no te hace caso?</a></h1>
+                <p class="card-text">No te preocupes, nunca es tarde para enseñarles.No pretendas que tu perro te obedezca si no le enseñas. Los siguientes consejos lograrán que la relación con tu mascota sea más armoniosa.</p>
+                <div class="read-more"><a href="https://elcomercio.pe/somos/estilo/mascotas-tu-perro-no-te-hace-caso-no-te-preocupes-nunca-es-tarde-para-ensenarles-adiestramiento-bienestar-hogar-noticia/?ref=ecr"><i class="bi bi-arrow-right"></i> Saber más</a></div>
+              </div>
+            </div>
+          </div>
+          
+      	</div>
+      	</div>
+    </section>
+ 	</div>
 		
 	</body>
 	
