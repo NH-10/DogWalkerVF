@@ -54,6 +54,7 @@ public class FeedbackController {
 		listaDistrict = wService.listByDistrict(district.getName());
 		
 		model.put("WalkerController", w);	
+		model.put("owner",sesionOwner);
 		
 		if(listaDistrict.isEmpty()) {
 			model.put("listarPaseadores", wService.list());
@@ -69,9 +70,9 @@ public class FeedbackController {
 	@RequestMapping("/Comentarios")
 	public String modificar(Model model, @RequestParam(value="id") Integer id) throws ParseException{
 		sesionWalker = wService.WalkerById(String.valueOf(id));
+		model.addAttribute("owner",sesionOwner);
 		if(sesionWalker == null) {
 			model.addAttribute("walker", sesionWalker);
-			model.addAttribute("owner",sesionOwner);
 			return "redirect:/feedback/ListaPaseadores";
 		}
 		else {
@@ -85,6 +86,7 @@ public class FeedbackController {
 	public String modificar(Model model) throws ParseException{
 			model.addAttribute("listaFeedbacks",fService.FeedbackByIdWalker(String.valueOf(sesionWalker.getIdWalker())));
 			model.addAttribute("Feedback",new Feedback());
+			model.addAttribute("owner",sesionOwner);
 			return "listFeedbacks";
 	}
 	

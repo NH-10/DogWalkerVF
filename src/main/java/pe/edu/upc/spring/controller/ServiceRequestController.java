@@ -152,6 +152,7 @@ public class ServiceRequestController {
 		idOwner = String.valueOf(sesionOwner.getIdOwner());
 		listServiceRequestOwner = srService.listServiceRequestByOwner(idOwner);
 		model.addAttribute("listServiceRequestByOwner", listServiceRequestOwner);
+		model.addAttribute("owner", sesionOwner);
 		return "serviceRequestListByOwner";
 	}
 
@@ -160,6 +161,7 @@ public class ServiceRequestController {
 		idWalker = String.valueOf(sesionWalker.getIdWalker());
 		listServiceRequestWalker = srService.listServiceRequestByWalker(idWalker);
 		model.addAttribute("listServiceRequestByWalker", listServiceRequestWalker);
+		model.addAttribute("walker", sesionWalker);
 		return "serviceRequestListByWalker";
 	}
 
@@ -169,6 +171,7 @@ public class ServiceRequestController {
 		listaDistrict = waService.listByDistrict(district.getName());
 		
 		model.put("WalkerController", w);	
+		model.put("owner", sesionOwner);
 		
 		if(listaDistrict.isEmpty()) {
 			model.put("listarPaseadores", waService.list());
@@ -186,11 +189,6 @@ public class ServiceRequestController {
 
 	public void setWalker(Walker w) {
 		sesionWalker = w;
-	}
-
-
-	public District getDistrict() {
-		return district;
 	}
 
 

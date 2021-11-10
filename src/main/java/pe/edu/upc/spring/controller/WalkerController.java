@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.sun.el.parser.ParseException;
 
 import pe.edu.upc.spring.model.District;
+import pe.edu.upc.spring.model.Owner;
 import pe.edu.upc.spring.model.Walker;
 import pe.edu.upc.spring.service.IDistrictService;
 import pe.edu.upc.spring.service.IFeedbackService;
@@ -36,7 +37,7 @@ public class WalkerController {
 
 	@Autowired
 	private IWalkerService wService;
-	
+
 	@Autowired
 	private ServiceRequestController sController;
 
@@ -48,10 +49,10 @@ public class WalkerController {
 
 	@Autowired
 	private WalkerController w;
-	
+
 	private Walker sesionWalker;
-	
-	
+	private Owner sesionOwner;
+
 	@RequestMapping("/inicio")
 	public String irPaginaInicio(Model model) {
 		model.addAttribute("district", new District());
@@ -64,14 +65,16 @@ public class WalkerController {
 		model.addAttribute("district", new District());
 		return "bienvenidoWalker";
 	}
-	
+
 	@RequestMapping("/consejos")
-	public String irConsejos() {
+	public String irConsejos(Model model) {
+		model.addAttribute("walker", sesionWalker);
 		return "Consejos";
 	}
-	
+
 	@RequestMapping("/noticias")
-	public String irNoticias() {
+	public String irNoticias(Model model) {
+		model.addAttribute("walker", sesionWalker);
 		return "Noticias2";
 	}
 
@@ -79,7 +82,7 @@ public class WalkerController {
 	public String irMenuWalker() {
 		return "menuWalker";
 	}
-	
+
 	@RequestMapping("/irBuscar")
 	public String irBuscar() {
 		return "walkerListByDistrict";
@@ -102,7 +105,7 @@ public class WalkerController {
 		} else {
 			boolean flag = wService.save(objWalker);
 			if (flag) {
-				
+
 				sesionWalker = objWalker;
 				sController.setWalker(sesionWalker);
 				return "redirect:/walker/bienvenido";
@@ -121,8 +124,7 @@ public class WalkerController {
 		return "walkerEdit";
 
 	}
-	
-	
+
 	@RequestMapping("/validarUsuario")
 	public String ingresarCuenta(@ModelAttribute Walker objWalker) throws ParseException {
 		List<Walker> listWalkers;
@@ -136,34 +138,31 @@ public class WalkerController {
 			sesionWalker = objWalker;
 			sController.setWalker(sesionWalker);
 			return "redirect:/walker/bienvenido";
-		}
-		else
-		return "walkerLogin";
+		} else
+			return "walkerLogin";
 	}
-	
+
 	@RequestMapping("/buscar")
-	public String buscarPorDistrito(Map<String, Object> model, @ModelAttribute District district) throws ParseException 
-	{ 		
+	public String buscarPorDistrito(Map<String, Object> model, @ModelAttribute District district)
+			throws ParseException {
 		List<Walker> listaDistrict;
 		listaDistrict = wService.listByDistrict(district.getName());
 		feedbackController.setDistrict(district);
 		sController.setDistrict(district);
-		
-		model.put("WalkerController", w);	
-		if(listaDistrict.isEmpty()) {
+		model.put("owner", sesionOwner);
+		model.put("WalkerController", w);
+
+		if (listaDistrict.isEmpty()) {
 			model.put("listarPaseadores", wService.list());
-		}	
-		else {			
-			model.put("listarPaseadores", listaDistrict);	
-			
-	
+		} else {
+			model.put("listarPaseadores", listaDistrict);
+
 		}
 
 		return "walkerListByDistrict";
-		//return "tablaEjemplo";
+
 	}
-	
-	
+
 	public int calcularEdad(Date dateOfBirth) {
 		Calendar fechaNac = Calendar.getInstance();
 		fechaNac.setTime(dateOfBirth);
@@ -175,18 +174,22 @@ public class WalkerController {
 		Period periodo = Period.between(fechaNacimiento, fechaHoy);
 		return periodo.getYears();
 	}
-	
-	
+
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model, @ModelAttribute District district) {
 		model.put("listarPaseadores", wService.list());
 		return "walkerListByDistrict";
 	}
-	
+
 	@RequestMapping("/Comentarios")
 	public String ListFeedbackByWalker(Model model) {
 		model.addAttribute("listaFeedbacks", fService.FeedbackByIdWalker(String.valueOf(sesionWalker.getIdWalker())));
+		model.addAttribute("walker", sesionWalker);
 		return "FeedbackByWalkers";
 	}
-	
+
+	public void setSesionOwner(Owner sesionOwner) {
+		this.sesionOwner = sesionOwner;
+	}
+
 }

@@ -1,7 +1,7 @@
 package pe.edu.upc.spring.controller;
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +34,9 @@ public class OwnerController {
 	private DogController dogController;
 	
 	@Autowired
+	private WalkerController walkerController;
+	
+	@Autowired
 	private FeedbackController fController;
 	
 	private Owner sesionOwner;
@@ -53,12 +56,14 @@ public class OwnerController {
 	}
 	
 	@RequestMapping("/tips")
-	public String irTips() {
+	public String irTips(Model model) {
+		model.addAttribute("owner", sesionOwner);
 		return "Tips";
 	}
 	
 	@RequestMapping("/noticias")
-	public String irNoticias() {
+	public String irNoticias(Model model) {
+		model.addAttribute("owner", sesionOwner);
 		return "Noticias";
 	}
 	
@@ -93,6 +98,7 @@ public class OwnerController {
 				dogController.setOwner(sesionOwner);
 				sController.setOwner(sesionOwner);
 				fController.setOwner(sesionOwner);
+				walkerController.setSesionOwner(sesionOwner);
 				return "redirect:/owner/bienvenido";
 			} else {
 				model.addAttribute("mensaje", "Ocurrio un error");
@@ -117,18 +123,20 @@ public class OwnerController {
 	}
 
 	@RequestMapping("/validarUsuario")
-	public String ingresarCuenta(@ModelAttribute Owner objOwner) throws ParseException {
+	public String ingresarCuenta( @ModelAttribute Owner objOwner) throws ParseException {
 		List<Owner> listOwners;
 		objOwner.setEmail(objOwner.getEmail());
 		objOwner.setPassword(objOwner.getPassword());
 		listOwners = oService.findByEmailAndPassword(objOwner.getEmail(), objOwner.getPassword());
 
+	
 		if (!listOwners.isEmpty()) {
 			objOwner = listOwners.get(0);
 			System.out.print(objOwner.getEmail());
 			System.out.print(objOwner.getFirstNames());
 			sesionOwner = objOwner;
 			dogController.setOwner(sesionOwner);
+			walkerController.setSesionOwner(sesionOwner);
 			sController.setOwner(sesionOwner);
 			fController.setOwner(sesionOwner);
 			return "redirect:/owner/bienvenido";

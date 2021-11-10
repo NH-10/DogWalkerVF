@@ -54,10 +54,14 @@
 
 								<div class="sin">
 									<li class="pull-left"><a th:href="@{/pantalla/inicio}">Inicio</a></li>
-									<li class="pull-left"><a th:href="@{/pantalla/quienessomos}">¿Quienes somos?</a></li>
-									<li class="pull-left"><a th:href="@{/pantalla/contactanos}">Contactanos</a></li>
-									<li class="pull-right"><a th:href="@{/pantalla/iniciarSegunUsuario}">Iniciar sesion</a></li>
-									<li class="pull-right"><a th:href="@{/pantalla/regitrarSegunUsuario}">Registrarse</a></li>
+									<li class="pull-left"><a
+										th:href="@{/pantalla/quienessomos}">¿Quienes somos?</a></li>
+									<li class="pull-left"><a
+										th:href="@{/pantalla/contactanos}">Contactanos</a></li>
+									<li class="pull-right"><a
+										th:href="@{/pantalla/iniciarSegunUsuario}">Iniciar sesion</a></li>
+									<li class="pull-right"><a
+										th:href="@{/pantalla/regitrarSegunUsuario}">Registrarse</a></li>
 								</div>
 
 
@@ -76,7 +80,7 @@
 
 	<div th:fragment="header_dueno">
 
-		<div class="header-area  ">
+		<div class="header-area " th:object="${owner}">
 			<div id="sticky-header" class="main-header-area">
 
 
@@ -91,16 +95,20 @@
 
 								<li class="pull-left"><a href="#"><img class="b"
 										th:src="@{/imagenes/logo.png}" width="60" alt=""></a></li>
-			
-										
-			<li class="pull-right"><a th:href="@{/owner/menu}"><img  class ="b" th:src="@{/imagenes/d97bbb08017ac2309307f0822e63d082.png}"  width="80" alt=""></a></li>
 
+
+								<li class="pull-right"><a th:href="@{/owner/menu}"><img
+										class="b"
+										th:src="@{/imagenes/d97bbb08017ac2309307f0822e63d082.png}"
+										width="80" alt=""></a></li>
+								<li class="pull-right"><a
+									th:text="'Bienvenido, ' + ${owner.firstNames}"></a></li>
 
 								<div class="sin">
 									<li class="pull-left"><a th:href="@{/owner/bienvenido}">Inicio</a></li>
 									<li class="pull-left"><a th:href="@{/owner/tips}">Tips</a></li>
 									<li class="pull-left"><a th:href="@{/owner/noticias}">Noticias</a></li>
-							
+
 								</div>
 
 
@@ -114,10 +122,10 @@
 
 		</div>
 	</div>
-	
+
 	<div th:fragment="header_paseador">
 
-		<div class="header-area  ">
+		<div class="header-area"  th:object="${walker}">
 			<div id="sticky-header" class="main-header-area">
 
 
@@ -132,16 +140,19 @@
 
 								<li class="pull-left"><a href="#"><img class="b"
 										th:src="@{/imagenes/logo.png}" width="60" alt=""></a></li>
-										
-			<li class="pull-right"><a th:href="@{/walker/menu}"><img  class ="b" th:src="@{/imagenes/d97bbb08017ac2309307f0822e63d082.png}"  width="80" alt=""></a></li>
 
+								<li class="pull-right"><a th:href="@{/walker/menu}"><img
+										class="b"
+										th:src="@{/imagenes/d97bbb08017ac2309307f0822e63d082.png}"
+										width="80" alt=""></a></li>
+	<li class="pull-right"><a th:text="'Bienvenido, ' + ${walker.firstNames}"></a></li>
 
 								<div class="sin">
 									<li class="pull-left"><a th:href="@{/walker/bienvenido}">Inicio</a></li>
 									<li class="pull-left"><a th:href="@{/walker/consejos}">Consejos</a></li>
 									<li class="pull-left"><a th:href="@{/walker/noticias}">Noticias</a></li>
-									
-									
+
+
 								</div>
 
 
