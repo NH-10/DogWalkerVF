@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,120 +20,106 @@ import com.sun.el.parser.ParseException;
 import pe.edu.upc.spring.model.District;
 import pe.edu.upc.spring.model.Dog;
 import pe.edu.upc.spring.model.Owner;
+import pe.edu.upc.spring.service.ICharacterService;
 import pe.edu.upc.spring.service.IDogService;
 import pe.edu.upc.spring.service.IRaceService;
-import pe.edu.upc.spring.service.ICharacterService;
 
 @Controller
-@RequestMapping("/dog") 
+@RequestMapping("/dog")
 public class DogController {
 	@Autowired
 	private IDogService dService;
-	
+
 	@Autowired
 	private IRaceService rService;
-	
+
 	@Autowired
 	private ICharacterService cService;
-	
+
 	private String idOwner;
 	private Owner sesionOwner;
 	private List<Dog> listDog;
 
-	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida(Model model) {
 		model.addAttribute("district", new District());
-		return "bienvenido"; 
+		return "bienvenido";
 	}
-	
+
 	@RequestMapping("/menu")
 	public String irMenuOwner() {
 		return "dogMenu";
 	}
-	
-	
+
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
 		model.addAttribute("dog", new Dog());
 		model.addAttribute("listaRaza", rService.listRace());
 		model.addAttribute("listaCaracter", cService.listCharacter());
-		return "dog"; 
+		return "dog";
 	}
-	
+
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Dog objDog, BindingResult binRes, Model model) 
-		throws ParseException
-	{
-		if (binRes.hasErrors())
-		{
+	public String registrar(@Valid Dog objDog, BindingResult binRes, Model model) throws ParseException {
+		if (binRes.hasErrors()) {
 			model.addAttribute("listaRaza", rService.listRace());
 			model.addAttribute("listaCaracter", cService.listCharacter());
 			model.addAttribute("owner", sesionOwner);
-			return "dogLists";
-		}
-		else {
+			return "dog";
+		} else {
 			objDog.setOwner(sesionOwner);
 			boolean flag = dService.save(objDog);
 			if (flag)
 				return "redirect:/dog/listarCanes";
 			else {
-				model.addAttribute("mensaje","Ocurrio un error");
+				model.addAttribute("mensaje", "Ocurrio un error");
 				return "redirect:/dog/irRegistrar";
 			}
 		}
 	}
-	
+
 	@RequestMapping("/modificar/{id}")
-	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) 
-		throws ParseException
-	{
+	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException {
 		Optional<Dog> objDog = dService.listById(id);
 		if (objDog == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
 			return "redirect:/dog/listarCanes";
-		}
-		else {
+		} else {
 			model.addAttribute("listaRaza", rService.listRace());
 			model.addAttribute("listaCaracter", cService.listCharacter());
-			
-	
-			if(objDog.isPresent())
-				objDog.ifPresent(d -> model.addAttribute("dog",d));
+
+			if (objDog.isPresent())
+				objDog.ifPresent(d -> model.addAttribute("dog", d));
 			return "dogEdit";
 		}
 	}
-		
+
 	@RequestMapping("/eliminar")
-	public String eliminar(Map<String, Object> model,  @RequestParam(value="id") Integer id) {
+	public String eliminar(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
-			if (id!=null && id>0) {
+			if (id != null && id > 0) {
 				dService.delete(id);
 				model.put("listDogByOwner", dService.ListDogByOwner(idOwner));
 			}
-		}
-		catch(Exception ex) {
+		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "Ocurrio un error");
-			model.put("listDogByOwner",dService.ListDogByOwner(idOwner));
+			model.put("listDogByOwner", dService.ListDogByOwner(idOwner));
 		}
 		return "redirect:/dog/listarCanes";
 	}
-	
+
 	@RequestMapping("/listarCanes")
-	public String listarCanes(Model model) 
-	{
+	public String listarCanes(Model model) {
 		idOwner = String.valueOf(sesionOwner.getIdOwner());
 		listDog = dService.ListDogByOwner(idOwner);
 		model.addAttribute("owner", sesionOwner);
 		model.addAttribute("ListDogByOwner", listDog);
 		return "dogLists";
-	}	
-	
+	}
+
 	public void setOwner(Owner o) {
 		sesionOwner = o;
 	}
-	
-	
-	
+
 }

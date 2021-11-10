@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,12 +29,15 @@ public class Dog implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idDog;
 
+	@NotEmpty(message = "Ingrese nombre")
 	@Column(name = "name", length = 50, nullable = false)
 	private String name;
 
 	@Column(name = "description", length = 200, nullable = true)
 	private String description;
 
+	@NotNull(message = "Ingrese fecha de nacimiento")
+	@Past(message = "Fecha de naciemiento incorrecta")
 	@Temporal(TemporalType.DATE)
 	@Column(name = "dateOfBirth")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
