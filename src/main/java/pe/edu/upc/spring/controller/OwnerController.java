@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sun.el.parser.ParseException;
@@ -17,7 +16,6 @@ import pe.edu.upc.spring.model.District;
 import pe.edu.upc.spring.model.Owner;
 import pe.edu.upc.spring.service.IDistrictService;
 import pe.edu.upc.spring.service.IOwnerService;
-
 
 @Controller
 @RequestMapping("/owner")
@@ -30,19 +28,18 @@ public class OwnerController {
 
 	@Autowired
 	private ServiceRequestController sController;
-	
+
 	@Autowired
 	private DogController dogController;
-	
+
 	@Autowired
 	private WalkerController walkerController;
-	
+
 	@Autowired
 	private FeedbackController fController;
-	
+
 	private Owner sesionOwner;
-	
-	
+
 	@RequestMapping("/inicio")
 	public String irPaginaInicio(Model model) {
 		model.addAttribute("district", new District());
@@ -55,20 +52,19 @@ public class OwnerController {
 		model.addAttribute("district", new District());
 		return "bienvenidoOwner";
 	}
-	
+
 	@RequestMapping("/tips")
 	public String irTips(Model model) {
 		model.addAttribute("owner", sesionOwner);
 		return "Tips";
 	}
-	
+
 	@RequestMapping("/noticias")
 	public String irNoticias(Model model) {
 		model.addAttribute("owner", sesionOwner);
 		return "Noticias";
 	}
-	
-	
+
 	@RequestMapping("/menu")
 	public String irMenuOwner() {
 		return "OwnerMenu";
@@ -85,7 +81,6 @@ public class OwnerController {
 		model.addAttribute("listadistrito", dService.listDistrict());
 		return "owner";
 	}
-	
 
 	@RequestMapping("/registrar")
 	public String registrar(@Valid Owner objOwner, BindingResult binRes, Model model) throws ParseException {
@@ -119,31 +114,27 @@ public class OwnerController {
 	@RequestMapping("/listarCanes")
 	public String listarCanes(Model model) throws ParseException {
 		model.addAttribute("owner", sesionOwner);
-		/*cService.ListDogByOwner(sesionOwner.getIdOwner());*/
+		/* cService.ListDogByOwner(sesionOwner.getIdOwner()); */
 		return "listCanes";
 	}
 
 	@RequestMapping("/validarUsuario")
-	public String ingresarCuenta( @ModelAttribute Owner objOwner) throws ParseException {
+	public String ingresarCuenta(@Valid Owner objOwner, BindingResult binRes) throws ParseException {
 		List<Owner> listOwners;
 		objOwner.setEmail(objOwner.getEmail());
 		objOwner.setPassword(objOwner.getPassword());
 		listOwners = oService.findByEmailAndPassword(objOwner.getEmail(), objOwner.getPassword());
 
-	
 		if (!listOwners.isEmpty()) {
 			objOwner = listOwners.get(0);
-			System.out.print(objOwner.getEmail());
-			System.out.print(objOwner.getFirstNames());
 			sesionOwner = objOwner;
 			dogController.setOwner(sesionOwner);
 			walkerController.setSesionOwner(sesionOwner);
 			sController.setOwner(sesionOwner);
 			fController.setOwner(sesionOwner);
 			return "redirect:/owner/bienvenido";
-		}
-		else 
+		} else {
 			return "ownerLogin";
+		}
 	}
-
 }

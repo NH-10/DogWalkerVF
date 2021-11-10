@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -37,6 +38,7 @@ public class Owner implements Serializable {
 	private String lastNames;
 	
 	@NotEmpty(message = "Ingrese su correo")
+	@Email (message = "Ingrese el correo electrónico correcto")
 	@Column(name = "email", length = 60, nullable = false)
 	private String email;
 
@@ -45,7 +47,7 @@ public class Owner implements Serializable {
 	private String password;
 
 	@NotNull(message = "Ingrese su fecha de nacimiento")
-	@Past(message = "Fecha de naciemiento incorrecta")
+	@Past(message = "Fecha de nacimiento incorrecta")
 	@Temporal(TemporalType.DATE)
 	@Column(name = "dateOfBirth")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
