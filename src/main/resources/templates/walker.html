@@ -3,7 +3,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-
 <head>
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
@@ -14,22 +13,22 @@
 	th:href="@{/css/bootstrap-datetimepicker.min.css}" />
 <link rel="stylesheet" th:href="@{/css/style.css}" />
 <link rel="stylesheet" th:href="@{/css/duenoStyles.css}" />
-<link rel="stylesheet" th:href="@{/css/aos.css}" />	
+<link rel="stylesheet" th:href="@{/css/aos.css}" />
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 
 <body>
-	<div class="registration-form" data-aos="fade-right" >
+	<div class="registration-form" data-aos="fade-right">
 		<form th:action="@{/walker/registrar}" method="post"
 			th:object="${walker}">
-			
+
 			<div class="row">
 				<div class="form-group">
 					<h1>Registrarse como:Paseador</h1>
 				</div>
 			</div>
-			
+
 			<div class="form-icon">
 				<span><i class="icon icon-user"></i></span>
 			</div>
@@ -37,33 +36,37 @@
 			<div class="row">
 				<div class="form-group col-sm-6">
 					<input type="text" class="form-control item" placeholder="Nombre"
-						th:field="*{firstNames}" required></input>
-					<div class="alert alert-danger"
+						th:field="*{firstNames}"
+						th:errorclass="'form-control alert-danger'" /> <small
+						class="form-text text-danger"
 						th:if="${#fields.hasErrors('firstNames')}"
-						th:errors="*{firstNames}"></div>
+						th:errors="*{firstNames}"></small>
 
 				</div>
 				<div class="form-group col-sm-6">
 					<input type="text" class="form-control item"
-						placeholder="Apellidos" th:field="*{lastNames}" required></input>
-					<div class="alert alert-danger"
-						th:if="${#fields.hasErrors('lastNames')}" th:errors="*{lastNames}">
-					</div>
+						placeholder="Apellidos" th:field="*{lastNames}"
+						th:errorclass="'form-control alert-danger'" /> <small
+						class="form-text text-danger"
+						th:if="${#fields.hasErrors('lastNames')}"
+						th:errors="*{lastNames}"></small>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<input type="text" class="form-control item" placeholder="email"
-					th:field="*{email}" required></input>
-				<div class="alert alert-danger"
-					th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+					th:field="*{email}" th:errorclass="'form-control alert-danger'" />
+				<small class="form-text text-danger"
+					th:if="${#fields.hasErrors('email')}"
+					th:errors="*{email}"></small>
 			</div>
 			<div class="form-group">
 				<input type="text" class="form-control item"
-					placeholder="contrasena" th:field="*{password}" required></input>
-				<div class="alert alert-danger"
-					th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
-				</div>
+					placeholder="contrasena" th:field="*{password}"
+					th:errorclass="'form-control alert-danger'" /> <small
+					class="form-text text-danger"
+					th:if="${#fields.hasErrors('password')}"
+					th:errors="*{password}"></small>
 			</div>
 
 
@@ -71,11 +74,12 @@
 				<div class="form-group col-sm-6">
 					<div class=" form group date" id="id_0">
 						<input type="date" class="form-control itemselect"
-							placeholder="Fecha de nacimiento" th:field="*{dateOfBirth}"></input>
-
-						<div class="alert alert-danger"
+							placeholder="Fecha de nacimiento" th:field="*{dateOfBirth}"
+							th:errorclass="'form-control alert-danger'" /> <small
+							class="form-text text-danger"
 							th:if="${#fields.hasErrors('dateOfBirth')}"
-							th:errors="*{dateOfBirth}"></div>
+							th:errors="*{dateOfBirth}"></small>
+
 					</div>
 				</div>
 
@@ -87,33 +91,30 @@
 							th:text="${d.name}"
 							th:selected="(${d.idDistrict}==*{District.idDistrict})">
 						</option>
-					
+
 					</select>
-					
-				
+
+
 				</div>
 			</div>
 
 			<div class="form-group">
 				<input type="text" class="form-control item" placeholder="Direccion"
-					th:field="*{address}" required></input>
-				<div class="alert alert-danger"
-					th:if="${#fields.hasErrors('address')}" th:errors="*{address}">
-				</div>
+					th:field="*{address}" th:errorclass="'form-control alert-danger'" />
+				<small class="form-text text-danger"
+					th:if="${#fields.hasErrors('address')}"
+					th:errors="*{address}"></small>
 			</div>
 
 			<div class="form-group">
-				<textarea type="text" class="form-control item"
-					 rows="3" placeholder="Descripcion" th:field="*{description}" required></textarea>
-				<div class="alert alert-danger"
+				<textarea type="text" class="form-control item" rows="3"
+					placeholder="Descripcion" th:field="*{description}"
+					th:errorclass="'form-control alert-danger'"></textarea>
+				<small class="form-text text-danger"
 					th:if="${#fields.hasErrors('description')}"
-					th:errors="*{description}"></div>
+					th:errors="*{description}"></small>
 			</div>
-
-
-
 			<div class="form-group">
-
 				<select class="form-control itemselect"
 					th:field="*{Personality.idPersonality}">
 					<option th:each="p: ${listpersonalidad}"
@@ -121,42 +122,23 @@
 						th:selected="(${p.idPersonality}==*{Personality.idPersonality})">
 					</option>
 				</select>
-
 			</div>
-
-
-
 			<div class="form-group">
 				<input type="text" class="form-control item"
-					placeholder="Costo por hora" th:field="*{costService}" required></input>
-			<div class="alert alert-danger"
+					placeholder="Costo por hora" th:field="*{costService}"
+					th:errorclass="'form-control alert-danger'" /> <small
+					class="form-text text-danger"
 					th:if="${#fields.hasErrors('costService')}"
-					th:errors="*{costService}"></div>
-						
+					th:errors="*{costService}"></small>
+
 			</div>
-
-
-
 			<button type="submit" class="btn btn-block create-account">Crear
 				Cuenta</button>
 			<a class="btn btn-block" th:href="@{/pantalla/regitrarSegunUsuario}">Volver</a>
 		</form>
 
 	</div>
-	<script src="resources/js/script.js" type="text/javascript"
-		xml:space="preserve"></script>
-	<script src="resources/js/jquery.min.js" type="text/javascript"
-		xml:space="preserve"></script>
-	<script src="resources/js/popper.js" type="text/javascript"
-		xml:space="preserve"></script>
-	<script src="resources/js/bootstrap.min.js" type="text/javascript"
-		xml:space="preserve"></script>
-	<script src="resources/js/moment-with-locales.min.js"
-		type="text/javascript" xml:space="preserve"></script>
-	<script src="resources/js/bootstrap-datetimepicker.min.js"
-		type="text/javascript" xml:space="preserve"></script>
-	<script src="resources/js/main.js" type="text/javascript"
-		xml:space="preserve"></script>
+
 	<script th:src="@{/js/aos.js}"></script>
 	<script th:src="@{/js/bootstrap.bundle.js}"></script>
 	<script th:src="@{/js/glightbox.js}"></script>
@@ -164,6 +146,6 @@
 	<script th:src="@{/js/validate.js}"></script>
 	<script th:src="@{/js/swiper-bundle.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
-	
+
 </body>
 </html>

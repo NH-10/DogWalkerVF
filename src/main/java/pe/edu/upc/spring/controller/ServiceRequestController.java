@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,11 +45,8 @@ public class ServiceRequestController {
 	@Autowired
 	private IStatusService staService;
 
-
-
 	@Autowired
 	private WalkerController w;
-	
 	
 	private Owner sesionOwner;
 	private ServiceRequest sesionServiceRequest;
@@ -71,9 +70,8 @@ public class ServiceRequestController {
 		return "serviceRequest";
 	}
 
-
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute ServiceRequest objServiceRequest, BindingResult binRes, Model model)
+	public String registrar(@Valid ServiceRequest objServiceRequest, BindingResult binRes, Model model)
 			throws ParseException {
 		if (binRes.hasErrors()) {
 			model.addAttribute("listStatus", sService.listStatus());
@@ -88,6 +86,7 @@ public class ServiceRequestController {
 					.setTotalServiceCost(sesionWalker.getCostService() * objServiceRequest.getTime().getValue());
 			objServiceRequest.setOwner(sesionOwner);
 			objServiceRequest.setState(staService.listStatus().get(0));
+			
 			boolean flag = srService.save(objServiceRequest);
 			if (flag) {
 				sesionServiceRequest = objServiceRequest;

@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,6 +29,9 @@ public class ServiceRequest implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idServiceRequest;
 
+	
+	@NotNull(message = "Ingrese la fecha de servicio")
+	@Future(message = "La fecha debe ser en el futuro")	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "dateService")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -34,9 +40,11 @@ public class ServiceRequest implements Serializable {
 	@Column(name = "totalServiceCost", nullable = false)
 	private double totalServiceCost;
 
+	@NotEmpty(message = "Ingrese la hora inicio de recojo")
 	@Column(name = "startTime", length = 20, nullable = false)
 	private String startTime;
 
+	@NotEmpty(message = "Ingrese la hora límite de recojo")
 	@Column(name = "timeLimit", length = 20, nullable = false)
 	private String timeLimit;
 
