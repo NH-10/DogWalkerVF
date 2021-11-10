@@ -124,6 +124,7 @@ public class DogController {
 	{
 		idOwner = String.valueOf(sesionOwner.getIdOwner());
 		listDog = dService.ListDogByOwner(idOwner);
+		model.addAttribute("owner", sesionOwner);
 		model.addAttribute("ListDogByOwner", listDog);
 		return "dogLists";
 	}	
