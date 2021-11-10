@@ -29,7 +29,10 @@
 				<div class="form-group col-sm-12">
 					<div class=" form group date" id="id_0">
 						<input type="date" class="form-control itemselect"
-							placeholder="Fecha de servicio" th:field="*{dateService}"></input>
+							placeholder="Fecha de servicio" th:field="*{dateService}" th:errorclass="'form-control alert-danger'" /> <small
+						class="form-text text-danger"
+						th:if="${#fields.hasErrors('dateService')}"
+						th:errors="*{dateService}"></small>
 					</div>
 				</div>
 
@@ -38,11 +41,17 @@
 			<div class="row">
 				<div class="form-group col-sm-6">
 					<input type="text" class="form-control item"
-						placeholder="Hora inicio recojo" th:field="*{startTime}"></input>
+						placeholder="Hora inicio recojo" th:field="*{startTime}" th:errorclass="'form-control alert-danger'" /> <small
+						class="form-text text-danger"
+						th:if="${#fields.hasErrors('startTime')}"
+						th:errors="*{startTime}"></small>
 				</div>
 				<div class="form-group col-sm-6">
 					<input type="text" class="form-control item" placeholder="Hora límite de recojo"
-						th:field="*{timeLimit}"></input>
+						th:field="*{timeLimit}" th:errorclass="'form-control alert-danger'" /> <small
+						class="form-text text-danger"
+						th:if="${#fields.hasErrors('timeLimit')}"
+						th:errors="*{timeLimit}"></small>
 
 				</div>
 
@@ -75,5 +84,8 @@
 	<script th:src="@{/js/validate.js}"></script>
 	<script th:src="@{/js/swiper-bundle.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
+	
+	
+	
 </body>
 </html>
