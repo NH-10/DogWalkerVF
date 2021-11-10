@@ -81,7 +81,7 @@ table.table tr th {
 }
 
 table.table tr td {                             /*efecto del tipo de letra las filas*/
-		border-color: #eca766;
+	border-color: #eca766;
 	border: 0 1px;
 	padding: 12px 15px;
 	vertical-align: middle;
@@ -125,15 +125,15 @@ table.table td a {
 }
 
 table.table td a:hover {
-	color: #FFBD73;
+	color: #5a352c;
 }
 
 table.table td a.settings {
-	color: #FFBD73;
+	color: #5a352c;
 }
 
 table.table td a.delete {
-	color: #FFBD73;
+	color: #5a352c;
 }
 
 table.table td i {
