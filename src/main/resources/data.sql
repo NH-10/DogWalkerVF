@@ -107,8 +107,14 @@ INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Nam
 INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Chavez', '159', 'Pablo@gmail.com', 'N°123', '08/10/1987', 'Pablo', 1);
 INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Rosales', '753', 'Miriam@gmail.com', 'las hormigas N° 147', '15/04/1989', 'Miriam', 11);
 
-INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Prado', 'Soy estudiante de la carrera de Ingeniería Insdustrial -  UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','Sandra@gmail.com', 'Calle 334 las palmas', '10/08/1999', '10.0', 'Sandra', 1, 2);
-INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Reyes', 'Soy estudiante de la carrera de Ingeniería de Sistemas de información de la UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','marcos@gmail.com', 'Calle 334 las palmas', '10/08/2000', '10.0', 'Marcos', 10, 1);
+INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Prado', 'Soy estudiante de la carrera de Ingeniería Insdustrial -  UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','sandra@gmail.com', 'Calle 334 las palmas', '10/08/1999', '10.0', 'Sandra', 1, 2);
+INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Reyes', 'Soy estudiante de la carrera de Ingeniería Industrial, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','marcos@gmail.com', 'Calle 334 las palmas', '10/08/2000', '15.0', 'Marcos', 10, 1);
+INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Perez', 'Soy estudiante de la carrera de Ingeniería Insdustrial -  UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','jean@gmail.com', 'Calle 334 las palmas', '10/08/1999', '12.0', 'Jean', 1, 2);
+INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Alvarado', 'Soy estudiante de la carrera Arquitectura de la UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','dennis@gmail.com', 'Calle 334 las palmas', '10/08/2000', '15.0', 'Dennis', 10, 1);
+INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Tineo', 'Soy estudiante de la carrera de Musica -  UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','pablo@gmail.com', 'Calle 334 las palmas', '10/08/1999', '14.0', 'Pablo', 2, 2);
+INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Rosales', 'Soy estudiante de la carrera Ingenieria Civil, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','ruth@gmail.com', 'Calle 334 las palmas', '10/08/2000', '20.0', 'Ruth', 10, 1);
+INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('De la Cruz', 'Soy estudiante de la carrera de Ingeniería Insdustrial -  UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','camila@gmail.com', 'Calle 334 las palmas', '10/08/1999', '20.0', 'Camila', 1, 2);
+INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Robles', 'Soy estudiante de la carrera de Ingeniería de Sistemas de información de la UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','rodrigo@gmail.com', 'Calle 334 las palmas', '10/08/1998', '15.0', 'Rodrigo', 10, 1);
 
 
 
@@ -126,6 +132,7 @@ INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VAL
 INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Aquiles', 'Es jugueton','12/02/20', 1,1,1);
 
 INSERT INTO feedback(comment,rating,id_owner,id_walker) VALUES('excelente paseador',5,1,2);
+
 
 INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '12/02/22', '10', '10:15', 1, 1, 2, 1, 2);
 
