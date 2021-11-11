@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,7 +72,7 @@ public class ServiceRequestController {
 	}
 
 	@RequestMapping("/registrar")
-	public String registrar(@Valid ServiceRequest objServiceRequest, BindingResult binRes, Model model)
+	public String registrar(@ModelAttribute ServiceRequest objServiceRequest, BindingResult binRes, Model model)
 			throws ParseException {
 		if (binRes.hasErrors()) {
 			model.addAttribute("listStatus", sService.listStatus());
@@ -85,7 +86,7 @@ public class ServiceRequestController {
 			objServiceRequest
 					.setTotalServiceCost(sesionWalker.getCostService() * objServiceRequest.getTime().getValue());
 			objServiceRequest.setOwner(sesionOwner);
-			objServiceRequest.setState(staService.listStatus().get(0));
+			objServiceRequest.setStatus(staService.listStatus().get(0));
 			
 			boolean flag = srService.save(objServiceRequest);
 			if (flag) {
@@ -103,10 +104,8 @@ public class ServiceRequestController {
 			throws ParseException {
 		if (binRes.hasErrors()) {
 			model.addAttribute("listStatus", sService.listStatus());
-			model.addAttribute("listTimes", tService.listTime());
-			model.addAttribute("listWalker", waService.list());
 			model.addAttribute("owner", sesionOwner);
-			return "serviceRequest";
+			return "serviceRequestEditWalker";
 		} else {
 
 			objServiceRequest.setWalker(sesionServiceRequest.getWalker());
@@ -124,7 +123,7 @@ public class ServiceRequestController {
 				return "redirect:/serviceRequest/listarSolicitudesPaseador";
 			} else {
 				model.addAttribute("mensaje", "Error al guadra solicitud");
-				return "redirect:/serviceRequest/";
+				return "redirect:/serviceRequest/actualizarRequest";
 			}
 		}
 	}
@@ -138,6 +137,7 @@ public class ServiceRequestController {
 		} else {
 			model.addAttribute("listStatus", sService.listStatus());
 			sesionServiceRequest = objServiceRequest.get();
+			sesionOwner = sesionServiceRequest.getOwner();
 			if (objServiceRequest.isPresent())
 				objServiceRequest.ifPresent(o -> model.addAttribute("serviceRequest", o));
 
