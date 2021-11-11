@@ -65,15 +65,30 @@ public class DogController {
 			model.addAttribute("listaRaza", rService.listRace());
 			model.addAttribute("listaCaracter", cService.listCharacter());
 			model.addAttribute("owner", sesionOwner);
-			return "dog";
+			if(objDog.getIdDog() > 0) {
+				return "dogEdit";
+			}
+			else {
+				model.addAttribute("mensaje", "Ocurrio un error");
+				return "dog";
+			}	
+			
 		} else {
 			objDog.setOwner(sesionOwner);
 			boolean flag = dService.save(objDog);
 			if (flag)
 				return "redirect:/dog/listarCanes";
 			else {
-				model.addAttribute("mensaje", "Ocurrio un error");
-				return "redirect:/dog/irRegistrar";
+				if(objDog.getIdDog() > 0) {
+					model.addAttribute("listaRaza", rService.listRace());
+					model.addAttribute("listaCaracter", cService.listCharacter());
+					return "dogEdit";
+				}
+				else {
+					model.addAttribute("mensaje", "Ocurrio un error");
+					return "redirect:/dog/irRegistrar";
+				}	
+				
 			}
 		}
 	}

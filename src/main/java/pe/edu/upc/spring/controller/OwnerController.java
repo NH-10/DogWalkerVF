@@ -86,9 +86,17 @@ public class OwnerController {
 	public String registrar(@Valid Owner objOwner, BindingResult binRes, Model model) throws ParseException {
 		if (binRes.hasErrors()) {
 			model.addAttribute("listadistrito", dService.listDistrict());
-			return "owner";
+			
+			if(objOwner.getIdOwner() > 0) {
+				return "ownerEdit";
+			}
+			else {
+				model.addAttribute("mensaje", "Ocurrio un error");
+				return "owner";
+			}	
 		} else {
 			boolean flag = oService.save(objOwner);
+			
 			if (flag) {
 				sesionOwner = objOwner;
 				dogController.setOwner(sesionOwner);
@@ -96,9 +104,16 @@ public class OwnerController {
 				fController.setOwner(sesionOwner);
 				walkerController.setSesionOwner(sesionOwner);
 				return "redirect:/owner/bienvenido";
-			} else {
-				model.addAttribute("mensaje", "Ocurrio un error");
-				return "redirect:/owner/irRegistrar";
+			}
+			else { 
+
+				if(objOwner.getIdOwner() > 0) {
+					return "redirect:/owner/modificar";
+				}
+				else {
+					model.addAttribute("mensaje", "Ocurrio un error");
+					return "redirect:/owner/irRegistrar";
+				}	
 			}
 		}
 	}

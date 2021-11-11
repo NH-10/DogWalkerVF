@@ -103,7 +103,13 @@ public class WalkerController {
 		if (binRes.hasErrors()) {
 			model.addAttribute("listadistrito", dService.listDistrict());
 			model.addAttribute("listpersonalidad", pService.listPersonality());
-			return "walker";
+			if(objWalker.getIdWalker()> 0) {
+				return "walkerEdit";
+			}
+			else {
+				model.addAttribute("mensaje", "Ocurrio un error");
+				return "walker";
+			}	
 		} else {
 			boolean flag = wService.save(objWalker);
 			if (flag) {
@@ -112,8 +118,13 @@ public class WalkerController {
 				sController.setWalker(sesionWalker);
 				return "redirect:/walker/bienvenido";
 			} else {
-				model.addAttribute("mensaje", "Ocurrio un error");
-				return "redirect:/walker/irRegistrar";
+				if(objWalker.getIdWalker() > 0) {
+					return "redirect:/walker/modificar";
+				}
+				else {
+					model.addAttribute("mensaje", "Ocurrio un error");
+					return "redirect:/walker/irRegistrar";
+				}	
 			}
 		}
 	}

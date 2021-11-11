@@ -127,5 +127,5 @@ INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VAL
 
 INSERT INTO feedback(comment,rating,id_owner,id_walker) VALUES('excelente paseador',5,1,2);
 
-INSERT INTO public.service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_state, id_time, id_walker) VALUES ( '12/02/20', '10', '10:15', 1, 1, 1, 1, 2);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '12/02/30', '10', '10:15', 1, 1, 2, 1, 2);
 
