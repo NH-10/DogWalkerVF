@@ -31,31 +31,27 @@
 			
 			
 			
-
+<div class="row">
+<div class="form-group" style="display:none;">
 			<input type="hidden" class="form-control item " placeholder="ID"
 				th:field="*{idServiceRequest}"></input> 
 				<input type="hidden"
 				class="form-control itemselect" placeholder="Fecha de servicio"
 				th:field="*{dateService}"
-				th:errorclass="'form-control alert-danger'" /> <small
-				class="form-text text-danger"
-				th:if="${#fields.hasErrors('dateService')}"
-				th:errors="*{dateService}"></small> <input type="hidden"
+				th:errorclass="'form-control alert-danger'" /> <input type="hidden"
 				class="form-control item" placeholder="Hora inicio de recojo"
 				th:field="*{startTime}" th:errorclass="'form-control alert-danger'" />
-			<small class="form-text text-danger"
-				th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"></small>
+			
 			<input type="hidden" class="form-control item"
 				placeholder="Hora límite de recojo" th:field="*{timeLimit}"
-				th:errorclass="'form-control alert-danger'" /> <small
-				class="form-text text-danger"
-				th:if="${#fields.hasErrors('timeLimit')}" th:errors="*{timeLimit}"></small>
+				th:errorclass="'form-control alert-danger'" /> 
 
 			<select style="visibility:hidden" class="form-control itemselect" th:field="*{Time}">
 				<option th:each="t: ${listTimes}" th:value="${t.idTime}"
 					th:text="${t.time}" th:selected="(${t}==*{Time})"></option>
 			</select>
-
+</div>
+</div>
 
 
 
