@@ -72,7 +72,7 @@ public class ServiceRequestController {
 	}
 
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute ServiceRequest objServiceRequest, BindingResult binRes, Model model)
+	public String registrar(@Valid ServiceRequest objServiceRequest, BindingResult binRes, Model model)
 			throws ParseException {
 		if (binRes.hasErrors()) {
 			model.addAttribute("listStatus", sService.listStatus());
@@ -100,7 +100,7 @@ public class ServiceRequestController {
 	}
 
 	@RequestMapping("/actualizarRequest")
-	public String actualizarRequest(@ModelAttribute ServiceRequest objServiceRequest, BindingResult binRes, Model model)
+	public String actualizarRequest(@Valid ServiceRequest objServiceRequest, BindingResult binRes, Model model)
 			throws ParseException {
 		if (binRes.hasErrors()) {
 			model.addAttribute("listStatus", sService.listStatus());
@@ -111,11 +111,11 @@ public class ServiceRequestController {
 			objServiceRequest.setWalker(sesionServiceRequest.getWalker());
 			objServiceRequest.setTime(sesionServiceRequest.getTime());
 			objServiceRequest.setOwner(sesionOwner);
-			objServiceRequest.setDateService(sesionServiceRequest.getDateService());
 			objServiceRequest.setStartTime(sesionServiceRequest.getStartTime());
 			objServiceRequest.setTimeLimit(sesionServiceRequest.getTimeLimit());
 			objServiceRequest.setTotalServiceCost(sesionServiceRequest.getTotalServiceCost());
-
+			
+			
 			boolean flag = srService.save(objServiceRequest);
 			if (flag) {
 
