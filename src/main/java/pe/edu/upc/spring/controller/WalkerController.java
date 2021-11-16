@@ -82,7 +82,8 @@ public class WalkerController {
 
 	@RequestMapping("/menu")
 	public String irMenuWalker() {
-		return "menuWalker";
+		//return "menuWalker";
+		return "walkerMenuComplete";
 	}
 
 	@RequestMapping("/irBuscar")

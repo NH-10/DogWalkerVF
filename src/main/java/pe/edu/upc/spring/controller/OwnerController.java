@@ -67,7 +67,8 @@ public class OwnerController {
 
 	@RequestMapping("/menu")
 	public String irMenuOwner() {
-		return "OwnerMenu";
+		//return "OwnerMenu";
+		return "ownerMenuComplete";
 	}
 
 	@RequestMapping("/loginOwner")
