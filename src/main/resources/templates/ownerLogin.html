@@ -1,67 +1,55 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-
-<head>
-<meta charset="UTF-8"></meta>
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
-	rel="stylesheet" />
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+<meta charset="UTF-8">
+<title>UPC-WEB</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
-<link rel="stylesheet"
-	th:href="@{/css/bootstrap-datetimepicker.min.css}" />
-<link rel="stylesheet" th:href="@{/css/duenoStyles.css}" />
-<link rel="stylesheet" th:href="@{/css/style.css}" />
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-<link rel="stylesheet" th:href="@{/css/aos.css}" />
+<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
 </head>
 <body>
-	<div class="registration-form" data-aos="fade-right">
-		<form th:action="@{/owner/validarUsuario}" method="post"
-			th:object="${owner}">
-			<div class="row" id="centrado">
-				<div class="form-group ">
-					<h1>Ingresar a cuenta</h1>
-				</div>
-			</div>
 
-			<div class="form-icon-c">
-				<img th:src="@{/imagenes/icon-dueno.png}">
-			</div>
+	<div class="container" align="center">
+		<div class="card border-light text-center">
+			<div class="card-body" align="center">
+				<form th:action="@{/login}" method="post">
 
-			<div class="row">
-				<div class="form-group col-sm-12">
-					<input type="text" class="form-control item" placeholder="email"
-						th:field="*{email}" th:errorclass="'form-control alert-danger'" />
-					<small class="form-text text-danger"
-						th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="form-group col-sm-12">
-					<input type="password" class="form-control item"
-						placeholder="Contraseña" th:field="*{password}"
-						th:errorclass="'form-control alert-danger'" /> <small
-						class="form-text text-danger"
-						th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
-				</div>
-			</div>
-			<button type="submit" class="btn btn-block create-account">Ingresar</button>
-			<a class="btn btn-block" th:href="@{/login/iniciarSegunUsuario}">Volver</a>
-		</form>
+					<div class="col-sm-6">
+						<img th:src="@{/img/upc.png}" height="35%" width="35%" />
+					</div>
+					<div class="col-sm-6"><p  class="btn btn-lg btn-danger btn-block">Programación en Web</p></div>
 
+					<div class="col-sm-6">
+						<input type="text" name="username" id="username"
+							class="form-control" placeholder="usuario" autofocus required />
+					</div>
+
+					<div class="col-sm-6">
+						<input type="password" name="password" id="password"
+							class="form-control" placeholder="clave" required />
+					</div>
+
+					<div class="col-sm-6">
+						<input type="submit" class="btn btn-lg btn-danger btn-block"
+							value="Ingresar" />
+					</div>
+				</form>
+
+			</div>
+		</div>
+		<div align="center" class="col-sm-6">
+			<div class="alert alert-success" th:if="${success != null}"
+				th:text="${success}"></div>
+			<div class="alert alert-danger" th:if="${error != null}"
+				th:text="${error}"></div>
+			<div class="alert alert-info" th:if="${info != null}"
+				th:text="${info}"></div>
+		</div>
 	</div>
 
-	<script th:src="@{/js/aos.js}"></script>
-	<script th:src="@{/js/bootstrap.bundle.js}"></script>
-	<script th:src="@{/js/glightbox.js}"></script>
-	<script th:src="@{/js/isotope.pkgd.js}"></script>
-	<script th:src="@{/js/validate.js}"></script>
-	<script th:src="@{/js/swiper-bundle.min.js}"></script>
-	<script th:src="@{/js/main.js}"></script>
+
 
 </body>
 </html>

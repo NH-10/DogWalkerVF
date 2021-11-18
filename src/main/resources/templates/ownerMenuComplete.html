@@ -16,30 +16,23 @@
 <link rel="stylesheet" th:href="@{/css/duenoStyles.css}" />
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-	
+
 </head>
 
 <body>
 	<div class="Main-container">
 		<div class="container-register">
-            <div class="wrap-register">
-		
-
-
-			<a class="btn btn-block create-account" th:href= "@{/owner/modificar}">
-			Editar Perfil</a>
+			<div class="wrap-register">
+				<form id="logoutForm" th:action="@{/logout}" method="post">
+					<a class="btn btn-block create-account"	th:href="@{/owner/modificar}"> Editar Perfil</a>
+					<a class="btn btn-block create-account" th:href="@{/dog/listarCanes}">	Gestionar Mascotas</a> 
+					<a class="btn btn-block create-account" th:href="@{/serviceRequest/listarSolicitudesDueno}">Solicitudes</a>
+					<a class="btn btn-block create-account"	th:href="@{/walker/Comentarios}">Comentarios</a> 
+					<a class="btn btn-block create-account" onclick="document.getElementById('logoutForm').submit();"type="submit">Cerrar Sesión</a> 
+					<a class="btn btn-block" th:href="@{/owner/bienvenido}">Volver</a>
+					
+				</form>	
 			
-			<a class="btn btn-block create-account" th:href= "@{/dog/listarCanes}">
-			Gestionar Mascotas</a>
-			
-			<a class="btn btn-block create-account" th:href= "@{/serviceRequest/listarSolicitudesDueno}">
-			Solicitudes</a>
-			<a class="btn btn-block create-account" th:href="@{/walker/Comentarios}">Comentarios</a>
-			<a class="btn btn-block create-account" th:href= "@{/owner/inicio}">
-			Cerrar Sesión</a>
-			
-			<a  class="btn btn-block" th:href="@{/owner/bienvenido}">Volver</a>
-		
 			</div>
 		</div>
 	</div>
