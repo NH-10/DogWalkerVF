@@ -59,7 +59,7 @@
 									<li class="pull-left"><a
 										th:href="@{/pantalla/contactanos}">Contáctanos</a></li>
 									<li class="pull-right"><a
-										th:href="@{/pantalla/iniciarSegunUsuario}">Iniciar sesión</a></li>
+										th:href ="@{/login}">Iniciar sesión</a></li>
 									<li class="pull-right"><a
 										th:href="@{/pantalla/regitrarSegunUsuario}">Registrarse</a></li>
 								</div>
@@ -166,6 +166,46 @@
 
 		</div>
 	</div>
+	
+	
+	<div th:fragment="header_error">
+
+		<div class="header-area  ">
+			<div id="sticky-header" class="main-header-area">
+
+
+				<div class="main-menu  d-none d-lg-block ">
+					<nav class="navbar navbar-default  " role="navigation">
+
+
+
+						<div class="navbar-collapse collapse color-header">
+							<ul class="nav navbar-nav ">
+
+
+								<li class="pull-left"><a href="#"><img class="b"
+										th:src="@{/imagenes/logo.png}" width="60" alt=""></a></li>
+
+								<div class="sin" style="text-align: left;">
+							
+									<li class="pull-right"><a>Dog Walker</a></li>
+								</div>
+
+
+							</ul>
+						</div>
+
+
+					</nav>
+				</div>
+			</div>
+
+		</div>
+
+
+	</div>
+	
+	
 </body>
 
 </html>
