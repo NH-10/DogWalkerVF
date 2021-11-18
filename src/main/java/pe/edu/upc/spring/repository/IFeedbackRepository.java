@@ -8,9 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import pe.edu.upc.spring.model.Dog;
 import pe.edu.upc.spring.model.Feedback;
-import pe.edu.upc.spring.model.Walker;
+
 
 
 @Repository

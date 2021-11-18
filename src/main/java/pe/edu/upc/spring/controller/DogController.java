@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -123,7 +124,7 @@ public class DogController {
 		}
 		return "redirect:/dog/listarCanes";
 	}
-
+	@Secured("ROLE_OWNER")
 	@RequestMapping("/listarCanes")
 	public String listarCanes(Model model) {
 		idOwner = String.valueOf(sesionOwner.getIdOwner());

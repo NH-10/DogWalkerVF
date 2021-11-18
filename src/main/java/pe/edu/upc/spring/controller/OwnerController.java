@@ -1,10 +1,12 @@
 package pe.edu.upc.spring.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,14 +16,20 @@ import com.sun.el.parser.ParseException;
 
 import pe.edu.upc.spring.model.District;
 import pe.edu.upc.spring.model.Owner;
+import pe.edu.upc.spring.model.Role;
+import pe.edu.upc.spring.model.Users;
 import pe.edu.upc.spring.service.IDistrictService;
 import pe.edu.upc.spring.service.IOwnerService;
+import pe.edu.upc.spring.serviceimpl.JpaUserDetailsService;
 
 @Controller
 @RequestMapping("/owner")
 public class OwnerController {
 	@Autowired
 	private IOwnerService oService;
+	
+	@Autowired
+	private JpaUserDetailsService uService;
 
 	@Autowired
 	private IDistrictService dService;
@@ -39,6 +47,9 @@ public class OwnerController {
 	private FeedbackController fController;
 
 	private Owner sesionOwner;
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+
 
 	@RequestMapping("/inicio")
 	public String irPaginaInicio(Model model) {
@@ -96,9 +107,14 @@ public class OwnerController {
 				return "owner";
 			}	
 		} else {
+			
+			String bcryptPassword = passwordEncoder.encode(objOwner.getPassword());
+			objOwner.setPassword(bcryptPassword);	
+
+			boolean flagUsers = registrarUsario(objOwner);
 			boolean flag = oService.save(objOwner);
 			
-			if (flag) {
+			if (flag && flagUsers ) {
 				sesionOwner = objOwner;
 				dogController.setOwner(sesionOwner);
 				sController.setOwner(sesionOwner);
@@ -118,6 +134,9 @@ public class OwnerController {
 			}
 		}
 	}
+	
+	
+	
 
 	@RequestMapping("/modificar")
 	public String modificar(Model model) {
@@ -153,4 +172,29 @@ public class OwnerController {
 			return "ownerLogin";
 		}
 	}
+
+
+	public void setSesionOwner(Owner sesionOwner) {
+		this.sesionOwner = sesionOwner;
+		dogController.setOwner(sesionOwner);
+		walkerController.setSesionOwner(sesionOwner);
+		sController.setOwner(sesionOwner);
+		fController.setOwner(sesionOwner);
+	}
+	
+	
+	public boolean  registrarUsario(Owner owner) {
+		Users users = new Users();
+		List<Role> listRoles= new ArrayList<Role>();
+		Role role= new Role();
+		role.setRol("ROLE_OWNER");
+		listRoles.add(role);
+		users.setPassword(owner.getPassword());
+		users.setRoles(listRoles);
+		users.setEnabled(true);
+		users.setUsername(owner.getEmail());
+		boolean flagUsers = uService.save(users);
+		return flagUsers;
+	}
+	
 }

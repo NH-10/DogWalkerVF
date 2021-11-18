@@ -17,4 +17,7 @@ public interface IOwnerRepository extends JpaRepository<Owner, Integer>{
 	@Query("from Owner o where o.email = :email and o.password = :password ")
 	List<Owner> findByEmailAndPassword(@Param("email")String email, @Param("password")String password);
 	
+	@Query("from Owner o where o.email = :email ")
+	Owner findByEmail(@Param("email")String email);
+	
 }

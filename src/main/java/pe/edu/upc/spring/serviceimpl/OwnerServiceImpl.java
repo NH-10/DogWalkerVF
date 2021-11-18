@@ -34,5 +34,12 @@ public class OwnerServiceImpl implements IOwnerService {
 	public List<Owner> findByEmailAndPassword(String email, String password) {
 		return dOwner.findByEmailAndPassword(email, password);
 	}
+	
+
+	@Override
+	@Transactional(readOnly=true)
+	public Owner findByEmail(String email) {
+		return dOwner.findByEmail(email);
+	}
 
 }

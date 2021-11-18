@@ -49,5 +49,11 @@ public class WalkerServiceImpl implements IWalkerService {
 	public List<Walker> listByDistrict(String nameDistrict) {
 		return wa.listByDistrict(nameDistrict);
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Walker findByEmail(String email) {
+		return wa.findByEmail(email);
+	}
 
 }

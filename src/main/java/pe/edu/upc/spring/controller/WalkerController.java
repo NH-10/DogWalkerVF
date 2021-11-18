@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,14 +18,18 @@ import com.sun.el.parser.ParseException;
 
 import pe.edu.upc.spring.model.District;
 import pe.edu.upc.spring.model.Owner;
+import pe.edu.upc.spring.model.Role;
+import pe.edu.upc.spring.model.Users;
 import pe.edu.upc.spring.model.Walker;
 import pe.edu.upc.spring.service.IDistrictService;
 import pe.edu.upc.spring.service.IFeedbackService;
 import pe.edu.upc.spring.service.IPersonalityService;
 import pe.edu.upc.spring.service.IWalkerService;
+import pe.edu.upc.spring.serviceimpl.JpaUserDetailsService;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -33,6 +39,9 @@ public class WalkerController {
 
 	@Autowired
 	private IDistrictService dService;
+	
+	@Autowired
+	private JpaUserDetailsService uService;
 
 	@Autowired
 	private IPersonalityService pService;
@@ -51,6 +60,9 @@ public class WalkerController {
 
 	@Autowired
 	private WalkerController w;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	private Walker sesionWalker;
 	private Owner sesionOwner;
@@ -112,8 +124,12 @@ public class WalkerController {
 				return "walker";
 			}	
 		} else {
+			String bcryptPassword = passwordEncoder.encode(objWalker.getPassword());
+			objWalker.setPassword(bcryptPassword);	
+
+			boolean flagUsers = registrarUsario(objWalker);
 			boolean flag = wService.save(objWalker);
-			if (flag) {
+			if (flag && flagUsers) {
 
 				sesionWalker = objWalker;
 				sController.setWalker(sesionWalker);
@@ -196,6 +212,7 @@ public class WalkerController {
 		return "walkerListByDistrict";
 	}
 
+	@Secured("ROLE_WALKER")
 	@RequestMapping("/Comentarios")
 	public String ListFeedbackByWalker(Model model) {
 		model.addAttribute("listaFeedbacks", fService.FeedbackByIdWalker(String.valueOf(sesionWalker.getIdWalker())));
@@ -206,5 +223,27 @@ public class WalkerController {
 	public void setSesionOwner(Owner sesionOwner) {
 		this.sesionOwner = sesionOwner;
 	}
+
+
+	public void setSesionWalker(Walker sesionWalker) {
+		this.sesionWalker = sesionWalker;
+		sController.setWalker(sesionWalker);
+	}
+	
+	public boolean  registrarUsario(Walker walker) {
+		Users users = new Users();
+		List<Role> listRoles= new ArrayList<Role>();
+		Role role= new Role();
+		role.setRol("ROLE_WALKER");
+		listRoles.add(role);
+		users.setPassword(walker.getPassword());
+		users.setRoles(listRoles);
+		users.setEnabled(true);
+		users.setUsername(walker.getEmail());
+		boolean flagUsers = uService.save(users);
+		return flagUsers;
+	}
+	
+	
 
 }

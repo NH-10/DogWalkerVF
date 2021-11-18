@@ -45,7 +45,7 @@ public class Walker implements Serializable {
 	private String email;
 
 	@NotEmpty(message = "Ingrese su contraseña")
-	@Column(name = "password", length = 20, nullable = false)
+	@Column(name = "password", length = 200, nullable = false)
 	private String password;
 
 	@NotNull(message = "Ingrese su fecha de nacimiento")
