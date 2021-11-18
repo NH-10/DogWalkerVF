@@ -102,20 +102,52 @@ INSERT INTO time(time,value) VALUES ('2 horas y 45 minutos','2.75');
 INSERT INTO time(time,value) VALUES ('3 horas','3.0');
 
 
-INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Parvina', '123', 'maria@gmail.com', 'Los claveles', '12/08/1990', 'Maria', 1);
-INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Prado', '456', 'juan@gmail.com', 'el tambo', '01/08/1980', 'Juan', 5);
-INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Chavez', '159', 'Pablo@gmail.com', 'N°123', '08/10/1987', 'Pablo', 1);
-INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Rosales', '753', 'Miriam@gmail.com', 'las hormigas N° 147', '15/04/1989', 'Miriam', 11);
+INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Parvina', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'maria@gmail.com', 'Los claveles', '12/08/1990', 'Maria', 1);
+INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Prado', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'romina@gmail.com', 'el tambo', '01/08/1980', 'Romina', 5);
+INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Chavez', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'susana@gmail.com', 'N°123', '08/10/1987', 'Susana', 1);
+INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Rosales', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'miriam@gmail.com', 'las hormigas N° 147', '15/04/1989', 'Miriam', 11);
 
-INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Prado', 'Soy estudiante de la carrera de Ingeniería Insdustrial -  UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','sandra@gmail.com', 'Calle 334 las palmas', '10/08/1999', '10.0', 'Sandra', 1, 2);
-INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Reyes', 'Soy estudiante de la carrera de Ingeniería Industrial, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','marcos@gmail.com', 'Calle 334 las palmas', '10/08/2000', '15.0', 'Marcos', 10, 1);
-INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Perez', 'Soy estudiante de la carrera de Ingeniería Insdustrial -  UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','jean@gmail.com', 'Calle 334 las palmas', '10/08/1999', '12.0', 'Jean', 1, 2);
-INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Alvarado', 'Soy estudiante de la carrera Arquitectura de la UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','dennis@gmail.com', 'Calle 334 las palmas', '10/08/2000', '15.0', 'Dennis', 10, 1);
-INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Tineo', 'Soy estudiante de la carrera de Musica -  UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','pablo@gmail.com', 'Calle 334 las palmas', '10/08/1999', '14.0', 'Pablo', 2, 2);
-INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Rosales', 'Soy estudiante de la carrera Ingenieria Civil, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','ruth@gmail.com', 'Calle 334 las palmas', '10/08/2000', '20.0', 'Ruth', 10, 1);
-INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('De la Cruz', 'Soy estudiante de la carrera de Ingeniería Insdustrial -  UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','camila@gmail.com', 'Calle 334 las palmas', '10/08/1999', '20.0', 'Camila', 1, 2);
-INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Robles', 'Soy estudiante de la carrera de Ingeniería de Sistemas de información de la UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','rodrigo@gmail.com', 'Calle 334 las palmas', '10/08/1998', '15.0', 'Rodrigo', 10, 1);
 
+
+INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'maria@gmail.com');
+INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'romina@gmail.com');
+INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'susana@gmail.com');
+INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'miriam@gmail.com');
+
+INSERT INTO roles(rol, user_id)	VALUES ('ROLE_OWNER', 1);
+INSERT INTO roles(rol, user_id)	VALUES ('ROLE_OWNER', 2);
+INSERT INTO roles(rol, user_id)	VALUES ('ROLE_OWNER', 3);
+INSERT INTO roles(rol, user_id)	VALUES ('ROLE_OWNER', 4);
+
+
+INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Prado', 'Soy estudiante de la carrera de Ingeniería Insdustrial -  UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu','juan@gmail.com', 'Calle 334 las palmas', '10/08/1999', '10.0', 'Juan', 1, 2);
+INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Reyes', 'Soy estudiante de la carrera de Ingeniería Industrial, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu','marcos@gmail.com', 'Calle 334 las palmas', '10/08/2000', '15.0', 'Marcos', 10, 1);
+INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Perez', 'Soy estudiante de la carrera de Ingeniería Insdustrial -  UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu','jean@gmail.com', 'Calle 334 las palmas', '10/08/1999', '12.0', 'Jean', 1, 2);
+INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Alvarado', 'Soy estudiante de la carrera Arquitectura de la UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu','dennis@gmail.com', 'Calle 334 las palmas', '10/08/2000', '15.0', 'Dennis', 10, 1);
+INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Tineo', 'Soy estudiante de la carrera de Musica -  UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu','pablo@gmail.com', 'Calle 334 las palmas', '10/08/1999', '14.0', 'Paul', 2, 2);
+INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Rosales', 'Soy estudiante de la carrera Ingenieria Civil, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu','paul@gmail.com', 'Calle 334 las palmas', '10/08/2000', '20.0', 'Ruth', 10, 1);
+INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('De la Cruz', 'Soy estudiante de la carrera de Ingeniería Insdustrial -  UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu','carlos@gmail.com', 'Calle 334 las palmas', '10/08/1999', '20.0', 'Carlos', 1, 2);
+INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Robles', 'Soy estudiante de la carrera de Ingeniería de Sistemas de información de la UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu','rodrigo@gmail.com', 'Calle 334 las palmas', '10/08/1998', '15.0', 'Rodrigo', 10, 1);
+
+
+INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'juan@gmail.com');
+INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'marcos@gmail.com');
+INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'jean@gmail.com');
+INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'dennis@gmail.com');
+
+INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'pablo@gmail.com');
+INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'paul@gmail.com');
+INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'carlos@gmail.com');
+INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'rodrigo@gmail.com');
+
+INSERT INTO roles(rol, user_id)	VALUES ('ROLE_WALKER', 5);
+INSERT INTO roles(rol, user_id)	VALUES ('ROLE_WALKER', 6);
+INSERT INTO roles(rol, user_id)	VALUES ('ROLE_WALKER', 7);
+INSERT INTO roles(rol, user_id)	VALUES ('ROLE_WALKER', 8);
+INSERT INTO roles(rol, user_id)	VALUES ('ROLE_WALKER', 9);
+INSERT INTO roles(rol, user_id)	VALUES ('ROLE_WALKER', 10);
+INSERT INTO roles(rol, user_id)	VALUES ('ROLE_WALKER', 11);
+INSERT INTO roles(rol, user_id)	VALUES ('ROLE_WALKER', 12);
 
 
 INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Doky', 'Es jugueton','12/02/20', 1,1,1);
@@ -135,4 +167,5 @@ INSERT INTO feedback(comment,rating,id_owner,id_walker) VALUES('excelente pasead
 
 
 INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '12/02/22', '10', '10:15', 1, 1, 2, 1, 2);
+
 
