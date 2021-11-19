@@ -166,6 +166,15 @@ INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VAL
 INSERT INTO feedback(comment,rating,id_owner,id_walker) VALUES('excelente paseador',5,1,2);
 
 
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '12/02/22', '10', '10:15', 1, 1, 2, 1, 2);
-
-
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '12/02/20', '10', '10:15', 1, 1, 2, 1, 2);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '12/03/19', '10', '10:15', 1, 1, 2, 1, 2);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '12/04/20', '10', '10:15', 1, 1, 2, 1, 1);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '13/02/20', '10', '10:15', 1, 1, 2, 1, 1);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '14/02/12', '10', '10:15', 1, 1, 2, 1, 1);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '15/02/17', '10', '10:15', 1, 1, 2, 1, 2);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '16/02/19', '10', '10:15', 1, 1, 2, 1, 2);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '21/02/31', '10', '10:15', 1, 1, 2, 1, 3);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '21/02/32', '10', '10:15', 1, 1, 2, 1, 3);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '21/02/01', '10', '10:15', 1, 1, 2, 1, 4);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '22/02/02', '10', '10:15', 1, 1, 2, 1, 4);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '24/02/03', '10', '10:15', 1, 1, 2, 1, 5);
