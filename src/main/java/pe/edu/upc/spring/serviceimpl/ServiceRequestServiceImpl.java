@@ -1,5 +1,6 @@
 package pe.edu.upc.spring.serviceimpl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,5 +58,9 @@ public class ServiceRequestServiceImpl implements IServiceRequestService {
 		return dServiceRequest.listServiceRequestByWalker(idWalker);
 	}
 
-
+	@Override
+	@Transactional(readOnly = true)
+	public List<ServiceRequest> findServiceByDate(Date DateBegin,Date DateEnd, String d) {
+		return dServiceRequest.findServiceByDate(DateBegin, DateEnd,d);
+	}
 }

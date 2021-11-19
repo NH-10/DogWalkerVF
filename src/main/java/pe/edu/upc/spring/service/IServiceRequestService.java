@@ -1,5 +1,6 @@
 package pe.edu.upc.spring.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,5 +13,5 @@ public interface IServiceRequestService {
 	public List<ServiceRequest> listServiceRequest();
 	public List<ServiceRequest> listServiceRequestByOwner(String idOwner);
 	public List<ServiceRequest> listServiceRequestByWalker(String idWalker);
-	
+	public List<ServiceRequest> findServiceByDate(Date DateBegin,Date DateEnd, String d);
 }

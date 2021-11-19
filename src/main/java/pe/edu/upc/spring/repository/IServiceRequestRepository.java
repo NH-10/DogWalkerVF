@@ -1,5 +1,6 @@
 package pe.edu.upc.spring.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,5 +18,8 @@ public interface IServiceRequestRepository extends JpaRepository<ServiceRequest,
 	
 	@Query("from ServiceRequest s where CAST(s.walker.idWalker AS string) like %:idWalker%")
 	List<ServiceRequest> listServiceRequestByWalker(@Param("idWalker")String idWalker);
+
+	@Query("from ServiceRequest s where (s.dateService between :dateBegin and :dateEnd) and s.walker.district.name like %:d% ")
+	List<ServiceRequest> findServiceByDate(@Param("dateBegin") Date DateBegin,@Param("dateEnd") Date DateEnd, @Param("d") String d);	
 
 }
