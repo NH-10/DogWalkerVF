@@ -7,6 +7,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Top Paseadores</title>
+
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet"
@@ -20,6 +21,7 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link rel="stylesheet" th:href="@{/css/styleTable.css}" />
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.version.2.css}" />
+<link rel="stylesheet" th:href="@{/css/styleTop.css}" />
 <link rel="stylesheet" th:href="@{/css/header.css}" />
 <link rel="stylesheet" th:href="@{/css/styles2.css}" />
 <link rel="stylesheet" th:href="@{/css/styleTable.css}" />
@@ -40,35 +42,41 @@ $(document).ready(function(){
 <body>
 	<div th:replace="fragments/header :: header_dueno"></div>
 
-	<form th:action="@{/owner/buscarTopPaseadores}" method="post"
+	
+
+
+<div class="registration-form">
+<form th:action="@{/owner/buscarTopPaseadores}" method="post"
 		th:object="${serviceRequest}">
 		<div class="row">
 			<div class="form-group col-sm-3">
-
-				<input type="date" class="form-control itemselect"
-					placeholder="Fecha inicio" th:field="*{dateService}" />
+				<label>Fecha inicio</label> <input type="date"
+					class="form-control itemselect" placeholder="Fecha inicio"
+					th:field="*{dateService}" />
 
 			</div>
 
 			<div th:object="${walker}">
 				<div class="form-group col-sm-3">
 
-					<input type="date" class="form-control itemselect"
-						placeholder="Fecha inicio" th:field="*{dateOfBirth}" />
+					<label>Fecha fin</label> <input type="date"
+						class="form-control itemselect" placeholder="Fecha inicio"
+						th:field="*{dateOfBirth}" />
 
 
 				</div>
 
 				<div class="form-group col-sm-3">
 
-					<select class="form-control itemselect" th:field="*{District}">
+					<label>Distrito</label> <select class="form-control itemselect"
+						th:field="*{District}">
 						<option th:each="d: ${listadistrito}" th:value="${d.idDistrict}"
 							th:text="${d.name}" th:selected="(${d}==*{District})"></option>
 					</select>
 
 				</div>
-				
-				<div class="form-group col-sm-3">
+
+				<div class="form-group col-sm-2">
 
 					<button type="submit" class="btn btn-block create-account">Buscar</button>
 
@@ -76,9 +84,13 @@ $(document).ready(function(){
 			</div>
 
 		</div>
-
-		
 	</form>
+</div>
+
+
+
+
+
 
 	<div class="container">
 		<form id="myform">
@@ -111,24 +123,24 @@ $(document).ready(function(){
 						<table class="table table-striped table-hover">
 							<thead class="table-head">
 								<tr>
+
 									<th class="text-center">Nombre</th>
-									
+
 									<th class="text-center">Descripción</th>
-					
+
 									<th class="text-center">N# Solicitudes</th>
 									<th class="text-center">Distrito</th>
-									
+
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="w: ${listarPaseadores}">
+
 									<td style="text-align: center" th:text="${w.firstNames}"></td>
-							
 									<td th:text="${w.description}"></td>
-									<td style="text-align: center"
-										th:text="${w.costService}"></td>
+									<td style="text-align: center" th:text="${w.costService}"></td>
 									<td style="text-align: center" th:text="${w.district.name}"></td>
-									
+
 								</tr>
 							</tbody>
 						</table>

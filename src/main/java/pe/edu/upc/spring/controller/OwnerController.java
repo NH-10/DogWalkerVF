@@ -215,8 +215,84 @@ public class OwnerController {
 	@RequestMapping("/topPaseadores")
 	public String irPaginaTopPaseadores(Model model) {
 
+
+		
 		model.addAttribute("owner", sesionOwner);
-		model.addAttribute("listarPaseadores", wService.list());
+		
+		int contador = 0;
+		int ref = 0;
+		boolean registrar = false;
+		List<Walker> wtotal = new ArrayList<Walker>();
+		wtotal = wService.list();
+		List<ServiceRequest> b = new ArrayList<ServiceRequest>();
+
+		b = sService.listServiceRequest();
+		
+		for (int j = 0; j < wService.list().size(); j++) {
+			wtotal.get(j).setCostService(0);
+		}
+
+		for (int j = 0; j < wService.list().size(); j++) {
+			Walker ws = wService.list().get(j);
+			for (int i = 0; i < b.size(); i++) {
+				ServiceRequest s = b.get(i);
+
+				if (ws.getIdWalker() == s.getWalker().getIdWalker()) {
+					contador = contador + 1;
+					ref = j;
+					registrar = true;
+				}
+			}
+			if (registrar) {
+				wtotal.get(ref).setCostService((double) contador);
+			}
+			contador = 0;
+			ref = 0;
+			registrar = false;
+		}
+		
+
+		
+		List<Walker> wfinal = new ArrayList<Walker>();
+		double mayor;
+		double max_antiguo;
+		String nombre;
+		int n;
+		District d;
+		for (int i = 0; i < wtotal.size(); i++) {
+			mayor = wtotal.get(i).getCostService();
+			for (int j = i + 1; j < wtotal.size() - 1; j++) {
+				if (mayor < wtotal.get(j).getCostService()) {
+					max_antiguo = mayor;
+					mayor = wtotal.get(j).getCostService();
+				nombre = 	wtotal.get(i).getFirstNames();
+				n = 	wtotal.get(i).getIdWalker();
+				d=wtotal.get(i).getDistrict();
+				
+					wtotal.get(i).setCostService(mayor);
+					wtotal.get(i).setFirstNames(wtotal.get(j).getFirstNames());
+					wtotal.get(i).setIdWalker(wtotal.get(j).getIdWalker());
+					wtotal.get(i).setDistrict(wtotal.get(j).getDistrict());
+					wtotal.get(j).setCostService(max_antiguo);
+					wtotal.get(j).setFirstNames(nombre);
+					wtotal.get(j).setIdWalker(n);
+					wtotal.get(j).setDistrict(d);
+				}
+			}
+			
+		}
+	
+		
+		for (int i = 0; i < wtotal.size(); i++) {
+			
+			if(wtotal.get(i).getCostService() > 0) {
+				wfinal.add(wtotal.get(i));
+			}
+		}
+		
+		
+		
+		model.addAttribute("listarPaseadores",wfinal);
 		model.addAttribute("WalkerController", w);
 		model.addAttribute("listadistrito", dService.listDistrict());
 		model.addAttribute("serviceRequest", new ServiceRequest());
@@ -236,10 +312,10 @@ public class OwnerController {
 		boolean registrar = false;
 		List<Walker> wtotal = new ArrayList<Walker>();
 		wtotal = wService.list();
-		List<Walker> wtotalref = new ArrayList<Walker>();
-		wtotalref = wService.list();
 		List<ServiceRequest> b = new ArrayList<ServiceRequest>();
-
+		
+		
+		
 		if (dateBegin != null && dateEnd != null)
 			b = sService.findServiceByDate(dateBegin, dateEnd, walker.getDistrict().getName());
 		else {
@@ -264,7 +340,6 @@ public class OwnerController {
 			}
 			if (registrar) {
 				wtotal.get(ref).setCostService((double) contador);
-				wtotalref.get(ref).setCostService((double) contador);
 			}
 			contador = 0;
 			ref = 0;
