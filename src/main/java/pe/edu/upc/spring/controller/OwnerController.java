@@ -305,8 +305,8 @@ public class OwnerController {
 	public String buscarPaseadoresTop(@ModelAttribute ServiceRequest serviceRequest, @ModelAttribute Walker walker,
 			Model model) throws ParseException {
 
-		Date dateBegin = serviceRequest.getDateService();
-		Date dateEnd = walker.getDateOfBirth();
+		Date dateBegin = serviceRequest.getDateService();   /// getdateService  se reutilizo funcion de service
+		Date dateEnd = walker.getDateOfBirth(); /// getdateofbirth  se reutilizo funcion de walker
 		int contador = 0;
 		int ref = 0;
 		boolean registrar = false;
@@ -324,7 +324,7 @@ public class OwnerController {
 		}
 
 		for (int j = 0; j < wService.list().size(); j++) {
-			wtotal.get(j).setCostService(0);
+			wtotal.get(j).setCostService(0);     //costservice funciona como atributo de cantidad de solicitudes 
 		}
 
 		for (int j = 0; j < wService.list().size(); j++) {
