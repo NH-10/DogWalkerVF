@@ -17,19 +17,15 @@
 	<div th:replace="fragments/header :: header_error"></div>
 			
   	<section id="about" class="container">
-        	<h1 class="display-4"></h1>
-        	<h4 class="display-7">
-            	Los sentimos, usted no tiene permisos para acceder a este recurso.
-       	 	</h4>
-       	 	<div style="margin: auto; text-align:center;">
-       	 	       <a style="font-size: 12pt; color: orange ; font-weight: bolder;  " href="javascript: history.go(-1)">Volver</a>
-       	 	</div>
+        	<h1 class="display-4"> Los sentimos, usted no tiene permisos para acceder a este recurso.</h1>
+     
+  
+       	 	<a  class="btn btn-block" href="javascript: history.go(-1)" >Volver</a>
+        	
         	<div data-aos="zoom-in-up">
-        		<img th:src="@{/imagenes/dog_pag_error.jpg}" class="aboutimd" width="1000" align="middle"/>
+        		<img th:src="@{/imagenes/perro-triste-1920-1.jpg}" class="aboutimd" width="1000" align="middle"/>
         	</div>
-        	<h4 class="display-7">
-            	
-       	 	</h4>
+        	<br>
   	</section>
       
     	
