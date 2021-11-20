@@ -64,6 +64,8 @@ public class OwnerController {
 
 	@Autowired
 	private WalkerController w;
+	
+	private String contrasenaAnterior;
 
 
 	@RequestMapping("/inicio")
@@ -111,6 +113,7 @@ public class OwnerController {
 
 	@RequestMapping("/registrar")
 	public String registrar(@Valid Owner objOwner, BindingResult binRes, Model model) throws ParseException {
+		
 		if (binRes.hasErrors()) {
 			model.addAttribute("listadistrito", dService.listDistrict());
 			
@@ -118,16 +121,42 @@ public class OwnerController {
 				return "ownerEdit";
 			}
 			else {
-				model.addAttribute("mensaje", "Ocurrio un error");
 				return "owner";
 			}	
 		} else {
 			
-			String bcryptPassword = passwordEncoder.encode(objOwner.getPassword());
-			objOwner.setPassword(bcryptPassword);	
+			if(objOwner.getIdOwner() > 0) {
+				if(objOwner.getPassword()=="") {
+					objOwner.setPassword(contrasenaAnterior);
+				}else {
+					String bcryptPassword = passwordEncoder.encode(objOwner.getPassword());
+					objOwner.setPassword(bcryptPassword);
+				}
+			}
+			else {
+				String bcryptPassword = passwordEncoder.encode(objOwner.getPassword());
+				objOwner.setPassword(bcryptPassword);	
+			}
+			boolean flagUsers;
+			boolean flag;
+		
+			if(objOwner.getIdOwner() > 0) {
+			
+				 flagUsers = registrarUsuario(objOwner);
+				 flag = oService.save(objOwner);
+			}else {
+				
+				Users users= uService.findByUsername(objOwner.getEmail());
+				if(users!=null) {
+					model.addAttribute("mensaje", "Ya se ha creado una cuenta con este correo, por favor intente con otro");
+					flagUsers=false;
+					flag=false;
+				}else {
+					 flagUsers = registrarUsuario(objOwner);
+					 flag = oService.save(objOwner);
+				}
 
-			boolean flagUsers = registrarUsario(objOwner);
-			boolean flag = oService.save(objOwner);
+			}
 			
 			if (flag && flagUsers ) {
 				sesionOwner = objOwner;
@@ -135,6 +164,7 @@ public class OwnerController {
 				sController.setOwner(sesionOwner);
 				fController.setOwner(sesionOwner);
 				walkerController.setSesionOwner(sesionOwner);
+				
 				return "redirect:/owner/bienvenido";
 			}
 			else { 
@@ -143,7 +173,7 @@ public class OwnerController {
 					return "redirect:/owner/modificar";
 				}
 				else {
-					model.addAttribute("mensaje", "Ocurrio un error");
+
 					return "redirect:/owner/irRegistrar";
 				}	
 			}
@@ -155,6 +185,8 @@ public class OwnerController {
 
 	@RequestMapping("/modificar")
 	public String modificar(Model model) {
+		contrasenaAnterior= sesionOwner.getPassword();
+		sesionOwner.setPassword("");
 		model.addAttribute("owner", sesionOwner);
 		model.addAttribute("listadistrito", dService.listDistrict());
 		return "ownerEdit";
@@ -198,16 +230,22 @@ public class OwnerController {
 	}
 	
 	
-	public boolean  registrarUsario(Owner owner) {
-		Users users = new Users();
-		List<Role> listRoles= new ArrayList<Role>();
-		Role role= new Role();
-		role.setRol("ROLE_OWNER");
-		listRoles.add(role);
-		users.setPassword(owner.getPassword());
-		users.setRoles(listRoles);
-		users.setEnabled(true);
-		users.setUsername(owner.getEmail());
+	public boolean  registrarUsuario(Owner owner) {
+		Users users; 
+		users= uService.findByUsername(owner.getEmail());
+		if(users== null) {
+			users =  new Users();
+			List<Role> listRoles= new ArrayList<Role>();
+			Role role= new Role();
+			role.setRol("ROLE_OWNER");
+			listRoles.add(role);
+			users.setPassword(owner.getPassword());
+			users.setRoles(listRoles);
+			users.setEnabled(true);
+			users.setUsername(owner.getEmail());
+		}else if(users.getPassword()!=owner.getPassword()){			
+			users.setPassword(owner.getPassword());
+		}
 		boolean flagUsers = uService.save(users);
 		return flagUsers;
 	}

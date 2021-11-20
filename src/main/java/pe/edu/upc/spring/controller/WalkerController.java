@@ -66,6 +66,7 @@ public class WalkerController {
 
 	private Walker sesionWalker;
 	private Owner sesionOwner;
+	private String contrasenaAnterior;
 
 	@RequestMapping("/inicio")
 	public String irPaginaInicio(Model model) {
@@ -113,22 +114,46 @@ public class WalkerController {
 
 	@RequestMapping("/registrar")
 	public String registrar(@Valid Walker objWalker, BindingResult binRes, Model model) throws ParseException {
-		if (binRes.hasErrors()) {
+	
+		if (binRes.hasErrors()) {	
 			model.addAttribute("listadistrito", dService.listDistrict());
 			model.addAttribute("listpersonalidad", pService.listPersonality());
 			if(objWalker.getIdWalker()> 0) {
 				return "walkerEdit";
 			}
 			else {
-				model.addAttribute("mensaje", "Ocurrio un error");
 				return "walker";
 			}	
 		} else {
-			String bcryptPassword = passwordEncoder.encode(objWalker.getPassword());
-			objWalker.setPassword(bcryptPassword);	
-
-			boolean flagUsers = registrarUsario(objWalker);
-			boolean flag = wService.save(objWalker);
+			
+			if(objWalker.getIdWalker() > 0) {
+				if(objWalker.getPassword()=="") {
+					objWalker.setPassword(contrasenaAnterior);
+				
+				}else {
+					String bcryptPassword = passwordEncoder.encode(objWalker.getPassword());
+					objWalker.setPassword(bcryptPassword);	
+				}
+			}else {
+				String bcryptPassword = passwordEncoder.encode(objWalker.getPassword());
+				objWalker.setPassword(bcryptPassword);	
+			}
+			boolean flagUsers;
+			boolean flag ;
+			if(objWalker.getIdWalker() > 0) {				
+				 flagUsers = registrarUsuario(objWalker);
+				 flag = wService.save(objWalker);
+			}else {				
+				Users users= uService.findByUsername(objWalker.getEmail());
+				if(users!=null) {
+					model.addAttribute("mensaje", "Ya se ha creado una cuenta con este correo, por favor intente con otro");
+					flagUsers=false;
+					flag=false;
+				}else {
+					 flagUsers = registrarUsuario(objWalker);
+					 flag = wService.save(objWalker);
+				}
+			}
 			if (flag && flagUsers) {
 
 				sesionWalker = objWalker;
@@ -148,6 +173,8 @@ public class WalkerController {
 
 	@RequestMapping("/modificar")
 	public String modificar(Model model) {
+		contrasenaAnterior= sesionWalker.getPassword();
+		sesionWalker.setPassword("");
 		model.addAttribute("walker", sesionWalker);
 		model.addAttribute("listadistrito", dService.listDistrict());
 		model.addAttribute("listpersonalidad", pService.listPersonality());
@@ -230,20 +257,25 @@ public class WalkerController {
 		sController.setWalker(sesionWalker);
 	}
 	
-	public boolean  registrarUsario(Walker walker) {
-		Users users = new Users();
-		List<Role> listRoles= new ArrayList<Role>();
-		Role role= new Role();
-		role.setRol("ROLE_WALKER");
-		listRoles.add(role);
-		users.setPassword(walker.getPassword());
-		users.setRoles(listRoles);
-		users.setEnabled(true);
-		users.setUsername(walker.getEmail());
+	public boolean  registrarUsuario(Walker walker) {
+		Users users ;
+		users= uService.findByUsername(walker.getEmail());
+		if(users== null) {
+			users = new Users();
+			List<Role> listRoles= new ArrayList<Role>();
+			Role role= new Role();
+			role.setRol("ROLE_WALKER");
+			listRoles.add(role);
+			users.setPassword(walker.getPassword());
+			users.setRoles(listRoles);
+			users.setEnabled(true);
+			users.setUsername(walker.getEmail());
+		
+		}else if(users.getPassword()!=walker.getPassword()){			
+			users.setPassword(walker.getPassword());
+		}
 		boolean flagUsers = uService.save(users);
 		return flagUsers;
 	}
-	
-	
 
 }

@@ -106,6 +106,13 @@
 			<button type="submit" class="btn btn-block create-account">Crear
 				Cuenta</button>
 			<a class="btn btn-block" th:href="@{/pantalla/regitrarSegunUsuario}">Volver</a>
+			
+			<div align="center" class="col-sm-12">
+			
+			<div class="alert alert-danger" th:if="${mensaje != null}"
+				th:text="${mensaje}"></div>
+			
+			</div>
 		</form>
 	</div>
 

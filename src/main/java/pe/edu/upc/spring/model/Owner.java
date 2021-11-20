@@ -42,7 +42,6 @@ public class Owner implements Serializable {
 	@Column(name = "email", length = 60, nullable = false)
 	private String email;
 
-	@NotEmpty(message = "Ingrese su contraseña")
 	@Column(name = "password", length = 200, nullable = false)
 	private String password;
 
