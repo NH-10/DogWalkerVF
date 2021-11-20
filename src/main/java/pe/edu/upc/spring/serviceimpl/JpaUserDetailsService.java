@@ -30,12 +30,17 @@ public class JpaUserDetailsService implements UserDetailsService,IUsersService{
 		Users user = userRepository.findByUsername(username);
 
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		if(user!= null) {
+			for (Role role : user.getRoles()) {
+				authorities.add(new SimpleGrantedAuthority(role.getRol()));
+			}
+			return new User(user.getUsername(), user.getPassword(), user.getEnabled(), true, true, true, authorities);
 
-		for (Role role : user.getRoles()) {
-			authorities.add(new SimpleGrantedAuthority(role.getRol()));
+		}else {
+			return new User(username, username, false, false, false, false, authorities);
+			
 		}
-
-		return new User(user.getUsername(), user.getPassword(), user.getEnabled(), true, true, true, authorities);
+	
 	}
 	
 
@@ -47,6 +52,14 @@ public class JpaUserDetailsService implements UserDetailsService,IUsersService{
 			return false;
 		else
 			return true;
+	}
+
+
+	@Override
+	@Transactional(readOnly = true)
+	public Users findByUsername(String username) {
+		Users user = userRepository.findByUsername(username);
+		return user;
 	}
 
 }
