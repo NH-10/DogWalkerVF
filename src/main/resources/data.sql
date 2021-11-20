@@ -105,7 +105,7 @@ INSERT INTO time(time,value) VALUES ('3 horas','3.0');
 INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Parvina', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'maria@gmail.com', 'Los claveles', '12/08/1990', 'Maria', 1);
 INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Prado', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'romina@gmail.com', 'el tambo', '01/08/1980', 'Romina', 5);
 INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Chavez', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'susana@gmail.com', 'N°123', '08/10/1987', 'Susana', 1);
-INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Rosales', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'miriam@gmail.com', 'las hormigas N° 147', '15/04/1989', 'Miriam', 11);
+INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Rosales', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'miriam@gmail.com', 'las hormigas N° 147', '10/04/1989', 'Miriam', 11);
 
 
 
@@ -150,31 +150,31 @@ INSERT INTO roles(rol, user_id)	VALUES ('ROLE_WALKER', 11);
 INSERT INTO roles(rol, user_id)	VALUES ('ROLE_WALKER', 12);
 
 
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Doky', 'Es jugueton','12/02/20', 1,1,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Canela', 'Es jugueton','12/02/20', 1,2,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Concovo', 'Es jugueton','12/02/20', 1,3,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Thor', 'Es jugueton','12/02/20', 1,4,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Loky', 'Es jugueton','12/02/20', 1,2,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Heracles', 'Es jugueton','12/02/20', 1,3,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Lucas', 'Es jugueton','12/02/20', 1,3,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Aquiles', 'Es jugueton','12/02/20', 1,1,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Loky', 'Es jugueton','12/02/20', 1,2,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Heracles', 'Es jugueton','12/02/20', 1,3,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Lucas', 'Es jugueton','12/02/20', 1,3,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Aquiles', 'Es jugueton','12/02/20', 1,1,1);
+INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Doky', 'Es jugueton','12/02/2020', 1,1,1);
+INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Canela', 'Es jugueton','12/02/2020', 1,2,1);
+INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Concovo', 'Es jugueton','12/02/2020', 1,3,1);
+INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Thor', 'Es jugueton','12/02/2020', 1,4,1);
+INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Loky', 'Es jugueton','12/02/2020', 1,2,1);
+INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Heracles', 'Es jugueton','12/02/2020', 1,3,1);
+INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Lucas', 'Es jugueton','12/02/2020', 1,3,1);
+INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Aquiles', 'Es jugueton','12/02/2020', 1,1,1);
+INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Loky', 'Es jugueton','12/02/2020', 1,2,1);
+INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Heracles', 'Es jugueton','12/02/2020', 1,3,1);
+INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Lucas', 'Es jugueton','12/02/2020', 1,3,1);
+INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Aquiles', 'Es jugueton','12/02/2020', 1,1,1);
 
 INSERT INTO feedback(comment,rating,id_owner,id_walker) VALUES('excelente paseador',5,1,2);
 
 
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '12/02/20', '10', '10:15', 1, 1, 2, 1, 2);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '12/03/19', '10', '10:15', 1, 1, 2, 1, 2);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '12/04/20', '10', '10:15', 1, 1, 2, 1, 1);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '13/02/20', '10', '10:15', 1, 1, 2, 1, 1);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '14/02/12', '10', '10:15', 1, 1, 2, 1, 1);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '15/02/17', '10', '10:15', 1, 1, 2, 1, 2);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '16/02/19', '10', '10:15', 1, 1, 2, 1, 2);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '21/02/31', '10', '10:15', 1, 1, 2, 1, 3);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '21/02/32', '10', '10:15', 1, 1, 2, 1, 3);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '21/02/01', '10', '10:15', 1, 1, 2, 1, 4);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '22/02/02', '10', '10:15', 1, 1, 2, 1, 4);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '24/02/03', '10', '10:15', 1, 1, 2, 1, 5);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '02/12/2020', '10', '10:15', 1, 1, 2, 1, 2);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '03/12/2010', '10', '10:15', 1, 1, 2, 1, 2);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '04/12/2010', '10', '10:15', 1, 1, 2, 1, 1);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '02/12/2011', '10', '10:15', 1, 1, 2, 1, 1);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '02/14/2014', '10', '10:15', 1, 1, 2, 1, 1);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '02/15/2015', '10', '10:15', 1, 1, 2, 1, 2);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '02/16/2017', '10', '10:15', 1, 1, 2, 1, 2);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '01/21/2014', '10', '10:15', 1, 1, 2, 1, 3);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '06/21/2020', '10', '10:15', 1, 1, 2, 1, 3);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '02/21/2020', '10', '10:15', 1, 1, 2, 1, 4);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '07/22/2020', '10', '10:15', 1, 1, 2, 1, 4);
+INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '08/12/2020', '10', '10:15', 1, 1, 2, 1, 5);
