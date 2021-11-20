@@ -22,29 +22,18 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		System.out.print("Hola******");
-
 		http.authorizeRequests()
 				.antMatchers("/", "/css/**", "/js/**", "/img/**").permitAll()
 				.and().formLogin().loginPage("/login").permitAll()
 				.and().logout().permitAll().and()
 				.exceptionHandling().accessDeniedPage("/error");
-		/*
-		http.authorizeRequests()
-		.antMatchers("/", "/css/**", "/js/**", "/img/**","/owner/irRegistrar","/login").permitAll()
-		.antMatchers("/owner/**").access("hasRole('ROLE_ADMIN')")	
-		.antMatchers("/walker/**").access("hasRole('ROLE_PASEADOR')")
-		.antMatchers("/login/**").access("hasRole('ROLE_DUENO') or hasRole('ROLE_PASEADOR')")
-		.and().logout().permitAll().and()
-		.exceptionHandling().accessDeniedPage("/error");*/
+	
 	
 	}
 
 	@Autowired
 	public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
-		System.out.print("configurerGlobal******");
-
-		build.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
+			build.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
 
 	}
 }
