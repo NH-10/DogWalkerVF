@@ -8,7 +8,7 @@ import pe.edu.upc.spring.model.District;
 
 @Controller
 @RequestMapping("/pantalla") 
-public class controller {
+public class HomeController {
 	
 	@RequestMapping("/inicio")
 	public String PaginaBienvenida(Model model) {
