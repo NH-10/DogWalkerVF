@@ -9,3 +9,5 @@ import pe.edu.upc.spring.model.Users;
 public interface UserRepository extends JpaRepository<Users, Long> {
 	public Users findByUsername(String username);
 }
+
+//fre
