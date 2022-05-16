@@ -3,6 +3,7 @@ package pe.edu.upc.spring.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -33,7 +34,7 @@ import pe.edu.upc.spring.serviceimpl.JpaUserDetailsService;
 public class OwnerController {
 	@Autowired
 	private IOwnerService oService;
-	
+
 	@Autowired
 	private JpaUserDetailsService uService;
 
@@ -51,22 +52,21 @@ public class OwnerController {
 
 	@Autowired
 	private FeedbackController fController;
-	
+
 	@Autowired
 	private IWalkerService wService;
 
 	@Autowired
 	private IServiceRequestService sService;
-	
+
 	private Owner sesionOwner;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
 	@Autowired
 	private WalkerController w;
-	
-	private String contrasenaAnterior;
 
+	private String contrasenaAnterior;
 
 	@RequestMapping("/inicio")
 	public String irPaginaInicio(Model model) {
@@ -95,7 +95,7 @@ public class OwnerController {
 
 	@RequestMapping("/menu")
 	public String irMenuOwner() {
-		//return "OwnerMenu";
+		// return "OwnerMenu";
 		return "ownerMenuComplete";
 	}
 
@@ -108,84 +108,99 @@ public class OwnerController {
 	public String irPaginaRegistrar(Model model) {
 		model.addAttribute("owner", new Owner());
 		model.addAttribute("listadistrito", dService.listDistrict());
+		model.addAttribute("claseDistrito", "form-control itemselect");
 		return "owner";
 	}
 
 	@RequestMapping("/registrar")
 	public String registrar(@Valid Owner objOwner, BindingResult binRes, Model model) throws ParseException {
-		
+
 		if (binRes.hasErrors()) {
+			
+			
+
 			model.addAttribute("listadistrito", dService.listDistrict());
-			
-			if(objOwner.getIdOwner() > 0) {
-				return "ownerEdit";
+
+			if (objOwner.getDistrict() == null) {
+				model.addAttribute("mensajeDistrito", "Seleccione su distrito");
+				model.addAttribute("claseDistrito", "form-control itemselect alert-danger");
+			} else {
+				model.addAttribute("claseDistrito", "form-control itemselect");
 			}
-			else {
+			if (objOwner.getIdOwner() > 0) {
+				return "ownerEdit";
+			} else {
 				return "owner";
-			}	
+			}
 		} else {
-			
-			if(objOwner.getIdOwner() > 0) {
-				if(objOwner.getPassword()=="") {
-					objOwner.setPassword(contrasenaAnterior);
-				}else {
+
+			if (objOwner.getDistrict() != null) {
+
+				if (objOwner.getIdOwner() > 0) {
+					if (objOwner.getPassword() == "") {
+						objOwner.setPassword(contrasenaAnterior);
+					} else {
+						String bcryptPassword = passwordEncoder.encode(objOwner.getPassword());
+						objOwner.setPassword(bcryptPassword);
+					}
+				} else {
 					String bcryptPassword = passwordEncoder.encode(objOwner.getPassword());
 					objOwner.setPassword(bcryptPassword);
 				}
-			}
-			else {
-				String bcryptPassword = passwordEncoder.encode(objOwner.getPassword());
-				objOwner.setPassword(bcryptPassword);	
-			}
-			boolean flagUsers;
-			boolean flag;
-		
-			if(objOwner.getIdOwner() > 0) {
-			
-				 flagUsers = registrarUsuario(objOwner);
-				 flag = oService.save(objOwner);
-			}else {
-				
-				Users users= uService.findByUsername(objOwner.getEmail());
-				if(users!=null) {
-					model.addAttribute("mensaje", "Ya se ha creado una cuenta con este correo, por favor intente con otro");
-					flagUsers=false;
-					flag=false;
-				}else {
-					 flagUsers = registrarUsuario(objOwner);
-					 flag = oService.save(objOwner);
+				boolean flagUsers;
+				boolean flag;
+
+				if (objOwner.getIdOwner() > 0) {// editado
+
+					flagUsers = registrarUsuario(objOwner);
+					flag = oService.save(objOwner);
+				} else { // registra por primera vez
+
+					Users users = uService.findByUsername(objOwner.getEmail());
+					if (users != null) {
+						model.addAttribute("mensaje",
+								"Ya se ha creado una cuenta con este correo, por favor intente con otro");
+						flagUsers = false;
+						flag = false;
+					} else {
+						flagUsers = registrarUsuario(objOwner);
+						flag = oService.save(objOwner);
+					}
+
 				}
 
-			}
-			
-			if (flag && flagUsers ) {
-				sesionOwner = objOwner;
-				dogController.setOwner(sesionOwner);
-				sController.setOwner(sesionOwner);
-				fController.setOwner(sesionOwner);
-				walkerController.setSesionOwner(sesionOwner);
-				
-				return "redirect:/owner/bienvenido";
-			}
-			else { 
+				if (flag && flagUsers) {
+					sesionOwner = objOwner;
+					dogController.setOwner(sesionOwner);
+					sController.setOwner(sesionOwner);
+					fController.setOwner(sesionOwner);
+					walkerController.setSesionOwner(sesionOwner);
 
-				if(objOwner.getIdOwner() > 0) {
+					return "redirect:/owner/bienvenido";
+				} else {
+
+					if (objOwner.getIdOwner() > 0) {
+						return "redirect:/owner/modificar";
+					} else {
+
+						return "redirect:/owner/irRegistrar";
+					}
+				}
+			} else {
+
+				if (objOwner.getIdOwner() > 0) {
 					return "redirect:/owner/modificar";
-				}
-				else {
+				} else {
 
 					return "redirect:/owner/irRegistrar";
-				}	
+				}
 			}
 		}
 	}
-	
-	
-	
 
 	@RequestMapping("/modificar")
 	public String modificar(Model model) {
-		contrasenaAnterior= sesionOwner.getPassword();
+		contrasenaAnterior = sesionOwner.getPassword();
 		sesionOwner.setPassword("");
 		model.addAttribute("owner", sesionOwner);
 		model.addAttribute("listadistrito", dService.listDistrict());
@@ -220,7 +235,6 @@ public class OwnerController {
 		}
 	}
 
-
 	public void setSesionOwner(Owner sesionOwner) {
 		this.sesionOwner = sesionOwner;
 		dogController.setOwner(sesionOwner);
@@ -228,35 +242,32 @@ public class OwnerController {
 		sController.setOwner(sesionOwner);
 		fController.setOwner(sesionOwner);
 	}
-	
-	
-	public boolean  registrarUsuario(Owner owner) {
-		Users users; 
-		users= uService.findByUsername(owner.getEmail());
-		if(users== null) {
-			users =  new Users();
-			List<Role> listRoles= new ArrayList<Role>();
-			Role role= new Role();
+
+	public boolean registrarUsuario(Owner owner) {
+		Users users;
+		users = uService.findByUsername(owner.getEmail());
+		if (users == null) {
+			users = new Users();
+			List<Role> listRoles = new ArrayList<Role>();
+			Role role = new Role();
 			role.setRol("ROLE_OWNER");
 			listRoles.add(role);
 			users.setPassword(owner.getPassword());
 			users.setRoles(listRoles);
 			users.setEnabled(true);
 			users.setUsername(owner.getEmail());
-		}else if(users.getPassword()!=owner.getPassword()){			
+		} else if (users.getPassword() != owner.getPassword()) {
 			users.setPassword(owner.getPassword());
 		}
 		boolean flagUsers = uService.save(users);
 		return flagUsers;
 	}
-	
+
 	@RequestMapping("/topPaseadores")
 	public String irPaginaTopPaseadores(Model model) {
 
-
-		
 		model.addAttribute("owner", sesionOwner);
-		
+
 		int contador = 0;
 		int ref = 0;
 		boolean registrar = false;
@@ -265,7 +276,7 @@ public class OwnerController {
 		List<ServiceRequest> b = new ArrayList<ServiceRequest>();
 
 		b = sService.listServiceRequest();
-		
+
 		for (int j = 0; j < wService.list().size(); j++) {
 			wtotal.get(j).setCostService(0);
 		}
@@ -288,9 +299,7 @@ public class OwnerController {
 			ref = 0;
 			registrar = false;
 		}
-		
 
-		
 		List<Walker> wfinal = new ArrayList<Walker>();
 		double mayor;
 		double max_antiguo;
@@ -303,10 +312,10 @@ public class OwnerController {
 				if (mayor < wtotal.get(j).getCostService()) {
 					max_antiguo = mayor;
 					mayor = wtotal.get(j).getCostService();
-				nombre = 	wtotal.get(i).getFirstNames();
-				n = 	wtotal.get(i).getIdWalker();
-				d=wtotal.get(i).getDistrict();
-				
+					nombre = wtotal.get(i).getFirstNames();
+					n = wtotal.get(i).getIdWalker();
+					d = wtotal.get(i).getDistrict();
+
 					wtotal.get(i).setCostService(mayor);
 					wtotal.get(i).setFirstNames(wtotal.get(j).getFirstNames());
 					wtotal.get(i).setIdWalker(wtotal.get(j).getIdWalker());
@@ -317,20 +326,17 @@ public class OwnerController {
 					wtotal.get(j).setDistrict(d);
 				}
 			}
-			
+
 		}
-	
-		
+
 		for (int i = 0; i < wtotal.size(); i++) {
-			
-			if(wtotal.get(i).getCostService() > 0) {
+
+			if (wtotal.get(i).getCostService() > 0) {
 				wfinal.add(wtotal.get(i));
 			}
 		}
-		
-		
-		
-		model.addAttribute("listarPaseadores",wfinal);
+
+		model.addAttribute("listarPaseadores", wfinal);
 		model.addAttribute("WalkerController", w);
 		model.addAttribute("listadistrito", dService.listDistrict());
 		model.addAttribute("serviceRequest", new ServiceRequest());
@@ -338,22 +344,20 @@ public class OwnerController {
 
 		return "topWalker";
 	}
-	
+
 	@RequestMapping("/buscarTopPaseadores")
 	public String buscarPaseadoresTop(@ModelAttribute ServiceRequest serviceRequest, @ModelAttribute Walker walker,
 			Model model) throws ParseException {
 
-		Date dateBegin = serviceRequest.getDateService();   /// getdateService  se reutilizo funcion de service
-		Date dateEnd = walker.getDateOfBirth(); /// getdateofbirth  se reutilizo funcion de walker
+		Date dateBegin = serviceRequest.getDateService(); /// getdateService se reutilizo funcion de service
+		Date dateEnd = walker.getDateOfBirth(); /// getdateofbirth se reutilizo funcion de walker
 		int contador = 0;
 		int ref = 0;
 		boolean registrar = false;
 		List<Walker> wtotal = new ArrayList<Walker>();
 		wtotal = wService.list();
 		List<ServiceRequest> b = new ArrayList<ServiceRequest>();
-		
-		
-		
+
 		if (dateBegin != null && dateEnd != null)
 			b = sService.findServiceByDate(dateBegin, dateEnd, walker.getDistrict().getName());
 		else {
@@ -362,7 +366,7 @@ public class OwnerController {
 		}
 
 		for (int j = 0; j < wService.list().size(); j++) {
-			wtotal.get(j).setCostService(0);     //costservice funciona como atributo de cantidad de solicitudes 
+			wtotal.get(j).setCostService(0); // costservice funciona como atributo de cantidad de solicitudes
 		}
 
 		for (int j = 0; j < wService.list().size(); j++) {
@@ -383,9 +387,7 @@ public class OwnerController {
 			ref = 0;
 			registrar = false;
 		}
-		
 
-		
 		List<Walker> wfinal = new ArrayList<Walker>();
 		double mayor;
 		double max_antiguo;
@@ -398,10 +400,10 @@ public class OwnerController {
 				if (mayor < wtotal.get(j).getCostService()) {
 					max_antiguo = mayor;
 					mayor = wtotal.get(j).getCostService();
-				nombre = 	wtotal.get(i).getFirstNames();
-				n = 	wtotal.get(i).getIdWalker();
-				d=wtotal.get(i).getDistrict();
-				
+					nombre = wtotal.get(i).getFirstNames();
+					n = wtotal.get(i).getIdWalker();
+					d = wtotal.get(i).getDistrict();
+
 					wtotal.get(i).setCostService(mayor);
 					wtotal.get(i).setFirstNames(wtotal.get(j).getFirstNames());
 					wtotal.get(i).setIdWalker(wtotal.get(j).getIdWalker());
@@ -412,18 +414,16 @@ public class OwnerController {
 					wtotal.get(j).setDistrict(d);
 				}
 			}
-			
+
 		}
-		
+
 		for (int i = 0; i < wtotal.size(); i++) {
-			
-			if(wtotal.get(i).getCostService() > 0) {
+
+			if (wtotal.get(i).getCostService() > 0) {
 				wfinal.add(wtotal.get(i));
 			}
 		}
-		
 
-		
 		model.addAttribute("owner", sesionOwner);
 		model.addAttribute("WalkerController", w);
 		model.addAttribute("listadistrito", dService.listDistrict());
@@ -431,4 +431,5 @@ public class OwnerController {
 
 		return "topWalker";
 	}
+
 }

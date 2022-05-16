@@ -1,5 +1,7 @@
 package pe.edu.upc.spring.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -16,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
-
 import pe.edu.upc.spring.model.District;
 import pe.edu.upc.spring.model.Owner;
 import pe.edu.upc.spring.model.ServiceRequest;
+import pe.edu.upc.spring.model.Status;
 import pe.edu.upc.spring.model.Walker;
 import pe.edu.upc.spring.service.IServiceRequestService;
 import pe.edu.upc.spring.service.IStatusService;
@@ -46,7 +48,7 @@ public class ServiceRequestController {
 
 	@Autowired
 	private WalkerController w;
-	
+
 	private Owner sesionOwner;
 	private ServiceRequest sesionServiceRequest;
 	private Walker sesionWalker;
@@ -58,12 +60,12 @@ public class ServiceRequestController {
 	private List<ServiceRequest> listServiceRequestOwner;
 	private List<ServiceRequest> listServiceRequestWalker;
 
-
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model, @RequestParam(value = "id") Integer id) {
 		model.addAttribute("serviceRequest", new ServiceRequest());
 		model.addAttribute("listStatus", sService.listStatus());
 		model.addAttribute("listTimes", tService.listTime());
+		model.addAttribute("claseTime", "form-control itemselect");
 		sesionWalker = waService.WalkerById(String.valueOf(id));
 
 		return "serviceRequest";
@@ -77,21 +79,35 @@ public class ServiceRequestController {
 			model.addAttribute("listTimes", tService.listTime());
 			model.addAttribute("listWalker", waService.list());
 			model.addAttribute("owner", sesionOwner);
-			return "serviceRequest";
-		} else {
 
-			objServiceRequest.setWalker(sesionWalker);
-			objServiceRequest
-					.setTotalServiceCost(sesionWalker.getCostService() * objServiceRequest.getTime().getValue());
-			objServiceRequest.setOwner(sesionOwner);
-			objServiceRequest.setStatus(staService.listStatus().get(0));
-			
-			boolean flag = srService.save(objServiceRequest);
-			if (flag) {
-				sesionServiceRequest = objServiceRequest;
-				return "redirect:/serviceRequest/listarSolicitudesDueno";
+			if (objServiceRequest.getTime() == null) {
+				model.addAttribute("mensajeTime", "Seleccione el tiempo");
+				model.addAttribute("claseTime", "form-control itemselect alert-danger");
 			} else {
-				model.addAttribute("mensaje", "Error al guardar solicitud");
+				model.addAttribute("claseTime", "form-control itemselect");
+			}
+			return "serviceRequest";
+
+		} else {
+			if (objServiceRequest.getTime() != null) {
+
+				objServiceRequest.setWalker(sesionWalker);
+				objServiceRequest
+						.setTotalServiceCost(sesionWalker.getCostService() * objServiceRequest.getTime().getValue());
+				objServiceRequest.setOwner(sesionOwner);
+				objServiceRequest.setStatus(staService.listStatus().get(0));
+
+				boolean flag = srService.save(objServiceRequest);
+				if (flag) {
+					sesionServiceRequest = objServiceRequest;
+					return "redirect:/serviceRequest/listarSolicitudesDueno";
+				} else {
+					model.addAttribute("mensaje", "Error al guardar solicitud");
+					return "redirect:/serviceRequest/irRegistrarDenuevo";
+				}
+
+			} else {
+
 				return "redirect:/serviceRequest/irRegistrarDenuevo";
 			}
 		}
@@ -100,8 +116,11 @@ public class ServiceRequestController {
 	@RequestMapping("/actualizarRequest")
 	public String actualizarRequest(@Valid ServiceRequest objServiceRequest, BindingResult binRes, Model model)
 			throws ParseException {
+
 		if (binRes.hasErrors()) {
-			model.addAttribute("listStatus", sService.listStatus());
+			List<Status> listaEstados = sService.listStatus();
+			listaEstados.remove(0);
+			model.addAttribute("listStatus", listaEstados);
 			model.addAttribute("owner", sesionOwner);
 			return "serviceRequestEditWalker";
 		} else {
@@ -112,8 +131,7 @@ public class ServiceRequestController {
 			objServiceRequest.setStartTime(sesionServiceRequest.getStartTime());
 			objServiceRequest.setTimeLimit(sesionServiceRequest.getTimeLimit());
 			objServiceRequest.setTotalServiceCost(sesionServiceRequest.getTotalServiceCost());
-			
-			
+
 			boolean flag = srService.save(objServiceRequest);
 			if (flag) {
 
@@ -133,7 +151,10 @@ public class ServiceRequestController {
 			objRedir.addFlashAttribute("mensaje", "Error al modificar Solicitud");
 			return "redirect:/serviceRequest/listar";
 		} else {
-			model.addAttribute("listStatus", sService.listStatus());
+			List<Status> listaEstados = sService.listStatus();
+			listaEstados.remove(0);
+			model.addAttribute("listStatus", listaEstados);
+			System.out.print("ESTATUS 54EFDES " + sService.listStatus().remove(2).getIdStatus());
 			sesionServiceRequest = objServiceRequest.get();
 			sesionOwner = sesionServiceRequest.getOwner();
 			if (objServiceRequest.isPresent())
@@ -142,7 +163,6 @@ public class ServiceRequestController {
 			return "ServiceRequestEditWalker";
 		}
 	}
-
 
 	@RequestMapping("/listarSolicitudesDueno")
 	public String listarSolicitudesPorDueno(Model model) {
@@ -161,25 +181,70 @@ public class ServiceRequestController {
 		model.addAttribute("walker", sesionWalker);
 		return "serviceRequestListByWalker";
 	}
+	
+	@RequestMapping("/misPaseos")
+	public String irMisPaseos(Model model) {
+		
+		model.addAttribute("mensajefechainicio", "");
+		model.addAttribute("mensajefechafin", "");
+
+		model.addAttribute("walker", sesionWalker);
+		return "misPaseos";
+	}
+
+	@RequestMapping("/reporteMisPaseos")
+	public String reporteMisPaseos(Model model,
+			@RequestParam(value = "fechainicio", required = false) String fechainicio,
+			@RequestParam(value = "fechafin", required = false) String fechafin) throws ParseException {
+		List<ServiceRequest> listaSolicitudes;
+		Date fechainicioDate = null;
+		Date fechafinalDate = null;
+		/*if (fechainicio == null) {
+			model.addAttribute("mensajefechainicio", "Ingrese la fecha inicio");
+			return "misPaseos";
+		}
+		
+		if (fechafin == null) {
+			model.addAttribute("mensajefechafin", "Ingrese la fecha fin");
+			return "misPaseos";
+		}*/
+		if (fechainicio != null && fechafin != null) {
+			model.addAttribute("mensajefechainicio", "");
+			model.addAttribute("mensajefechafin", "");
+
+			
+			try {
+				fechainicioDate = new SimpleDateFormat("yyyy-MM-dd").parse(fechainicio);
+				fechafinalDate = new SimpleDateFormat("yyyy-MM-dd").parse(fechafin);
+
+			} catch (java.text.ParseException e) {
+				e.printStackTrace();
+			}
+			listaSolicitudes = srService.findServiceByDates(fechainicioDate, fechafinalDate);
+			model.addAttribute("listaSolicitudes", listaSolicitudes);
+			model.addAttribute("walker", sesionWalker);
+			return "misPaseos";
+			//return "redirect:/walker/misPaseos";
+		}
+		return "redirect:/serviceRequest/reporteMisPaseos";
+	}
 
 	@RequestMapping("/ListaPaseadores")
 	public String irListaPaseadores(Map<String, Object> model) {
 		List<Walker> listaDistrict;
 		listaDistrict = waService.listByDistrict(district.getName());
-		
-		model.put("WalkerController", w);	
+
+		model.put("WalkerController", w);
 		model.put("owner", sesionOwner);
-		
-		if(listaDistrict.isEmpty()) {
+
+		if (listaDistrict.isEmpty()) {
 			model.put("listarPaseadores", waService.list());
-		}	
-		else {
-		model.put("listarPaseadores", listaDistrict);
+		} else {
+			model.put("listarPaseadores", listaDistrict);
 		}
-		return "walkerListByDistrict"; 
+		return "walkerListByDistrict";
 	}
-	
-	
+
 	public void setOwner(Owner o) {
 		sesionOwner = o;
 	}
@@ -188,10 +253,8 @@ public class ServiceRequestController {
 		sesionWalker = w;
 	}
 
-
 	public void setDistrict(District district) {
 		this.district = district;
 	}
 
-	
 }

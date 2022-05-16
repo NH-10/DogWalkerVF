@@ -27,6 +27,7 @@ public class JpaUserDetailsService implements UserDetailsService,IUsersService{
 	@Transactional(readOnly = true)
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		
 		Users user = userRepository.findByUsername(username);
 
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
@@ -40,10 +41,8 @@ public class JpaUserDetailsService implements UserDetailsService,IUsersService{
 			return new User(username, username, false, false, false, false, authorities);
 			
 		}
-	
 	}
 	
-
 	@Override
 	@Transactional
 	public boolean save(Users users) {
@@ -58,6 +57,7 @@ public class JpaUserDetailsService implements UserDetailsService,IUsersService{
 	@Override
 	@Transactional(readOnly = true)
 	public Users findByUsername(String username) {
+		
 		Users user = userRepository.findByUsername(username);
 		return user;
 	}

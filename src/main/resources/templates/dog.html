@@ -5,7 +5,7 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <head>
-<meta charset="UTF-8"></meta>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
 	rel="stylesheet" />
@@ -43,8 +43,9 @@
 			</div>
 			<div class="form-group">
 				<div class=" form group date" id="id_0">
-					<input type="date" class="form-control itemselect"
-						placeholder="Fecha de nacimiento" th:field="*{dateOfBirth}"
+					<input type="text" class="form-control itemselect"
+						placeholder="Fecha de nacimiento" onfocus="(this.type='date')"
+						th:field="*{dateOfBirth}"
 						th:errorclass="'form-control alert-danger'" /> <small
 						class="form-text text-danger"
 						th:if="${#fields.hasErrors('dateOfBirth')}"
@@ -54,30 +55,36 @@
 
 			<div class="form-group">
 
-				<select class="form-control itemselect" th:field="*{Race.idRace}">
+				<select class="form-control itemselect" th:field="*{Race.idRace}"
+					th:class="${claseRaza}"required>
+					<option th:value="0" disabled selected>Raza</option>
 					<option th:each="d: ${listaRaza}" th:value="${d.idRace}"
 						th:text="${d.name}" th:selected="(${d.idRace}==*{Race.idRace})">
 					</option>
-				</select>
-
+				</select> <small class="form-text text-danger" th:text="${mensajeRaza}"></small>
 			</div>
 			<div class="form-group">
 
-				<select class="form-control itemselect"
-					th:field="*{Character.idCharacter}">
+				<select 
+					th:field="*{Character.idCharacter}" th:class="${claseCaracter}"required>
+					<option th:value="0" disabled selected>Carácter</option>
 					<option th:each="d: ${listaCaracter}" th:value="${d.idCharacter}"
 						th:text="${d.name}"
 						th:selected="(${d.idCharacter}==*{Character.idCharacter})">
 					</option>
 				</select>
+				<small class="form-text text-danger" th:text="${mensajeCaracter}"></small>
 
 			</div>
 
 			<div class="form-group">
 				<textarea type="text" class="form-control item" rows="3"
-					placeholder="Descripcion" th:field="*{description}"></textarea>
+					placeholder="Descripción" th:field="*{description}" th:errorclass="'form-control alert-danger'" ></textarea>
+					
+					<small class="form-text text-danger"
+					th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></small>
+					
 			</div>
-
 
 
 			<button type="submit" class="btn btn-block create-account">Registrar</button>

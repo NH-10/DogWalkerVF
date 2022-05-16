@@ -1,10 +1,17 @@
 package pe.edu.upc.spring.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sun.el.parser.ParseException;
+
 import pe.edu.upc.spring.model.District;
+import pe.edu.upc.spring.model.Walker;
 
 @Controller
 @RequestMapping("/pantalla") 
@@ -24,6 +31,11 @@ public class HomeController {
 		return "contactanos"; 
 	}
 	
+	@RequestMapping("/enterateMas")
+	public String PaginaEnterateMas() {
+		return "enterateMas"; 
+	}
+	
 	@RequestMapping("/regitrarSegunUsuario")
 	public String irPaginaBienvenida() {
 		return "registrarSegunUsuario"; 
@@ -39,5 +51,15 @@ public class HomeController {
 	}
 			
 	
+	@RequestMapping("/buscarPaseador")
+	public String reportePaseadorxDistrito(Map<String, Object> model, @ModelAttribute District district)
+			throws ParseException {
+		System.out.print("Ingrese a buscarPaseador *****");
+
+	
+		return "Hola";
+
+	}
+
 	
 }

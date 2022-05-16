@@ -16,6 +16,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -41,11 +42,13 @@ public class ServiceRequest implements Serializable {
 	private double totalServiceCost;
 
 	@NotEmpty(message = "Ingrese la hora inicio de recojo")
-	@Column(name = "startTime", length = 20, nullable = false)
+	@Size(max=5, message = "Ingrese otra vez la hora")
+	@Column(name = "startTime", length = 5, nullable = false )
 	private String startTime;
 
-	@NotEmpty(message = "Ingrese la hora lÃ­mite de recojo")
-	@Column(name = "timeLimit", length = 20, nullable = false)
+	@NotEmpty(message = "Ingrese la hora límite de recojo")
+	@Size(max=5, message = "Ingrese otra vez la hora")
+	@Column(name = "timeLimit", length = 5, nullable = false)
 	private String timeLimit;
 
 	@ManyToOne

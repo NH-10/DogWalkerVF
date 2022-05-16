@@ -63,4 +63,10 @@ public class ServiceRequestServiceImpl implements IServiceRequestService {
 	public List<ServiceRequest> findServiceByDate(Date DateBegin,Date DateEnd, String d) {
 		return dServiceRequest.findServiceByDate(DateBegin, DateEnd,d);
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<ServiceRequest> findServiceByDates(Date DateBegin,Date DateEnd) {
+		return dServiceRequest.findServiceByDates(DateBegin, DateEnd);
+	}
 }

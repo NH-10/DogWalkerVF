@@ -32,11 +32,13 @@ public class LoginController {
 	private WalkerController wController;
 
 	@GetMapping(value = { "/login", "/" })
-	public String login(@RequestParam(value = "error", required = false) String error,
+	public String login(@RequestParam(value = "error", required = false) String error,@RequestParam(value = "username", required = false) String username,
 			@RequestParam(value = "logout", required = false) String logout, Model model, Principal principal,
 			RedirectAttributes flash ) {
-		
+		System.out.print("***Login controller***");
+
 		if (principal != null) {
+			System.out.print("***Login principal ***");
 			Owner owner = new Owner();
 			owner = oService.findByEmail(principal.getName());
 			if(owner==null) {
@@ -54,11 +56,11 @@ public class LoginController {
 		}
 
 		if (error != null) {
-			model.addAttribute("error",	"Error en el login: Correo o contraseÃ±a incorrecta, por favor vuelva a intentarlo.");
+			model.addAttribute("error",	"Error en el login: Correo o contraseña incorrecta, por favor vuelva a intentarlo.");
 		}
 
 		if (logout != null) {
-			model.addAttribute("success", "Ha cerrado sesiÃ³n con Ã©xito!");
+			model.addAttribute("success", "Ha cerrado sesiónn con éxito!");
 			return "redirect:/pantalla/inicio";
 		}
 

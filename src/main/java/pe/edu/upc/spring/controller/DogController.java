@@ -57,6 +57,9 @@ public class DogController {
 		model.addAttribute("dog", new Dog());
 		model.addAttribute("listaRaza", rService.listRace());
 		model.addAttribute("listaCaracter", cService.listCharacter());
+		model.addAttribute("claseRaza", "form-control itemselect");
+		model.addAttribute("claseCaracter", "form-control itemselect");
+
 		return "dog";
 	}
 
@@ -66,6 +69,22 @@ public class DogController {
 			model.addAttribute("listaRaza", rService.listRace());
 			model.addAttribute("listaCaracter", cService.listCharacter());
 			model.addAttribute("owner", sesionOwner);
+			if (objDog.getRace() == null) {
+				model.addAttribute("mensajeRaza", "Seleccione una raza");
+				model.addAttribute("claseRaza", "form-control itemselect alert-danger");
+			} else {
+				model.addAttribute("claseRaza", "form-control itemselect");
+			}
+			
+			
+			if (objDog.getCharacter() == null) {
+				model.addAttribute("mensajeCaracter", "Seleccione un caracter");
+				model.addAttribute("claseCaracter", "form-control itemselect alert-danger");
+			} else {
+				model.addAttribute("claseCaracter", "form-control itemselect");
+			}
+			
+			
 			if(objDog.getIdDog() > 0) {
 				return "dogEdit";
 			}
@@ -75,6 +94,8 @@ public class DogController {
 			}	
 			
 		} else {
+			if (objDog.getRace()  != null && objDog.getCharacter()  != null ) {
+
 			objDog.setOwner(sesionOwner);
 			boolean flag = dService.save(objDog);
 			if (flag)
@@ -90,6 +111,19 @@ public class DogController {
 					return "redirect:/dog/irRegistrar";
 				}	
 				
+			}
+			
+			} else {
+
+				if(objDog.getIdDog() > 0) {
+					model.addAttribute("listaRaza", rService.listRace());
+					model.addAttribute("listaCaracter", cService.listCharacter());
+					return "dogEdit";
+				}
+				else {
+					model.addAttribute("mensaje", "Ocurrio un error");
+					return "redirect:/dog/irRegistrar";
+				}
 			}
 		}
 	}

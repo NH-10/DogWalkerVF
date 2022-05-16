@@ -16,6 +16,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -30,10 +31,13 @@ public class Dog implements Serializable {
 	private int idDog;
 
 	@NotEmpty(message = "Ingrese nombre")
+	@Size(max=50, message = "Ingrese un nombre válido")
 	@Column(name = "name", length = 50, nullable = false)
 	private String name;
-
-	@Column(name = "description", length = 200, nullable = true)
+	
+	@NotEmpty(message = "Ingrese una descripción sobre su mascota")
+	@Size(max=200, message = "Solo se permite 200 caracteres")
+	@Column(name = "description", length = 200, nullable = false)
 	private String description;
 
 	@NotNull(message = "Ingrese fecha de nacimiento")

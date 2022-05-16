@@ -11,7 +11,7 @@ INSERT INTO personality(name) VALUES ('Conservador');
 
 INSERT INTO race(name) VALUES ('Akita');
 INSERT INTO race(name) VALUES ('Alaskan Malamute');
-INSERT INTO race(name) VALUES ('Bich√≥n');
+INSERT INTO race(name) VALUES ('BichÛn');
 INSERT INTO race(name) VALUES ('Bobtail ');
 INSERT INTO race(name) VALUES ('Boston Terrier');
 INSERT INTO race(name) VALUES ('Boxer');
@@ -19,13 +19,13 @@ INSERT INTO race(name) VALUES ('Bull Terrier');
 INSERT INTO race(name) VALUES ('Bulldog');
 INSERT INTO race(name) VALUES ('Chihuahua');
 INSERT INTO race(name) VALUES ('Cocker');
-INSERT INTO race(name) VALUES ('D√°lmata');
-INSERT INTO race(name) VALUES ('D√≥berman');
+INSERT INTO race(name) VALUES ('D·lmata');
+INSERT INTO race(name) VALUES ('DÛberman');
 INSERT INTO race(name) VALUES ('Husky');
 INSERT INTO race(name) VALUES ('Labrador');
 INSERT INTO race(name) VALUES ('Lebrel');
-INSERT INTO race(name) VALUES ('Mast√≠n ');
-INSERT INTO race(name) VALUES ('Pastor Alem√°n');
+INSERT INTO race(name) VALUES ('MastÌn ');
+INSERT INTO race(name) VALUES ('Pastor Alem·n');
 INSERT INTO race(name) VALUES ('Pastor Australiano');
 INSERT INTO race(name) VALUES ('Pastor Ucraniano');
 INSERT INTO race(name) VALUES ('Pitbull American Terrier');
@@ -40,7 +40,7 @@ INSERT INTO race(name) VALUES ('Whippet ');
 INSERT INTO race(name) VALUES ('Yorkshire Terrier');
 INSERT INTO race(name) VALUES ('Otra Raza');
 
-INSERT INTO district(name) VALUES ('Bre√±a');
+INSERT INTO district(name) VALUES ('BreÒa');
 INSERT INTO district(name) VALUES ('Carabayllo');
 INSERT INTO district(name) VALUES ('Chaclacayo');
 INSERT INTO district(name) VALUES ('Chorrillos');
@@ -48,14 +48,14 @@ INSERT INTO district(name) VALUES ('Cieneguilla');
 INSERT INTO district(name) VALUES ('Comas');
 INSERT INTO district(name) VALUES ('El Agustino');
 INSERT INTO district(name) VALUES ('Independencia');
-INSERT INTO district(name) VALUES ('Jes√∫s Mar√≠a');
+INSERT INTO district(name) VALUES ('Jes˙s MarÌa');
 INSERT INTO district(name) VALUES ('La Molina');
 INSERT INTO district(name) VALUES ('La Victoria');
 INSERT INTO district(name) VALUES ('Lima');
 INSERT INTO district(name) VALUES ('Lince');
 INSERT INTO district(name) VALUES ('Los Olivos');
 INSERT INTO district(name) VALUES ('Lurigancho');
-INSERT INTO district(name) VALUES ('Lur√≠n');
+INSERT INTO district(name) VALUES ('LurÌn');
 INSERT INTO district(name) VALUES ('Magdalena del Mar');
 INSERT INTO district(name) VALUES ('Miraflores');
 INSERT INTO district(name) VALUES ('Pachacamac');
@@ -71,20 +71,20 @@ INSERT INTO district(name) VALUES ('San Isidro');
 INSERT INTO district(name) VALUES ('San Juan de Lurigancho');
 INSERT INTO district(name) VALUES ('San Juan de Miraflores');
 INSERT INTO district(name) VALUES ('San Luis');
-INSERT INTO district(name) VALUES ('San Mart√≠n de Porres');
+INSERT INTO district(name) VALUES ('San MartÌn de Porres');
 INSERT INTO district(name) VALUES ('San Miguel');
 INSERT INTO district(name) VALUES ('Santa Anita');
-INSERT INTO district(name) VALUES ('Santa Mar√≠a del Mar');
+INSERT INTO district(name) VALUES ('Santa MarÌa del Mar');
 INSERT INTO district(name) VALUES ('Santa Rosa');
 INSERT INTO district(name) VALUES ('Santiago de Surco');
 INSERT INTO district(name) VALUES ('Surquillo');
 INSERT INTO district(name) VALUES ('Villa El Salvador');
-INSERT INTO district(name) VALUES ('Villa Mar√≠a del Triunfo');
+INSERT INTO district(name) VALUES ('Villa MarÌa del Triunfo');
 
 INSERT INTO character(name) VALUES ('Sociable');
 INSERT INTO character(name) VALUES ('Calmado');
 INSERT INTO character(name) VALUES ('Agresivo');
-INSERT INTO character(name) VALUES ('T√≠mido');
+INSERT INTO character(name) VALUES ('TÌmido');
 INSERT INTO character(name) VALUES ('Dominante');
 INSERT INTO character(name) VALUES ('Docil');
 
@@ -102,79 +102,3 @@ INSERT INTO time(time,value) VALUES ('2 horas y 45 minutos','2.75');
 INSERT INTO time(time,value) VALUES ('3 horas','3.0');
 
 
-INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Parvina', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'maria@gmail.com', 'Los claveles', '12/08/1990', 'Maria', 1);
-INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Prado', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'romina@gmail.com', 'el tambo', '01/08/1980', 'Romina', 5);
-INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Chavez', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'susana@gmail.com', 'N¬∞123', '08/10/1987', 'Susana', 1);
-INSERT INTO owner(last_Names, password, email, address, date_Of_Birth, first_Names,id_District)VALUES ('Rosales', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'miriam@gmail.com', 'las hormigas N¬∞ 147', '10/04/1989', 'Miriam', 11);
-
-
-
-INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'maria@gmail.com');
-INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'romina@gmail.com');
-INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'susana@gmail.com');
-INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'miriam@gmail.com');
-
-INSERT INTO roles(rol, user_id)	VALUES ('ROLE_OWNER', 1);
-INSERT INTO roles(rol, user_id)	VALUES ('ROLE_OWNER', 2);
-INSERT INTO roles(rol, user_id)	VALUES ('ROLE_OWNER', 3);
-INSERT INTO roles(rol, user_id)	VALUES ('ROLE_OWNER', 4);
-
-
-INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Prado', 'Soy estudiante de la carrera de Ingenier√≠a Insdustrial -  UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu','juan@gmail.com', 'Calle 334 las palmas', '10/08/1999', '10.0', 'Juan', 1, 2);
-INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Reyes', 'Soy estudiante de la carrera de Ingenier√≠a Industrial, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu','marcos@gmail.com', 'Calle 334 las palmas', '10/08/2000', '15.0', 'Marcos', 10, 1);
-INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Perez', 'Soy estudiante de la carrera de Ingenier√≠a Insdustrial -  UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu','jean@gmail.com', 'Calle 334 las palmas', '10/08/1999', '12.0', 'Jean', 1, 2);
-INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Alvarado', 'Soy estudiante de la carrera Arquitectura de la UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu','dennis@gmail.com', 'Calle 334 las palmas', '10/08/2000', '15.0', 'Dennis', 10, 1);
-INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Tineo', 'Soy estudiante de la carrera de Musica -  UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu','pablo@gmail.com', 'Calle 334 las palmas', '10/08/1999', '14.0', 'Paul', 2, 2);
-INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Rosales', 'Soy estudiante de la carrera Ingenieria Civil, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu','paul@gmail.com', 'Calle 334 las palmas', '10/08/2000', '20.0', 'Ruth', 10, 1);
-INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('De la Cruz', 'Soy estudiante de la carrera de Ingenier√≠a Insdustrial -  UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu','carlos@gmail.com', 'Calle 334 las palmas', '10/08/1999', '20.0', 'Carlos', 1, 2);
-INSERT INTO walker(last_Names,description,password,email,address, date_Of_Birth, cost_Service,first_Names, id_District, id_Personality)VALUES ('Robles', 'Soy estudiante de la carrera de Ingenier√≠a de Sistemas de informaci√≥n de la UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu','rodrigo@gmail.com', 'Calle 334 las palmas', '10/08/1998', '15.0', 'Rodrigo', 10, 1);
-
-
-INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'juan@gmail.com');
-INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'marcos@gmail.com');
-INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'jean@gmail.com');
-INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'dennis@gmail.com');
-
-INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'pablo@gmail.com');
-INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'paul@gmail.com');
-INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'carlos@gmail.com');
-INSERT INTO users(enabled, password, username) VALUES (true, '$2a$10$qG/jEpVaRf81dnKDP3iPiuyIRFfsTgVXztl6A5wlV5rT6qKpQBkPu', 'rodrigo@gmail.com');
-
-INSERT INTO roles(rol, user_id)	VALUES ('ROLE_WALKER', 5);
-INSERT INTO roles(rol, user_id)	VALUES ('ROLE_WALKER', 6);
-INSERT INTO roles(rol, user_id)	VALUES ('ROLE_WALKER', 7);
-INSERT INTO roles(rol, user_id)	VALUES ('ROLE_WALKER', 8);
-INSERT INTO roles(rol, user_id)	VALUES ('ROLE_WALKER', 9);
-INSERT INTO roles(rol, user_id)	VALUES ('ROLE_WALKER', 10);
-INSERT INTO roles(rol, user_id)	VALUES ('ROLE_WALKER', 11);
-INSERT INTO roles(rol, user_id)	VALUES ('ROLE_WALKER', 12);
-
-
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Doky', 'Es jugueton','12/02/2020', 1,1,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Canela', 'Es jugueton','12/02/2020', 1,2,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Concovo', 'Es jugueton','12/02/2020', 1,3,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Thor', 'Es jugueton','12/02/2020', 1,4,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Loky', 'Es jugueton','12/02/2020', 1,2,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Heracles', 'Es jugueton','12/02/2020', 1,3,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Lucas', 'Es jugueton','12/02/2020', 1,3,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Aquiles', 'Es jugueton','12/02/2020', 1,1,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Loky', 'Es jugueton','12/02/2020', 1,2,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Heracles', 'Es jugueton','12/02/2020', 1,3,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Lucas', 'Es jugueton','12/02/2020', 1,3,1);
-INSERT INTO dog(name,description,date_Of_Birth,id_Character,id_Race,id_Owner)VALUES ('Aquiles', 'Es jugueton','12/02/2020', 1,1,1);
-
-INSERT INTO feedback(comment,rating,id_owner,id_walker) VALUES('excelente paseador',5,1,2);
-
-
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '02/12/2020', '10', '10:15', 1, 1, 2, 1, 2);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '03/12/2010', '10', '10:15', 1, 1, 2, 1, 2);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '04/12/2010', '10', '10:15', 1, 1, 2, 1, 1);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '02/12/2011', '10', '10:15', 1, 1, 2, 1, 1);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '02/14/2014', '10', '10:15', 1, 1, 2, 1, 1);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '02/15/2015', '10', '10:15', 1, 1, 2, 1, 2);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '02/16/2017', '10', '10:15', 1, 1, 2, 1, 2);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '01/21/2014', '10', '10:15', 1, 1, 2, 1, 3);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '06/21/2020', '10', '10:15', 1, 1, 2, 1, 3);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '02/21/2020', '10', '10:15', 1, 1, 2, 1, 4);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '07/22/2020', '10', '10:15', 1, 1, 2, 1, 4);
-INSERT INTO service_request(date_service, start_time, time_limit, total_service_cost, id_owner, id_status, id_time, id_walker) VALUES ( '08/12/2020', '10', '10:15', 1, 1, 2, 1, 5);

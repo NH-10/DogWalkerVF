@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import pe.edu.upc.spring.model.Feedback;
 
 
-
 @Repository
 public interface IFeedbackRepository extends JpaRepository<Feedback, Integer>{
 	

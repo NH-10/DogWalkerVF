@@ -113,10 +113,13 @@ $(document).ready(function(){
 
 			<div class="row">
 				<div class="form-group col-12 col-md-8">
-					<textarea class="form-control item" rows="3"
-						placeholder="Comentario" th:field="*{comment}"></textarea>
+					<div class="form-group">
+						<textarea th:class="${claseComentario}" rows="3"
+							placeholder="Comentario" th:field="*{comment}"
+							th:errorclass="'form-control alert-danger'"></textarea>
+						<small class="form-text text-danger" th:text="${mensajeComentario}"></small>
 
-
+					</div>
 					<select class="form-control item effectfeedback" name="puntuacion"
 						th:field="*{rating}">
 						<option value="1">1</option>

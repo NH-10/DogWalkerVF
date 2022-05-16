@@ -26,7 +26,6 @@
 			<div class="wrap-register">
 				<form id="logoutForm" th:action="@{/logout}" method="post">
 					<a class="btn btn-block create-account"	th:href="@{/walker/modificar}">Editar Perfil</a>
-					<a class="btn btn-block create-account" th:href= "@{/dog/listarCanes}">	Gestionar Mascotas</a>
 					<a class="btn btn-block create-account"	th:href="@{/serviceRequest/listarSolicitudesPaseador}">Solicitudes</a>
 					<a class="btn btn-block create-account" th:href="@{/walker/Comentarios}">Comentarios</a>
 					<a class="btn btn-block create-account" onclick="document.getElementById('logoutForm').submit();"type="submit">Cerrar Sesión</a> 

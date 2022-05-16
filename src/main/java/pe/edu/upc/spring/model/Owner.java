@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -30,19 +31,24 @@ public class Owner implements Serializable {
 	private int idOwner;
 
 	@NotEmpty(message = "Ingrese su nombre")
-	@Column(name = "firstNames", length = 150, nullable = false)
+	@Size(max=50, message = "Ingrese un nombre válido")
+	@Column(name = "firstNames", length = 50, nullable = false)
 	private String firstNames;
 
 	@NotEmpty(message = "Ingrese su apellido")
-	@Column(name = "lastNames", length = 150, nullable = false)
+	@Size(max=50, message = "Ingrese un apellido válido")
+	@Column(name = "lastNames", length = 50, nullable = false)
 	private String lastNames;
 	
 	@NotEmpty(message = "Ingrese su correo")
-	@Email (message = "Ingrese el correo electrÃ³nico correcto")
-	@Column(name = "email", length = 60, nullable = false)
+	@Size(max=40, message = "Ingrese el correo electrónico correcto")
+	@Email (message = "Ingrese el correo electrónico correcto")
+	@Column(name = "email", length = 40, nullable = false)
 	private String email;
 
-	@Column(name = "password", length = 200, nullable = false)
+	@NotEmpty(message = "Ingrese su contraseña")
+	//@Size(max=15, message = "Ingrese una contraseña válida")
+	@Column(name = "password", length = 255, nullable = false)
 	private String password;
 
 	@NotNull(message = "Ingrese su fecha de nacimiento")
@@ -52,12 +58,14 @@ public class Owner implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
 
+	@NotNull(message = "Seleccione su distrito")
 	@ManyToOne
 	@JoinColumn(name = "idDistrict", nullable = false)
 	private District district;
 
-	@NotEmpty(message = "Ingrese su direcciÃ³n")
-	@Column(name = "address", length = 255, nullable = false)
+	@NotEmpty(message = "Ingrese su dirección")
+	@Size(max=150, message = "Solo se permite 150 caracteres")
+	@Column(name = "address", length = 150, nullable = false)
 	private String address;
 
 	public Owner() {

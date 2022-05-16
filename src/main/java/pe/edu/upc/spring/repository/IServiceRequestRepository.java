@@ -22,4 +22,8 @@ public interface IServiceRequestRepository extends JpaRepository<ServiceRequest,
 	@Query("from ServiceRequest s where (s.dateService between :dateBegin and :dateEnd) and s.walker.district.name like %:d% ")
 	List<ServiceRequest> findServiceByDate(@Param("dateBegin") Date DateBegin,@Param("dateEnd") Date DateEnd, @Param("d") String d);	
 
+	@Query("from ServiceRequest s where (s.dateService between :dateBegin and :dateEnd) ")
+	List<ServiceRequest> findServiceByDates(@Param("dateBegin") Date DateBegin,@Param("dateEnd") Date DateEnd);	
+
+	
 }

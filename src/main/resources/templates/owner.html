@@ -4,7 +4,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <head>
-<meta charset="UTF-8"></meta>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
 	rel="stylesheet" />
@@ -23,7 +23,7 @@
 	<div class="registration-form" data-aos="fade-right">
 
 		<form th:action="@{/owner/registrar}" method="post"
-			th:object="${owner}">
+			th:object="${owner}" >
 			<div class="row">
 				<div class="form-group">
 					<h1>Registrarse como: Dueño</h1>
@@ -55,7 +55,7 @@
 			</div>
 
 			<div class="form-group">
-				<input type="text" class="form-control item" placeholder="email"
+				<input type="text" class="form-control item" placeholder="Email"
 					th:field="*{email}" th:errorclass="'form-control alert-danger'" />
 				<small class="form-text text-danger"
 					th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
@@ -63,7 +63,7 @@
 			</div>
 			<div class="form-group">
 				<input type="password" class="form-control item"
-					placeholder="contraseña" th:field="*{password}"
+					placeholder="Contraseña" th:field="*{password}"
 					th:errorclass="'form-control alert-danger'" /> <small
 					class="form-text text-danger"
 					th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
@@ -72,8 +72,8 @@
 			<div class="row">
 				<div class="form-group col-sm-6">
 					<div class=" form group date" id="id_0">
-						<input type="date" class="form-control itemselect"
-							placeholder="Fecha de nacimiento" th:field="*{dateOfBirth}"
+						<input type="text" class="form-control itemselect"
+							placeholder="Fecha de nacimiento" onfocus="(this.type='date')" th:field="*{dateOfBirth}"
 							th:errorclass="'form-control alert-danger'" /> <small
 							class="form-text text-danger"
 							th:if="${#fields.hasErrors('dateOfBirth')}"
@@ -83,19 +83,22 @@
 
 				<div class="form-group col-sm-6">
 
-					<select class="form-control itemselect"
-						th:field="*{District.idDistrict}">
+					<select th:class="${claseDistrito}"
+						th:field="*{District.idDistrict}" required >
+						<option th:value="0" disabled selected>Distrito</option>
 						<option th:each="d: ${listadistrito}" th:value="${d.idDistrict}"
 							th:text="${d.name}"
 							th:selected="(${d.idDistrict}==*{District.idDistrict})">
 						</option>
 					</select>
+					<small class="form-text text-danger" th:text="${mensajeDistrito}"></small>
+					
 
 				</div>
 			</div>
 
 			<div class="form-group">
-				<input type="text" class="form-control item" placeholder="Direccion"
+				<input type="text" class="form-control item" placeholder="Dirección"
 					th:field="*{address}" th:errorclass="'form-control alert-danger'" />
 				<small class="form-text text-danger"
 					th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></small>
@@ -124,6 +127,8 @@
 	<script th:src="@{/js/swiper-bundle.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 
+<script type="text/javascript">
 
+</script>
 </body>
 </html>

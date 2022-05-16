@@ -14,4 +14,5 @@ public interface IServiceRequestService {
 	public List<ServiceRequest> listServiceRequestByOwner(String idOwner);
 	public List<ServiceRequest> listServiceRequestByWalker(String idWalker);
 	public List<ServiceRequest> findServiceByDate(Date DateBegin,Date DateEnd, String d);
+	public List<ServiceRequest> findServiceByDates(Date DateBegin,Date DateEnd);
 }

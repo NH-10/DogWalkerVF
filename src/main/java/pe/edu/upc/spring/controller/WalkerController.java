@@ -1,5 +1,10 @@
 package pe.edu.upc.spring.controller;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -27,19 +32,13 @@ import pe.edu.upc.spring.service.IPersonalityService;
 import pe.edu.upc.spring.service.IWalkerService;
 import pe.edu.upc.spring.serviceimpl.JpaUserDetailsService;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
 @Controller
 @RequestMapping("/walker")
 public class WalkerController {
 
 	@Autowired
 	private IDistrictService dService;
-	
+
 	@Autowired
 	private JpaUserDetailsService uService;
 
@@ -60,7 +59,7 @@ public class WalkerController {
 
 	@Autowired
 	private WalkerController w;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
@@ -95,7 +94,7 @@ public class WalkerController {
 
 	@RequestMapping("/menu")
 	public String irMenuWalker() {
-		//return "menuWalker";
+		// return "menuWalker";
 		return "walkerMenuComplete";
 	}
 
@@ -109,71 +108,103 @@ public class WalkerController {
 		model.addAttribute("walker", new Walker());
 		model.addAttribute("listadistrito", dService.listDistrict());
 		model.addAttribute("listpersonalidad", pService.listPersonality());
+		model.addAttribute("claseDistrito", "form-control itemselect");
+		model.addAttribute("clasePersonalidad", "form-control itemselect");
+
 		return "walker";
+	}
+
+	@RequestMapping("/irEnterateMas") // función registrar paseador
+	public String irPaginaEnterateMas(Model model) {
+		model.addAttribute("walker", new Walker());
+		model.addAttribute("listadistrito", dService.listDistrict());
+		model.addAttribute("listpersonalidad", pService.listPersonality());
+		return "enterateMas";
 	}
 
 	@RequestMapping("/registrar")
 	public String registrar(@Valid Walker objWalker, BindingResult binRes, Model model) throws ParseException {
-	
-		if (binRes.hasErrors()) {	
+
+		if (binRes.hasErrors()) {
 			model.addAttribute("listadistrito", dService.listDistrict());
 			model.addAttribute("listpersonalidad", pService.listPersonality());
-			if(objWalker.getIdWalker()> 0) {
-				return "walkerEdit";
-			}
-			else {
-				return "walker";
-			}	
-		} else {
-			
-			if(objWalker.getIdWalker() > 0) {
-				if(objWalker.getPassword()=="") {
-					objWalker.setPassword(contrasenaAnterior);
-				
-				}else {
-					String bcryptPassword = passwordEncoder.encode(objWalker.getPassword());
-					objWalker.setPassword(bcryptPassword);	
-				}
-			}else {
-				String bcryptPassword = passwordEncoder.encode(objWalker.getPassword());
-				objWalker.setPassword(bcryptPassword);	
-			}
-			boolean flagUsers;
-			boolean flag ;
-			if(objWalker.getIdWalker() > 0) {				
-				 flagUsers = registrarUsuario(objWalker);
-				 flag = wService.save(objWalker);
-			}else {				
-				Users users= uService.findByUsername(objWalker.getEmail());
-				if(users!=null) {
-					model.addAttribute("mensaje", "Ya se ha creado una cuenta con este correo, por favor intente con otro");
-					flagUsers=false;
-					flag=false;
-				}else {
-					 flagUsers = registrarUsuario(objWalker);
-					 flag = wService.save(objWalker);
-				}
-			}
-			if (flag && flagUsers) {
-
-				sesionWalker = objWalker;
-				sController.setWalker(sesionWalker);
-				return "redirect:/walker/bienvenido";
+			if (objWalker.getDistrict() == null) {
+				model.addAttribute("mensajeDistrito", "Seleccione su distrito");
+				model.addAttribute("claseDistrito", "form-control itemselect alert-danger");
 			} else {
-				if(objWalker.getIdWalker() > 0) {
-					return "redirect:/walker/modificar";
+				model.addAttribute("claseDistrito", "form-control itemselect");
+			}
+			
+			if (objWalker.getPersonality() == null) {
+				model.addAttribute("mensajePersonalidad", "Seleccione una personalidad");
+				model.addAttribute("clasePersonalidad", "form-control itemselect alert-danger");
+			} else {
+				model.addAttribute("clasePersonalidad", "form-control itemselect");
+			}
+			if (objWalker.getIdWalker() > 0) {
+				return "walkerEdit";
+			} else {
+				return "walker";
+			}
+		} else {
+			if (objWalker.getDistrict() != null && objWalker.getPersonality() != null) {
+				if (objWalker.getIdWalker() > 0) {
+					if (objWalker.getPassword() == "") {
+						objWalker.setPassword(contrasenaAnterior);
+
+					} else {
+						String bcryptPassword = passwordEncoder.encode(objWalker.getPassword());
+						objWalker.setPassword(bcryptPassword);
+					}
+				} else {
+					String bcryptPassword = passwordEncoder.encode(objWalker.getPassword());
+					objWalker.setPassword(bcryptPassword);
 				}
-				else {
+				boolean flagUsers;
+				boolean flag;
+				if (objWalker.getIdWalker() > 0) {
+					flagUsers = registrarUsuario(objWalker);
+					flag = wService.save(objWalker);
+				} else {
+					Users users = uService.findByUsername(objWalker.getEmail());
+					if (users != null) {
+						model.addAttribute("mensaje",
+								"Ya se ha creado una cuenta con este correo, por favor intente con otro");
+						flagUsers = false;
+						flag = false;
+					} else {
+						flagUsers = registrarUsuario(objWalker);
+						flag = wService.save(objWalker);
+					}
+				}
+				if (flag && flagUsers) {
+
+					sesionWalker = objWalker;
+					sController.setWalker(sesionWalker);
+					return "redirect:/walker/bienvenido";
+				} else {
+					if (objWalker.getIdWalker() > 0) {
+						return "redirect:/walker/modificar";
+					} else {
+						model.addAttribute("mensaje", "Ocurrio un error");
+						return "redirect:/walker/irRegistrar";
+					}
+				}
+			} else {
+
+				if (objWalker.getIdWalker() > 0) {
+					return "redirect:/walker/modificar";
+				} else {
 					model.addAttribute("mensaje", "Ocurrio un error");
 					return "redirect:/walker/irRegistrar";
-				}	
+				}
 			}
 		}
 	}
 
 	@RequestMapping("/modificar")
 	public String modificar(Model model) {
-		contrasenaAnterior= sesionWalker.getPassword();
+		contrasenaAnterior = sesionWalker.getPassword();
 		sesionWalker.setPassword("");
 		model.addAttribute("walker", sesionWalker);
 		model.addAttribute("listadistrito", dService.listDistrict());
@@ -206,11 +237,10 @@ public class WalkerController {
 		List<Walker> listaDistrict;
 		listaDistrict = wService.listByDistrict(district.getName());
 		feedbackController.setDistrict(district);
-		sController.setDistrict(district);
 		model.put("owner", sesionOwner);
 		model.put("WalkerController", w);
 
-		if (listaDistrict.isEmpty()) {
+		if (listaDistrict.isEmpty()&& district.getName().isEmpty() ) {
 			model.put("listarPaseadores", wService.list());
 		} else {
 			model.put("listarPaseadores", listaDistrict);
@@ -219,6 +249,18 @@ public class WalkerController {
 
 		return "walkerListByDistrict";
 
+	}
+
+	@RequestMapping("/reporteEnterateMas")
+	public String reporteMisPaseos(Model model, @ModelAttribute Walker objWalker) throws ParseException {
+		List<Walker> listaDistrict;
+		model.addAttribute("listadistrito", dService.listDistrict());
+		model.addAttribute("owner", sesionOwner);
+		model.addAttribute("WalkerController", w);
+		listaDistrict = wService.listByDistrict(objWalker.getDistrict().getName());
+		model.addAttribute("listarPaseadores", listaDistrict);
+		model.addAttribute("cantidadPaseadores", listaDistrict.size());
+		return "enterateMas";
 	}
 
 	public int calcularEdad(Date dateOfBirth) {
@@ -251,27 +293,26 @@ public class WalkerController {
 		this.sesionOwner = sesionOwner;
 	}
 
-
 	public void setSesionWalker(Walker sesionWalker) {
 		this.sesionWalker = sesionWalker;
 		sController.setWalker(sesionWalker);
 	}
-	
-	public boolean  registrarUsuario(Walker walker) {
-		Users users ;
-		users= uService.findByUsername(walker.getEmail());
-		if(users== null) {
+
+	public boolean registrarUsuario(Walker walker) {
+		Users users;
+		users = uService.findByUsername(walker.getEmail());
+		if (users == null) {
 			users = new Users();
-			List<Role> listRoles= new ArrayList<Role>();
-			Role role= new Role();
+			List<Role> listRoles = new ArrayList<Role>();
+			Role role = new Role();
 			role.setRol("ROLE_WALKER");
 			listRoles.add(role);
 			users.setPassword(walker.getPassword());
 			users.setRoles(listRoles);
 			users.setEnabled(true);
 			users.setUsername(walker.getEmail());
-		
-		}else if(users.getPassword()!=walker.getPassword()){			
+
+		} else if (users.getPassword() != walker.getPassword()) {
 			users.setPassword(walker.getPassword());
 		}
 		boolean flagUsers = uService.save(users);

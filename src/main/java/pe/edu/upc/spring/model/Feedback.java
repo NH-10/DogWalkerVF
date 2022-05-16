@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "Feedback")
@@ -24,7 +26,10 @@ public class Feedback implements Serializable {
 	@Column(name = "rating", nullable = false)
 	private int rating;
 
-	@Column(name = "comment", length = 255, nullable = false)
+	
+	//@NotEmpty(message = "Ingrese su comentario")
+	@Size(max=200, message = "Solo se permite como máximo 200 caracteres en el comentario")
+	@Column(name = "comment", length = 200, nullable = false)
 	private String comment;
 
 	@ManyToOne
