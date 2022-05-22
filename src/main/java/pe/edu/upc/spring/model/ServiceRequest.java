@@ -21,7 +21,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "ServiceRequest")
+@Table(name = "servicerequest")
 public class ServiceRequest implements Serializable {
 
 	private static final long serialVersionUID = 1L;

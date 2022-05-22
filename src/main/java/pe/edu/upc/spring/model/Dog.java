@@ -21,7 +21,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "Dog")
+@Table(name = "dog")
 public class Dog implements Serializable {
 
 	private static final long serialVersionUID = 1L;

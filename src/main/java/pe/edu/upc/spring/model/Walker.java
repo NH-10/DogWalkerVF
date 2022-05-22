@@ -24,7 +24,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "Walker")
+@Table(name = "walker")
 public class Walker implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -34,22 +34,22 @@ public class Walker implements Serializable {
 	private int idWalker;
 
 	@NotEmpty(message = "Ingrese su nombre")
-	@Size(max=50, message = "Ingrese un nombre v谩lido")
+	@Size(max=50, message = "Ingrese un nombre v醠ido")
 	@Column(name = "firstNames", length = 50, nullable = false)
 	private String firstNames;
 
 	@NotEmpty(message = "Ingrese su apellido")
-	@Size(max=50, message = "Ingrese un apellido v谩lido")
+	@Size(max=50, message = "Ingrese un apellido v醠ido")
 	@Column(name = "lastNames", length = 50, nullable = false)
 	private String lastNames;
 
 	@NotEmpty(message = "Ingrese su correo")
-	@Size(max=40, message = "Ingrese el correo electr贸nico correcto")
-	@Email (message = "Ingrese el correo electr贸nico correcto")
+	@Size(max=40, message = "Ingrese el correo electr髇ico correcto")
+	@Email (message = "Ingrese el correo electr髇ico correcto")
 	@Column(name = "email", length = 40, nullable = false)
 	private String email;
 	
-	@NotEmpty(message = "Ingrese su contrase帽a")
+	@NotEmpty(message = "Ingrese su contrase馻")
 	@Column(name = "password", length = 255, nullable = false)//15 no alcanza con la data de prueba por el security
 	private String password;
 
@@ -60,7 +60,7 @@ public class Walker implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
 
-	@NotEmpty(message = "Ingrese su descripci贸n")
+	@NotEmpty(message = "Ingrese su descripci髇")
 	@Size(max=255, message = "Solo se permite 255 caracteres")
 	@Column(name = "description", length = 255, nullable = false)
 	private String description;
@@ -70,7 +70,7 @@ public class Walker implements Serializable {
 	@Column(name = "costService", nullable = false)
 	private double costService;
 
-	@NotEmpty(message = "Ingrese su direcci贸n")
+	@NotEmpty(message = "Ingrese su direcci髇")
 	@Size(max=150, message = "Solo se permite 150 caracteres")
 	@Column(name = "address", length = 150, nullable = false)
 	private String address;

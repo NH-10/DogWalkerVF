@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "Owner")
+@Table(name = "owner")
 public class Owner implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -47,7 +47,6 @@ public class Owner implements Serializable {
 	private String email;
 
 	@NotEmpty(message = "Ingrese su contraseña")
-	//@Size(max=15, message = "Ingrese una contraseña válida")
 	@Column(name = "password", length = 255, nullable = false)
 	private String password;
 

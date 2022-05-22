@@ -14,7 +14,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "Feedback")
+@Table(name = "feedback")
 public class Feedback implements Serializable {
 
 	private static final long serialVersionUID = 1L;
